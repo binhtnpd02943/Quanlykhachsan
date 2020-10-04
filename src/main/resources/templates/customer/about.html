@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/clone.html}">
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Hotel HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+</head>
+<body itemscope>
+<div class="theme-layout">
+	<div class="header-container stick">
+		<div layout:fragment="header"></div>
+	</div><!-- Header Container -->
+
+
+<div layout:fragment="content">
+	<div class="pagetop">
+		<div class="container">
+			<h1>About Us</h1>
+			<ul>
+				<li><a title="" href="#">Home</a></li>
+				<li>About Us</li>
+			</ul>		
+		</div>
+	</div><!-- Page Top -->
+
+
+	<section>
+		<div class="block gray-layer">
+			<div class="parallax" data-velocity="-.1" style="background: rgba(0, 0, 0, 0) url(images/parallax1.jpg) no-repeat 50% 0;"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 column">
+						<div class="tab-data">
+							<strong>Welcome To</strong>
+							<h4>Luxury Best Hotel</h4>
+							<p>Duis at ante nec neque rhoncus pretium. Utpl mollis, est non scelerisque blandit, velit nunc lao in vehicula sem phasellu efore. Proin gravida nibh vel velit auctor aliquet.</p>
+							<ul>
+								<li>
+									<p>World Best Resort No</p>
+									<span>06</span>
+								</li>
+								<li>
+									<p>We Are Awarded In</p>
+									<span>2014</span>
+								</li>
+								<li>
+									<p>Brunches In Countries</p>
+									<span>24</span>
+								</li>
+							</ul><!-- ul -->
+						</div><!-- tabs-data -->
+
+					</div>
+				</div>
+			</div><!-- container -->
+		</div><!-- block -->
+	</section><!-- Tabs Section -->
+
+
+	<section>
+		<div class="block gray remove-gap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="adds-images">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="add">
+										<a title="" href="#"><img alt="" th:src="@{/images/resource/add1.jpg}"></a>
+									</div><!-- Add -->
+								</div>
+								<div class="col-md-4">
+									<div class="add">
+										<a title="" href="#"><img alt="" th:src="@{/images/resource/add2.jpg}"></a>
+									</div><!-- Add -->
+								</div>
+								<div class="col-md-4">
+									<div class="add">
+										<a title="" href="#"><img alt="" th:src="@{/images/resource/add3.jpg}"></a>
+									</div><!-- Add -->
+								</div>
+							</div>
+						</div><!-- Adds Images -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="block gray no-padding merge-columns">
+			<div class="row">
+				<div class="col-md-4 column">
+					<div class="about-section">
+						<img th:src="@{/images/resource/about.jpg}" alt="" />
+						<div class="overlay">
+							<div class="inner">
+								<span>Want To Know About Us</span>
+								<h4>Who We Are?</h4>
+								<p>Curabitur blandit tempus porttitor. Maecenas sed diam eget et non magna. Fusce dapibus, tellus ac cursus commodo nibh, ut fermentum massa justo sit amet risus nibh.</p>
+							</div>
+						</div>
+					</div><!-- About Section -->
+				</div>
+				<div class="col-md-4 column">
+					<div class="make-reservation">
+						<img th:src="@{/images/resource/make-reservation.jpg}" alt="" />
+						<div class="overlay">
+							<div class="inner">
+								<a class="book-now call-popup" href="#" title="">Make Reservation</a>
+							</div>
+						</div>
+					</div><!-- Make Reservation -->
+				</div>
+				<div class="col-md-4 column">
+					<div class="testimonial-section">
+						<img th:src="@{/images/resource/testimonials-bg.jpg}" alt="" />
+						<div class="overlay">
+							<div class="inner">
+								<div class="testimonial-carousel">
+									<div class="testimonial">
+										<blockquote><img class="quote-start" th:src="@{/images/blockquote.png}" alt="" />Penatibus et magni Lorem ipsum dolor massa. Cum sociis natoque  amet, consectetuer adipisi atibus parturient montes nascetur.<img class="quote-end" src="images/blockquote.png" alt="" /></blockquote>
+										<div class="testimonial-name">
+											<img th:src="@{/images/resource/testimonial-name.jpg}" alt="" />
+											<strong><span>Manager</span>Tray Calvin</strong>
+										</div>
+									</div><!-- Testimonial -->
+									<div class="testimonial">
+										<blockquote><img class="quote-start" th:src="@{/images/blockquote.png}" alt="" />Aenean massa. Cum sociis natoque penatibus et magni Lorem ipsum dolor amet, consectetuer adipisi atibus parturient montes nascetur.<img class="quote-end" src="images/blockquote.png" alt="" /></blockquote>
+										<div class="testimonial-name">
+											<img th:src="@{/images/resource/testimonial-name2.jpg}" alt="" />
+											<strong><span>CEO</span>Tom Lorut</strong>
+										</div>
+									</div><!-- Testimonial -->
+									<div class="testimonial">
+										<blockquote><img class="quote-start" th:src="@{/images/blockquote.png}" alt="" />Cum sociis natoque penatibus et magni Lorem ipsum dolor. consectetuer adipisi atibus parturient montes nascetur.<img class="quote-end" src="images/blockquote.png" alt="" /></blockquote>
+										<div class="testimonial-name">
+											<img th:src="@{/images/resource/testimonial-name3.jpg}" alt="" />
+											<strong><span>Employee</span>Max Martin</strong>
+										</div>
+									</div><!-- Testimonial -->
+								</div><!-- Testimonial Carousel -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="block gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title">
+							<span>Resort World Best Places</span>
+							<h4>RESORT STAFF</h4>
+						</div><!-- Title -->
+
+						<div class="our-team">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="team-member">
+										<div class="team-img">
+											<img th:src="@{/images/resource/team1.jpg}" alt="" />
+											<div class="team-hover">
+												<p>Curabitur blandit tempus portt et non magna. Fusce dapib nibh, ut fermentum</p>
+											</div>
+										</div>
+										<div class="team-name">
+											<span>Chife Excutive Officer</span>
+											<h5><a title="" href="#">James Walter</a></h5>
+										</div>
+										<ul class="social-media">
+											<li><a title="" href="#"><i class="fa fa-facebook"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-twitter"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-google-plus"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-linkedin"></i></a></li>
+										</ul>
+									</div><!-- Team Member -->
+								</div>
+								<div class="col-md-4">
+									<div class="team-member">
+										<div class="team-img">
+											<img th:src="@{/images/resource/team2.jpg}" alt="" />
+											<div class="team-hover">
+												<p>Curabitur blandit tempus portt et non magna. Fusce dapib nibh, ut fermentum</p>
+											</div>
+										</div>
+										<div class="team-name">
+											<span>Chife Excutive Officer</span>
+											<h5><a title="" href="#">Nikki Walter</a></h5>
+										</div>
+										<ul class="social-media">
+											<li><a title="" href="#"><i class="fa fa-facebook"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-twitter"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-google-plus"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-linkedin"></i></a></li>
+										</ul>
+									</div><!-- Team Member -->
+								</div>
+								<div class="col-md-4">
+									<div class="team-member">
+										<div class="team-img">
+											<img th:src="@{/images/resource/team3.jpg}" alt="" />
+											<div class="team-hover">
+												<p>Curabitur blandit tempus portt et non magna. Fusce dapib nibh, ut fermentum</p>
+											</div>
+										</div>
+										<div class="team-name">
+											<span>Chife Excutive Officer</span>
+											<h5><a title="" href="#">Mic Waltainer</a></h5>
+										</div>
+										<ul class="social-media">
+											<li><a title="" href="#"><i class="fa fa-facebook"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-twitter"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-google-plus"></i></a></li>
+											<li><a title="" href="#"><i class="fa fa-linkedin"></i></a></li>
+										</ul>
+									</div><!-- Team Member -->
+								</div>
+							</div>
+						</div><!-- our-staff -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="block less-spacing">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 column">
+						<div class="clients-carousel">
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client3.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client4.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client5.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+							</div><!-- Client -->
+						</div><!-- Clients Carousel -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	</div>
+</div>
+
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>

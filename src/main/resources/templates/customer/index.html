@@ -1,0 +1,513 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/clone.html}">
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hotel HTML Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+
+</head>
+<body itemscope>
+	<div class="theme-layout">
+<div class="header-container stick">
+		<div layout:fragment="header"></div>
+</div>
+
+		<div layout:fragment="content">
+			<section>
+				<div class="block no-padding">
+					<div class="row">
+						<div class="col-md-12 column">
+							<div class="rooms-list">
+								<ul>
+									<li th:each="item: ${phong}">
+										<div class="room">
+											<img th:src="@{'/getImg/' +${item.id}}" alt="" />
+											<div class="room-name">
+												<h4>
+													<span th:text="${item.ten}"></span>
+													Diện tích: <td  th:text="${item.dientich}+ 'm'"></td>
+												</h4>
+											</div>
+											<div class="room-detail">
+												<div class="room-inner">
+													<h3 th:text="${item.khachsan.ten}"></h3>
+													<p th:text="${item.mota}"> </p>
+													<strong th:text="'$' + ${item.giathue}"> <i>- Per Night</i></strong>
+													<div class="room-features">
+														<span><i class="fa fa-calendar"></i></span> <span><i
+															class="fa fa-wifi"></i></span> <span><i
+															class="fa fa-clock-o"></i></span> <span><i
+															class="fa fa-laptop"></i></span> <span><i
+															class="fa fa-umbrella"></i></span>
+													</div>
+													<div class="view-more">
+														<a href="packages-detail.html" title="">view more
+															detail <i class="fa fa-long-arrow-right"></i>
+														</a>
+													</div>
+												</div>
+											</div>
+											<!-- Room Detail -->
+										</div> <!-- Room -->
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="title">
+						<nav class="text-center margin-top-65 margin-bottom-75"
+							aria-label="Contacts Page Navigation" th:if="${phong.totalPages}">
+							<ul class="pagination justify-content-center m-0">
+								<li
+									th:class="${phong.number == 0}?'disabled page-item':'page-item'">
+									<a class="page-link" th:href="@{/home/(page=1)}">&laquo;</a>
+								</li>
+								<li
+									th:class="${phong.number == 0} ?'disabled page-item':'page-item'"><a
+									class="page-link"
+									th:href="@{/home/(page=${phong.number})}">&larr;</a></li>
+								<li
+									th:class="${phong.number == (page - 1)}?'active page-item':'page-item'"
+									th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+									<a class="page-link" th:href="@{/home/(page=${page})}"
+									th:text="${page}"></a>
+								</li>
+								<li
+									th:class="${phong.number + 1 == phong.totalPages} ?'disabled page-item':'page-item'">
+									<a class="page-link"
+									th:href="@{/home/(page=${phong.number + 2})}">&rarr;</a>
+								</li>
+								<li
+									th:class="${phong.number+ 1 == phong.totalPages}?'disabled page-item':'page-item'">
+									<a class="page-link"
+									th:href="@{/home/(page=${phong.totalPages})}">&raquo;</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</section>
+			<!-- Rooms Section -->
+
+			<section>
+				<div class="block remove-gap gray-layer">
+					<div class="parallax" data-velocity="-.1"
+						style="background: rgba(0, 0, 0, 0) url(images/parallax1.jpg) no-repeat 50% 0;"></div>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1 column">
+								<div class="big-tabs">
+									<ul class="nav nav-tabs">
+										<li class="active"><a href="#about-hotel"
+											data-toggle="tab">
+												<div class="tab-name">
+													<i class="fa fa-building"></i> <span>Who We Are<strong>About
+															Hotel</strong></span>
+												</div>
+										</a></li>
+										<li><a href="#find-hotel" data-toggle="tab">
+												<div class="tab-name">
+													<i class="fa fa-search"></i> <span>Any Where
+														Worldwide <strong>Find Your Ideal Hotel</strong>
+													</span>
+												</div>
+										</a></li>
+										<li><a href="#book-hotel" data-toggle="tab">
+												<div class="tab-name">
+													<i class="fa fa-briefcase"></i> <span>Credit cards,
+														Paypal ... <strong>Book Your Hotel</strong>
+													</span>
+												</div>
+										</a></li>
+									</ul>
+									<div class="tab-content">
+										<div role="tabpanel" class="tab-pane fade in active"
+											id="about-hotel">
+											<div class="tab-data">
+												<strong>Welcome To</strong>
+												<h4>Luxury Best Hotel</h4>
+												<p>Duis at ante nec neque rhoncus pretium. Utpl mollis,
+													est non scelerisque blandit, velit nunc lao in vehicula sem
+													phasellu efore. Proin gravida nibh vel velit auctor
+													aliquet.</p>
+												<ul>
+													<li>
+														<p>World Best Resort No</p> <span>06</span>
+													</li>
+													<li>
+														<p>We Are Awarded In</p> <span>2014</span>
+													</li>
+													<li>
+														<p>Brunches In Countries</p> <span>24</span>
+													</li>
+												</ul>
+												<!-- ul -->
+											</div>
+											<!-- tabs-data -->
+										</div>
+										<div role="tabpanel" class="tab-pane fade" id="find-hotel">
+											<div class="tab-form">
+												<div class="tab-from-title">
+													<span>Any Time Worldwide</span>
+													<h4>Find Your Ideal Hotel</h4>
+												</div>
+												<form
+													action="http://themes.webinane.com/hotel-room/room-packages-grid.html">
+													<div class="row">
+														<div class="col-md-3">
+															<label>Check In</label>
+															<div class="field">
+																<input class="popupDatepicker" type="text"
+																	placeholder="Select Date"> <img
+																	class="field-icon" th:src="@{/images/calendar.png}"
+																	alt="" />
+															</div>
+														</div>
+														<div class="col-md-3">
+															<label>Check Out</label>
+															<div class="field">
+																<input class="popupDatepicker" type="text"
+																	placeholder="Select Date"> <img
+																	class="field-icon" th:src="@{/images/calendar.png}"
+																	alt="" />
+															</div>
+														</div>
+														<div class="col-md-2">
+															<label>Adults</label>
+															<div class="field">
+																<input class="inc-dec" value="00" type="text"
+																	placeholder="">
+															</div>
+														</div>
+														<div class="col-md-2">
+															<label>Kids</label>
+															<div class="field">
+																<input class="inc-dec" value="00" type="text"
+																	placeholder="">
+															</div>
+														</div>
+														<div class="col-md-2">
+															<label>Rooms</label>
+															<div class="field">
+																<input class="inc-dec" value="00" type="text"
+																	placeholder="">
+															</div>
+														</div>
+														<div class="col-md-12">
+															<button class="book-now" type="submit">Search
+																Now</button>
+														</div>
+													</div>
+												</form>
+												<!-- Tab Form -->
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane fade" id="book-hotel">
+											<div class="tab-form">
+												<div class="tab-from-title">
+													<span>Any Time Worldwide</span>
+													<h4>Book A Hotel Now</h4>
+												</div>
+												<form
+													action="http://themes.webinane.com/hotel-room/room-packages-grid.html">
+													<div class="row">
+														<div class="col-md-4">
+															<label>First Name</label>
+															<div class="field">
+																<input type="text" placeholder="Enter Your First Name">
+															</div>
+														</div>
+														<div class="col-md-4">
+															<label>Last Name</label>
+															<div class="field">
+																<input type="text" placeholder="Enter Your Last Name">
+															</div>
+														</div>
+														<div class="col-md-4">
+															<label>Email</label>
+															<div class="field">
+																<input type="email" placeholder="Enter Your Email">
+															</div>
+														</div>
+														<div class="col-md-3">
+															<label>Phone</label>
+															<div class="field">
+																<input type="text" placeholder="Enter Your Phone Number">
+															</div>
+														</div>
+														<div class="col-md-3">
+															<label>City</label>
+															<div class="field">
+																<input type="text" placeholder="Enter Your City">
+															</div>
+														</div>
+														<div class="col-md-3">
+															<label>Address</label>
+															<div class="field">
+																<input type="text"
+																	placeholder="Enter Your Personal Address">
+															</div>
+														</div>
+														<div class="col-md-3">
+															<label>Your Requirements</label>
+															<div class="field">
+																<input type="text" placeholder="Enter Your Words">
+															</div>
+														</div>
+														<div class="col-md-12">
+															<button class="book-now call-popup-alert" type="submit">Book
+																Now</button>
+														</div>
+													</div>
+												</form>
+												<!-- Tab Form -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- container -->
+				</div>
+				<!-- block -->
+			</section>
+			<!-- Tabs Section -->
+
+
+			<section>
+				<div class="block gray darkblue-layer half-parallax">
+					<div class="parallax" data-velocity="-.1"
+						style="background: rgba(0, 0, 0, 0) url(images/parallax2.jpg) no-repeat 50% 0;"></div>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 column">
+								<div class="service-area">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="service-title">
+												<p>Let Go And Surrender To A</p>
+												<h3>Luxurious</h3>
+												<span>Services</span>
+											</div>
+											<!-- Service Title -->
+										</div>
+										<div class="col-md-8">
+											<div class="service-carousel">
+												<div class="service-box">
+													<img th:src="@{/images/resource/service-img1.jpg}" alt="" />
+													<div class="service-name">
+														<span><img th:src="@{/images/service-icon1.png}"
+															alt="" /></span>
+														<h5>
+															<a href="service-detail.html" title="">Offers Retrate</a>
+														</h5>
+													</div>
+												</div>
+												<!-- Service Box -->
+												<div class="service-box">
+													<img th:src="@{/images/resource/service-img2.jpg}" alt="" />
+													<div class="service-name">
+														<span><img th:src="@{/images/service-icon2.png}"
+															alt="" /></span>
+														<h5>
+															<a href="service-detail.html" title="">Spa Retrate</a>
+														</h5>
+													</div>
+												</div>
+												<!-- Service Box -->
+												<div class="service-box">
+													<img th:src="@{/images/resource/service-img3.jpg}" alt="" />
+													<div class="service-name">
+														<span><img th:src="@{/images/service-icon3.png}"
+															alt="" /></span>
+														<h5>
+															<a href="service-detail.html" title="">Dinning
+																Retrate</a>
+														</h5>
+													</div>
+												</div>
+												<!-- Service Box -->
+											</div>
+											<!-- Service Carousel -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- Services Section -->
+
+
+			<section>
+				<div class="block remove-gap gray">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="title">
+									<span>Resort World Best Places</span>
+									<h4>Luxury Tours</h4>
+								</div>
+								<!-- Title -->
+								<div class="row narrow">
+									<div class="gallery masonary">
+										<div class="col-md-2">
+											<div class="gallery-box">
+												<img th:src="@{/images/resource/gallery1.jpg}" alt="" />
+												<div class="gallery-hover">
+													<div class="gallery-inner">
+														<span><strong class="amount">$29.00 </strong>/
+															Extra</span>
+														<h5>
+															<a title="" href="packages-detail.html">Canyoning</a>
+														</h5>
+														<ul>
+															<li><a href="#" title="">Dinner</a></li>
+															<li><a href="#" title="">Breakfast</a></li>
+														</ul>
+														<a class="book-now" href="packages-detail.html" title="">Book
+															Now</a>
+													</div>
+												</div>
+											</div>
+											<!-- Gallery Box -->
+										</div>
+										<div class="col-md-6">
+											<div class="gallery-box bottom">
+												<img th:src="@{/images/resource/gallery2.jpg}" alt="" />
+												<div class="gallery-hover">
+													<div class="gallery-inner">
+														<span><strong class="amount">$93.00 </strong>/
+															Extra</span>
+														<h5>
+															<a title="" href="packages-detail.html">WATER RAFTING</a>
+														</h5>
+														<ul>
+															<li><a href="#" title="">Bus Transportation</a></li>
+															<li><a href="#" title="">Experienced Guides </a></li>
+														</ul>
+														<a class="book-now" href="packages-detail.html" title="">Book
+															Now</a>
+													</div>
+												</div>
+											</div>
+											<!-- Gallery Box -->
+										</div>
+										<div class="col-md-4">
+											<div class="gallery-box">
+												<img th:src="@{/images/resource/gallery3.jpg}" alt="" />
+												<div class="gallery-hover">
+													<div class="gallery-inner">
+														<span><strong class="amount">$58.00 </strong>/
+															Extra</span>
+														<h5>
+															<a title="" href="packages-detail.html">CANOPY TOURS</a>
+														</h5>
+														<ul>
+															<li><a href="#" title="">Transportation</a></li>
+															<li><a href="#" title="">Guides </a></li>
+														</ul>
+														<a class="book-now" href="packages-detail.html" title="">Book
+															Now</a>
+													</div>
+												</div>
+											</div>
+											<!-- Gallery Box -->
+										</div>
+										<div class="col-md-12">
+											<div class="gallery-box left">
+												<img th:src="@{/images/resource/gallery4.jpg}" alt="" />
+												<div class="gallery-hover">
+													<div class="gallery-inner">
+														<span><strong class="amount">$59.00 </strong>/
+															Extra</span>
+														<h5>
+															<a title="" href="packages-detail.html">HORSEBACK
+																RIDING</a>
+														</h5>
+														<ul>
+															<li><a href="#" title="">Entrance To The
+																	Waterfall</a></li>
+															<li><a href="#" title="">Local Guide </a></li>
+														</ul>
+														<a class="book-now" href="packages-detail.html" title="">Book
+															Now</a>
+													</div>
+												</div>
+											</div>
+											<!-- Gallery Box -->
+										</div>
+									</div>
+								</div>
+								<!-- Gallery -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="block less-spacing">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 column">
+								<div class="clients-carousel">
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client3.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client4.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client5.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+								</div>
+								<!-- Clients Carousel -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+	</div>
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>

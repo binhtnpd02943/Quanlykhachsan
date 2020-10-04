@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div layout:fragment="header"></div>
+
+<div layout:fragment="content">
+	<div class="row">
+		<aside class="col-sm-2">
+				<div class="card poly-cart">
+					<div class="card-body">
+						<div class="row">
+							<form th:action="@{/rooms/find}" method="post" class="input-group input-group-sm mt-auto" style="width: 200px;">
+                            <div class="input-group input-group-sm">
+                                <input type="text" name="ten" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+
+						</div>
+					</div>
+				</div>
+				<div class="card poly-cart" data-toggle="collapse" href="#chungloai">
+					<div class="card-header" style="cursor: pointer;">
+						<i class="fas fa-list-ul"></i> Danh Mục
+					</div>
+				</div>
+				<ul class="list-group collapse show" style="cursor: pointer;"
+					id="chungloai">
+					<a th:href="@{/users/}" class="list-group-item">Tài Khoản</a>
+					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
+					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
+					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
+					<a th:href="@{/rooms/}" class="list-group-item ">Phòng</a>
+
+				</ul>
+				<div class="card poly-cart" data-toggle="collapse" href="#nguoidung">
+					<div class="card-header" style="cursor: pointer;">
+						<i class="fas fa-list-ul"></i> Người Dùng
+					</div>
+				</div>
+				<ul class="list-group collapse show" style="cursor: pointer;"
+					id="nguoidung">
+					<li class="list-group-item "><i class="fas fa-user"></i> Tài
+						Khoản</li>
+					<li class="list-group-item "><i class="fas fa-cogs"></i> Chưa
+						Nghĩ Ra</li>
+					<a class="list-group-item " th:href="@{/logout}" th:if="${attr_user != null}"><i class="fas fa-sign-out-alt"></i>
+						Đăng Xuất</a>
+
+
+				</ul>
+			</aside>
+		<article class="col-sm-10">
+			<div class="card">
+				<div class="card-header">
+<div th:if="${success}"
+							class="row alert alert-success alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<span th:text="${success}"></span>
+						</div>
+					<span type="button" class="float-right btn btn-primary btn-sm"
+						data-toggle="modal" data-target="#modelId"> <i
+						class="fas fa-plus"></i> Them Moi
+					</span>
+					<!-- Modal -->
+					<div class="modal fade" id="modelId" tabindex="-1" role="dialog"
+						aria-labelledby="modelTitleId" aria-hidden="true">
+						<div class="modal-dialog" style="max-width: 700px" role="document">
+
+							<div class="modal-content">
+								<div class="modal-header">
+									<!--  
+									<div th:if="${message !=null}">
+										<h3 th:text="${message}"></h3>
+									</div>
+									-->
+									<h5 class="modal-title">Thêm Phòng</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form th:action="@{/rooms/saveOrUpdate}" th:object="${roomDto}"
+										method="post">
+
+										<div th:if="${id>0}">
+											<div class="form-group row">
+
+												<label class="col-sm-3 col-form-label"> Mã</label>
+												<div class="col-sm-9">
+													<input type="text" th:field="*{id}" class="form-control"
+														placeholder="Mã Thành Phố" readonly>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label"> Tên Phòng</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" th:field="*{ten}"
+													placeholder="Tên Phòng...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label"> Diện tích</label>
+											<div class="col-sm-9">
+												<input type="number" class="form-control"
+													th:field="*{dientich}" placeholder="Diện tích...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Giá Thuê</label>
+											<div class="col-sm-9">
+												<input type="number" id="giathue" class="form-control"
+													th:field="*{giathue}" placeholder="Giá thuê...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label"> Tiện Nghi</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="tiennghi" th:field="*{tiennghi}"
+													placeholder="Tiện Nghi...">
+											</div>
+										</div>
+										<div class="row" style="margin: 5px;">
+											<div class="form-group col-md-6">
+												<label>Khách sạn</label> <select th:field="*{khachsanId}"
+													class="form-control">
+
+													<option th:each="khachsan : ${hotels}"
+														th:value="${khachsan.id}" th:text="${khachsan.ten}"></option>
+												</select>
+
+											</div>
+
+											<div class="form-group col-md-6">
+												<label>Loại Giường</label> <select th:field="*{loaigiuong}"
+													class="form-control">
+													<option value="" selected>Select All menu</option>
+													<option th:value="true">Giường Đơn</option>
+													<option th:value="false">Giường Đôi</option>
+												</select>
+
+											</div>
+
+										</div>
+
+										<div class="row" style="margin: 5px;">
+											<div class="form-group col-sm-12">
+												<label for="validationTextarea">Mô Tả</label>
+												<textarea rows="4" class="form-control" th:field="*{mota}"
+													id="mota" placeholder="Mô tả...">
+                                                    </textarea>
+											</div>
+										</div>
+
+										<input type="submit" value="Add" class="btn btn-primary"
+											th:if="${id<=0}" /> <input type="submit" value="Update"
+											class="btn btn-primary" th:if="${id>0}" /> <a
+											th:href="@{/rooms/}" class="btn btn-outline-secondary">Cancel</a>
+
+									</form>
+								</div>
+								<div class="card-footer">
+									<h4>Error :</h4>
+									<ul style="color: red;"
+										th:if="${#fields.hasErrors('${roomDto.*}')}">
+										<li th:each="err: ${#fields.errors('${roomDto.*}')}"
+											th:text="${err}">Input is inncorrect</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<table class="table table-bordered" style="margin-bottom: 0;">
+					<thead class="text-center">
+						<tr>
+							<th>Tên</th>
+							<th>Diện Tích</th>
+							<th>Gía Thuê</th>
+							<th>Tiện Nghi</th>
+							<th>Loại Giường</th>
+							<th style="max-width: 250px;">Mo Ta</th>
+							<th>Khách Sạn</th>
+							<th>Thao tác</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						<tr th:each="item: ${rooms}">
+
+							<td th:text="${item.ten}"></td>
+							<td th:text="${item.dientich}+ 'm'"></td>
+							<td th:text="${item.giathue} + ' VNĐ'"></td>
+							<td th:text="${item.tiennghi}"></td>
+							<td><span
+								th:text="${item.loaigiuong} ? 'Giường Đơn':'Giường Đôi'"></span></td>
+							<td th:text="${item.mota}"></td>
+							<td th:text="${item.khachsan.ten}"></td>
+
+							<td class="text-right py-0 align-middle">
+								<div class="btn-group btn-group-sm">
+									<a th:href="@{'/rooms/edit/' + ${item.id}}"
+										class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+									<a th:href="@{'/rooms/delete/' + ${item.id}}"
+										class="btn btn-danger"><i class="fas fa-trash"></i></a>
+								</div>
+							</td>
+
+						</tr>
+
+					</tbody>
+				</table>
+
+				<div class="card-footer">
+				
+					<nav aria-label="Contacts Page Navigation" th:if="${rooms.totalPages}">
+                        <ul class="pagination justify-content-center m-0">
+                            <li th:class="${rooms.number == 0}?'disabled page-item':'page-item'">
+                                <a class="page-link"
+                                    th:href="@{/rooms/(page=1)}">&laquo;</a>
+                            </li>
+                            <li th:class="${rooms.number == 0} ?'disabled page-item':'page-item'"><a
+                                    class="page-link"
+                                    th:href="@{/rooms/(page=${rooms.number})}">&larr;</a>
+                            </li>
+                            <li
+                                    th:class="${rooms.number == (page - 1)}?'active page-item':'page-item'"
+                                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                <a class="page-link"
+                                   th:href="@{/rooms/(page=${page})}"
+                                   th:text="${page}"></a>
+                            </li>
+                            <li
+                                    th:class="${rooms.number + 1 == rooms.totalPages} ?'disabled page-item':'page-item'">
+                                <a class="page-link"
+                                   th:href="@{/rooms/(page=${rooms.number + 2})}">&rarr;</a>
+                            </li>
+                            <li
+                                    th:class="${rooms.number+ 1 == rooms.totalPages}?'disabled page-item':'page-item'">
+                                <a class="page-link"
+                                   th:href="@{/rooms/(page=${rooms.totalPages})}">&raquo;</a>
+                            </li>
+                        </ul>
+                        </nav>
+				</div>
+			</div>
+		</article>
+	</div>
+</div>
+
+</body>
+</html>

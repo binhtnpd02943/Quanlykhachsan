@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div layout:fragment="header"></div>
+
+	<div layout:fragment="content">
+		<div class="row">
+			<aside class="col-sm-2">
+				<div class="card poly-cart">
+					<div class="card-body">
+						<div class="row">
+							<form th:action="@{/users/find}" method="post"
+								class="input-group input-group-sm mt-auto" style="width: 200px;">
+								<div class="input-group input-group-sm">
+									<input type="text" name="tentaikhoan"
+										class="form-control float-right" placeholder="Search">
+									<div class="input-group-append">
+										<button type="submit" class="btn btn-default">
+											<i class="fas fa-search"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+				<div class="card poly-cart" data-toggle="collapse" href="#chungloai">
+					<div class="card-header" style="cursor: pointer;">
+						<i class="fas fa-list-ul"></i> Danh Mục
+					</div>
+				</div>
+				<ul class="list-group collapse show" style="cursor: pointer;"
+					id="chungloai">
+					<a th:href="@{/users/}" class="list-group-item">Tài Khoản</a>
+					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
+					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
+					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
+					<a th:href="@{/rooms/}" class="list-group-item ">Phòng</a>
+
+				</ul>
+				<div class="card poly-cart" data-toggle="collapse" href="#nguoidung">
+					<div class="card-header" style="cursor: pointer;">
+						<i class="fas fa-list-ul"></i> Người Dùng
+					</div>
+				</div>
+				<ul class="list-group collapse show" style="cursor: pointer;"
+					id="nguoidung">
+					<li class="list-group-item "><i class="fas fa-user"></i> Tài
+						Khoản</li>
+					<li class="list-group-item "><i class="fas fa-cogs"></i> Chưa
+						Nghĩ Ra</li>
+					<a class="list-group-item " th:href="@{/logout}"
+						th:if="${attr_user != null}"><i class="fas fa-sign-out-alt"></i>
+						Đăng Xuất</a>
+
+
+				</ul>
+			</aside>
+			<article class="col-sm-10">
+				<div class="card">
+					<div class="card-header">
+						<div th:if="${success}"
+							class="row alert alert-success alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<span th:text="${success}"></span>
+						</div>
+						<span type="button" class="float-right btn btn-primary btn-sm"
+							data-toggle="modal" data-target="#modelId"> <i
+							class="fas fa-plus"></i> Thêm Mới
+						</span>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="modelId" tabindex="-1" role="dialog"
+							aria-labelledby="modelTitleId" aria-hidden="true">
+							<div class="modal-dialog" style="max-width: 700px"
+								role="document">
+
+								<div class="modal-content">
+									<div class="modal-header">
+										<!--  
+									<div th:if="${message !=null}">
+										<h3 th:text="${message}"></h3>
+									</div>
+									-->
+										<h5 class="modal-title">Thêm tài Khoản</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									
+									<div class="modal-body">
+										<form name="myForm" th:action="@{/users/saveOrUpdate}"
+											th:object="${userDto}" method="post">
+
+
+
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label"> Tên Tài
+													Khoản</label>
+												<div class="col-sm-9">
+													<input type="text" class="form-control"
+														th:field="*{tentaikhoan}" placeholder="Tên Tài Khoản...">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label"> Họ và tên</label>
+												<div class="col-sm-9">
+													<input type="text" class="form-control" th:field="*{hoten}"
+														placeholder="Họ Và Tên...">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Mật Khẩu</label>
+												<div class="col-sm-9">
+													<input type="password" id="giathue" class="form-control"
+														th:field="*{matkhau}" placeholder="Mật khẩu...">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Xác nhận mật
+													khẩu</label>
+												<div class="col-sm-9">
+													<input type="password" class="form-control"
+														th:field="*{reMatkhau}" placeholder="Xác nhận mật khẩu...">
+												</div>
+											</div>
+											<div class="row" style="margin: 5px;">
+												<div class="form-group col-md-6">
+													<label>Số ĐT</label> 
+													<input type="tel" id="sodt" class="form-control" th:field="*{sodt}" placeholder="Số điện thoại...">
+
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>Gioi Tính</label> <select th:field="*{gioitinh}"
+														class="form-control">
+														<option value="" selected>Select All menu</option>
+														<option th:value="true">Nam</option>
+														<option th:value="false">Nữ</option>
+													</select>
+
+												</div>
+
+											</div>
+											<div class="row" style="margin: 5px;">
+												<div class="form-group col-md-6">
+													<label>Email</label> <input type="text"
+														class="form-control" th:field="*{email}"
+														placeholder="Email...">
+
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>Quyền</label> <input type="text"
+														class="form-control" th:field="*{role}"
+														placeholder="Quyền người dùng...">
+
+												</div>
+
+											</div>
+											<input type="submit" th:value="Add" class="btn btn-primary"th:if="${edit<true}" /> 
+											<input type="submit" value="Update"
+												class="btn btn-primary" th:if="${edit >= true}" />
+										<a th:href="@{/users/}" class="btn btn-outline-secondary">Cancel</a>
+											
+										</form>
+									</div>
+									
+									<div class="card-footer">
+										<h4>Error :</h4>
+										<ul style="color: red;"
+											th:if="${#fields.hasErrors('${userDto.*}')}">
+											<li th:each="err: ${#fields.errors('${userDto.*}')}"
+												th:text="${err}">Input is inncorrect</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<table class="table table-bordered" style="margin-bottom: 0;">
+						<thead class="text-center">
+							<tr>
+								<th>Tên Tài Khoản</th>
+								<th>Mật Khẩu</th>
+								<th>Họ và tên</th>
+								<th>Gioi Tính</th>
+								<th>SĐT</th>
+								<th>Email</th>
+								<th>Quyền người dùng</th>
+								<th>Thao tác</th>
+							</tr>
+
+						</thead>
+						<tbody>
+							<tr th:each="item: ${users}">
+
+								<td th:text="${item.tentaikhoan}"></td>
+								<td style="max-width: 250px;" th:text="${item.matkhau}"></td>
+								<td th:text="${item.hoten}"></td>
+								<td><span th:text="${item.gioitinh} ? 'Nam':'Nữ'"></span></td>
+								<td th:text="${item.sodt}"></td>
+								<td th:text="${item.email}"></td>
+								<td th:text="${item.role}"></td>
+
+
+								<td class="text-right py-0 align-middle">
+									<div class="btn-group btn-group-sm">
+										<a th:href="@{'/users/edit/' + ${item.tentaikhoan}}"
+											class="btn btn-primary" ><i class="fas fa-pencil-alt"></i></a>
+										<a th:href="@{'/users/delete/' + ${item.tentaikhoan}}"
+											class="btn btn-danger"><i class="fas fa-trash"></i></a>
+									</div>
+								</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class="card-footer">
+						   <nav aria-label="Page navigation example" style="margin-top: 20px;">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <i class="fas fa-hand-point-left"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="fas fa-hand-point-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+					</div>
+				</div>
+			</article>
+		</div>
+	</div>
+<th:block layout:fragment="js">
+    <script th:src="@{/js/select2.min.js}"></script>
+    <script th:src="@{/js/jquery.inputmask.bundle.min.js}"></script>
+
+    <script>
+    $(document).ready(function(){
+    	 $('#datemask').inputmask('dd/mm/yyyy');
+         $("#sodt").inputmask({"mask": "(99)(99)999-9999"});
+    });
+       
+    </script>
+</th:block>
+</body>
+</html>

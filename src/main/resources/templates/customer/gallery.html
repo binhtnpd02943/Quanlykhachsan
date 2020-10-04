@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/clone.html}">
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Hotel HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+</head>
+<body itemscope>
+<div class="theme-layout">
+	<div class="header-container stick">
+		<div layout:fragment="header"></div>
+	</div><!-- Header Container -->
+
+
+<div layout:fragment="content">
+	<div class="pagetop">
+		<div class="container">
+			<h1>Gallery Style 1</h1>
+			<ul>
+				<li><a title="" href="#">Packeges</a></li>
+				<li>Rooms Packeges</li>
+			</ul>		
+		</div>
+	</div><!-- Page Top -->
+
+
+
+	<section>
+		<div class="block gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 column">
+						<div class="gallery-data">
+							<section id="options">
+								<span>Select Category:</span>
+								<div class="option-isotop">
+									<ul id="filter" class="option-set filters-nav" data-option-key="filter">
+										<li><a href="#" class="selected" data-option-value="*">All</a></li>
+										<li><a href="#" data-option-value=".adventure">Adventure</a></li>
+										<li><a href="#" data-option-value=".horseriding">Horseback Riding</a></li>
+										<li><a href="#" data-option-value=".tours">Tours</a></li>
+										<li><a href="#" data-option-value=".specials">Specials</a></li>
+									</ul>
+								</div>
+							</section><!-- FILTER BUTTONS -->
+							<div class="row without-gap">
+								<div class="gallery masonary">
+									<div class="col-md-2 adventure">
+										<div class="gallery-img">
+											<img th:src="@{/images/resource/resort-img5.jpg}" alt="" />
+											<div class="gallery-overlay lightbox">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 horseriding">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img2.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 adventure">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img10.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 adventure">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img6.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 tours">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img9.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 tours">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img1.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 tours">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img7.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 horseriding">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img3.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 specials">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img8.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 specials">
+										<div class="gallery-img lightbox">
+											<img th:src="@{/images/resource/resort-img9.jpg}" alt="" />
+											<div class="gallery-overlay">
+												<span>November 10, 2013</span>
+												<h5><a href="#">Volcano Adventure</a></h5>
+												<a title="" href="http://placehold.it/1000x800">+</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div><!-- gallery-data -->	
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	</div>
+</div>
+
+		
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>
