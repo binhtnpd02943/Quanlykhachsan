@@ -21,7 +21,7 @@ public class KhachsanServiceImpl implements KhachsanService{
 
 	@Override
 	public Page<KhachSan> filterKhachSanbyCity(String tentp, int dg, int min, int max, Pageable pageble) {
-		return khachsanRepository.filterKhachSanbyCity(tentp, dg, min, max, pageble);
+		return khachsanRepository.filterKhachSanbyCity("%"+tentp+"%", dg, min, max, pageble);
 	}
 	@Override
 	public Page<KhachSan> filterKhachSanbyTypeofCity(int lks, int dg, int min, int max, Pageable pageble) {
@@ -107,8 +107,8 @@ public class KhachsanServiceImpl implements KhachsanService{
 		khachsanRepository.deleteAll();
 	}
 	@Override
-	public Page<KhachSan> findByTenLikeOrderByTen(String ten, Pageable pageble) {
+	public Page<KhachSan> findByTenLikeOrderByTen(String ten, Pageable pageable) {
 		// TODO Auto-generated method stub
-		return null;
+		return khachsanRepository.findByTenLikeOrderByTen("%"+ten+"%", pageable);
 	}
 }

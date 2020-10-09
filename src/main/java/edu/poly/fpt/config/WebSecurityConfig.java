@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/home/").permitAll() // Cho phép tất cả mọi người truy cập vào 2 địa chỉ này
+                .antMatchers("/").permitAll() // Cho phép tất cả mọi người truy cập vào 2 địa chỉ này
                 .antMatchers("/view/profile/**").permitAll()
                 
                 .antMatchers("/hotels/**").authenticated()// Tất cả các request khác đều cần phải xác thực mới được truy cập
@@ -51,8 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .usernameParameter("tentaikhoan")
                 .passwordParameter("matkhau")
-                .defaultSuccessUrl("/home/", true)
-                .failureUrl("/home/?error")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/?error")
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/403");

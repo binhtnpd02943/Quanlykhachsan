@@ -53,8 +53,6 @@ public class ListAllCustomer {
 	private LoaikhachsanService loaikhachsanService;
 	@Autowired
 	private KhachsanService khachsanService;
-	@Autowired
-	private PhongService phongService;
 	
 	@Autowired
 	private TaikhoanService taikhoanService;
@@ -175,7 +173,7 @@ public class ListAllCustomer {
 		model.addAttribute("userDto", UserDto);
 		System.out.println("==================================" + UserDto.getTentaikhoan());
 		redire.addFlashAttribute("success", "Saved Users successfully!");
-		return "redirect:/home/";
+		return "redirect:/";
 	}
 	
 	@ModelAttribute("attr_user")

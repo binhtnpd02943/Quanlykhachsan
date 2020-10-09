@@ -192,9 +192,8 @@
 											</div>
 											<div class="row" style="margin: 5px;">
 												<div class="form-group col-md-6">
-													<label>Thành Phố</label> <select th:field="*{thanhphoId}"
-														class="form-control">
-
+													<label>Thành Phố</label> 
+													<select th:field="*{thanhphoId}" class="form-control">
 														<option th:each="thanhpho : ${tbthanhpho}"
 															th:value="${thanhpho.id}" th:text="${thanhpho.ten}"></option>
 													</select>

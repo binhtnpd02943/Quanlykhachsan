@@ -74,7 +74,7 @@ public class TaikhoanController {
 		
 		user.setSodt(userDto.getSodt());
 		user.setEmail(userDto.getEmail());
-		user.setRole("USER");
+		user.setRole(userDto.getRole());
 		taikhoanService.save(user);
 		model.addAttribute("userDto", userDto);
 		System.out.println("==================================" + userDto.getTentaikhoan());

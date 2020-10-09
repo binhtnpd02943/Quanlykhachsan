@@ -47,7 +47,7 @@
 															class="fa fa-umbrella"></i></span>
 													</div>
 													<div class="view-more">
-														<a href="packages-detail.html" title="">view more
+														<a th:href="@{/view/booking-form}" title="">view more
 															detail <i class="fa fa-long-arrow-right"></i>
 														</a>
 													</div>
@@ -67,27 +67,27 @@
 							<ul class="pagination justify-content-center m-0">
 								<li
 									th:class="${phong.number == 0}?'disabled page-item':'page-item'">
-									<a class="page-link" th:href="@{/home/(page=1)}">&laquo;</a>
+									<a class="page-link" th:href="@{/(page=1)}">&laquo;</a>
 								</li>
 								<li
 									th:class="${phong.number == 0} ?'disabled page-item':'page-item'"><a
 									class="page-link"
-									th:href="@{/home/(page=${phong.number})}">&larr;</a></li>
+									th:href="@{/(page=${phong.number})}">&larr;</a></li>
 								<li
 									th:class="${phong.number == (page - 1)}?'active page-item':'page-item'"
 									th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-									<a class="page-link" th:href="@{/home/(page=${page})}"
+									<a class="page-link" th:href="@{/(page=${page})}"
 									th:text="${page}"></a>
 								</li>
 								<li
 									th:class="${phong.number + 1 == phong.totalPages} ?'disabled page-item':'page-item'">
 									<a class="page-link"
-									th:href="@{/home/(page=${phong.number + 2})}">&rarr;</a>
+									th:href="@{/(page=${phong.number + 2})}">&rarr;</a>
 								</li>
 								<li
 									th:class="${phong.number+ 1 == phong.totalPages}?'disabled page-item':'page-item'">
 									<a class="page-link"
-									th:href="@{/home/(page=${phong.totalPages})}">&raquo;</a>
+									th:href="@{/(page=${phong.totalPages})}">&raquo;</a>
 								</li>
 							</ul>
 						</nav>

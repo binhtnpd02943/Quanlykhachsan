@@ -33,8 +33,6 @@ public interface KhachsanService {
 
 	Optional<KhachSan> findById(Long id);
 	
-	 Page<KhachSan> findByTenLikeOrderByTen(String ten,Pageable pageble);
-
 	List<KhachSan> saveAll(List<KhachSan> entities);
 
 	KhachSan save(KhachSan entity);
@@ -46,7 +44,7 @@ public interface KhachsanService {
 	List<ThanhPho> findAllThanhpho();
 
 
-	
+	 Page<KhachSan> findByTenLikeOrderByTen(String ten,Pageable pageble);
 
 	Page<KhachSan> filterKhachSanbyNone(int dg, int min, int max, Pageable pageable);
 

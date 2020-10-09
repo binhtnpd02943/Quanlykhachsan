@@ -163,11 +163,7 @@ public class KhachsanController {
 	public String find(@RequestParam(defaultValue = "") String ten, ModelMap model,
 			@RequestParam("page") Optional<Integer> page) {
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
-		if(ten==null) {
-			
-		}
-		Page<KhachSan> list = khachsanService.findByTenLikeOrderByTen(ten,
-				PageRequest.of(evalPage, INITIAL_PAGE_SIZE, Sort.by("id")));
+		Page<KhachSan> list = khachsanService.findByTenLikeOrderByTen(ten,PageRequest.of(evalPage, INITIAL_PAGE_SIZE, Sort.by("id")));
 		PagerModel pager = new PagerModel(list.getTotalPages(), list.getNumber(), BUTTONS_TO_SHOW);
 		model.addAttribute("hotelDto", new hotelDto());
 		model.addAttribute("hotels", list);

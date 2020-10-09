@@ -32,8 +32,7 @@
 				</h3>
 				<p>Quis autem velum lure reprehe nderit. Lorem ipsum dolor
 					sitnulla or narjusto.</p>
-				<form th:action="@{/view/saveUser}"
-											th:object="${UserDto}" method="post">>
+				<form th:action="@{/view/saveUser}" th:object="${UserDto}" method="post">>
 					<div class="row">
 						<div class="col-md-8 column">
 							<div class="input-fields">
@@ -68,10 +67,7 @@
 											<option value="false">Female</option>
 										</select>
 									</div>
-									<div class="col-md-6">
-										<input type="text" name="role" placeholder="Role *" />
-									</div>
-
+									
 								</div>
 							</div>
 						</div>
@@ -143,7 +139,7 @@
                         <span>Manager</span>
                         
                     </a>
-                     <a th:href="@{/home/logout}">
+                     <a th:href="@{/logout}">
                         <span>Logout</span>
                         
                     </a>
@@ -164,9 +160,9 @@
 			<nav>
 				<a class="responsive-menu-btn" href="#" title=""><i class="fa fa-align-justify"></i></a>
 				<ul>
-					<li class="menu-item-has-children"><a th:href="@{/home/}" title="">Home</a>
+					<li class="menu-item-has-children"><a th:href="@{/}" title="">Home</a>
 						<ul>
-							<li><a th:href="@{/home/}" title="">Hotel or Resort Demo1</a></li>
+							<li><a th:href="@{/}" title="">Hotel or Resort Demo1</a></li>
 							<li><a th:href="@{/view/index3}" title="">Travel Demo</a></li>
 						</ul></li>
 					<li class="menu-item-has-children"><a th:href="@{/view/gallery}" title="">Gallery</a>
@@ -374,57 +370,7 @@
 				</div>
 				<!-- Popup Title -->
 				<div class="popup-details">
-					<div class="popup-block">
-						<div class="row">
-							<div class="col-md-5 column">
-								<div class="popup-block-title">
-									<span>Any Time</span>
-									<h4>Choose Your Date</h4>
-								</div>
-							</div>
-							<div class="col-md-7 column">
-								<form>
-									<div class="row">
-										<div class="col-md-6">
-											<label>Check In</label>
-											<div class="field">
-												<input class="popupDatepicker" type="text" placeholder="">
-												<img class="field-icon" th:src="@{/images/calendar.png}"
-													alt="" />
-											</div>
-										</div>
-										<div class="col-md-6">
-											<label>Check Out</label>
-											<div class="field">
-												<input class="popupDatepicker" type="text" placeholder="">
-												<img class="field-icon" th:src="@{/images/calendar.png}"
-													alt="" />
-											</div>
-										</div>
-										<div class="col-md-4">
-											<label>Adults</label>
-											<div class="field">
-												<input class="inc-dec" value="00" type="text" placeholder="">
-											</div>
-										</div>
-										<div class="col-md-4">
-											<label>Kids</label>
-											<div class="field">
-												<input class="inc-dec" value="00" type="text" placeholder="">
-											</div>
-										</div>
-										<div class="col-md-4">
-											<label>Rooms</label>
-											<div class="field">
-												<input class="inc-dec" value="00" type="text" placeholder="">
-											</div>
-										</div>
-									</div>
-								</form>
-								<!-- Tab Form -->
-							</div>
-						</div>
-					</div>
+					
 					<!-- Popup Block -->
 					<div class="popup-block">
 						<div class="row">
@@ -454,69 +400,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- Popup Block -->
-					<div class="popup-block">
-						<div class="row">
-							<div class="col-md-5 column">
-								<div class="popup-block-title">
-									<span>We Stand By</span>
-									<h4>Reservation Details</h4>
-								</div>
-							</div>
-							<div class="col-md-7 column">
-								<form>
-									<div class="row">
-										<div class="col-md-6">
-											<label>First Name</label>
-											<div class="field">
-												<input type="text" placeholder="" />
-											</div>
-										</div>
-										<div class="col-md-6">
-											<label>Last Name</label>
-											<div class="field">
-												<input type="text" placeholder="" />
-											</div>
-										</div>
-										<div class="col-md-6">
-											<label>Email</label>
-											<div class="field">
-												<input type="email" placeholder="" />
-											</div>
-										</div>
-										<div class="col-md-6">
-											<label>Phone</label>
-											<div class="field">
-												<input type="email" placeholder="" />
-											</div>
-										</div>
-										<div class="col-md-6">
-											<label>City</label>
-											<div class="field">
-												<input type="email" placeholder="" />
-											</div>
-										</div>
-										<div class="col-md-6">
-											<label>Address</label>
-											<div class="field">
-												<input type="email" placeholder="" />
-											</div>
-										</div>
-										<div class="col-md-12">
-											<label>Requirements</label>
-											<div class="field textarea">
-												<textarea></textarea>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<button class="book-now" type="submit">BOOK NOW</button>
-										</div>
-									</div>
-								</form>
-								<!-- Tab Form -->
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

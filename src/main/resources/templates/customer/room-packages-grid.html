@@ -23,7 +23,7 @@
 				<div class="container">
 					<h1>Room Packages</h1>
 					<ul>
-						<li><a title="" th:href="@{/home/}">Home</a></li>
+						<li><a title="" th:href="@{/}">Home</a></li>
 						<li><a title="" href="#">Packages</a></li>
 						<li>Room Packages</li>
 					</ul>
@@ -49,7 +49,7 @@
 										<label>City</label>
 										<div class="field">
 											<input class="form-control" type="text"
-												placeholder="Nhập Thành Phố" name="ten" id="ten" />
+												placeholder="Nhập Thành Phố" name="tentp" id="tentp" />
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -61,6 +61,11 @@
 												<option value="3">Căn Hộ</option>
 												<option value="4">Glamping</option>
 												<option value="5">Nhà Gỗ</option>
+												<option value="6">Nhà Khách</option>
+												<option value="7">Nhà trọ</option>
+												<option value="8">Resort</option>
+												<option value="9">Thôn Dã</option>
+												
 											</select>
 										</div>
 									</div>
@@ -79,14 +84,14 @@
 									<div class="col-md-2">
 										<label>lower price</label>
 										<div class="field">
-											<input class="form-control" type="number" placeholder="$0"
+											<input class="form-control" type="number" value="0"
 												name="giatn" id="giatn" />
 										</div>
 									</div>
 									<div class="col-md-2">
 										<label>Higher price</label>
 										<div class="field">
-											<input class="form-control" type="number" placeholder="$5000"
+											<input class="form-control" type="number" value="5000"
 												name="giacn" id="giacn" />
 									</div>
 									</div>
@@ -121,13 +126,13 @@
 													</ul>
 												</div>
 												<div class="offer-detail">
-													<span th:text="${item.thanhpho.ten}"></span>
+												<span th:text=" 'Loại khách sạn: ' + ${item.loaikhachsan.ten}"></span>
 													<h3>
 														<a href="flight-packages-detail.html" title=""
 															th:text="${item.ten}"></a>
 													</h3>
 													<div class="cost">
-														FROM <strong>$420.00</strong>/ Person
+														Thành Phố: <strong th:text="${item.thanhpho.ten}"></strong>/Vietnam
 													</div>
 													<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="">View Detail</a>
 												</div>

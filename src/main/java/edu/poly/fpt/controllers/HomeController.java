@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/home")
 public class HomeController {
 
 	@Autowired
@@ -56,7 +55,7 @@ public class HomeController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/home/";
+        return "redirect:/";
     }
 
 
