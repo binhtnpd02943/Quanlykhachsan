@@ -35,30 +35,34 @@
 				<form th:action="@{/view/saveUser}" th:object="${UserDto}" method="post">>
 					<div class="row">
 						<div class="col-md-8 column">
+						 <th:block th:if="${err}">
+                            <div class="alert alert-warning" role="alert">
+                                <span>Password and Repassword is incorrect</span>
+                            </div>
+                        </th:block>
 							<div class="input-fields">
 								<div class="row">
 									<div class="col-md-6">
 										<input type="text" name="tentaikhoan" placeholder="User Name *" />
 									</div>
+									
 									<div class="col-md-6">
 										<input type="text" name="hoten" placeholder="Full Name *" />
 									</div>
 									<div class="col-md-6">
-										<input type="password" name="matkhau"
-											placeholder="Password *" />
+										<input type="password" name="matkhau" placeholder="Password *" />
 									</div>
 									<div class="col-md-6">
-										<input type="password" name="reMatkhau" placeholder="Req Password *" />
+										<input type="password" name="reMatkhau" placeholder="Req Password *"/>
 									</div>
 
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<input type="email" name="email"
-											placeholder="your@email.com *" />
+										<input type="email" name="email" placeholder="your@email.com *"/>
 									</div>
 									<div class="col-md-6">
-										<input type="number" name="sodt" placeholder="Phone Number*" />
+										<input type="number" name="sodt" placeholder="Phone Number*"/>
 									</div>
 									<div class="col-md-6">
 										<select class="form-control">
@@ -67,7 +71,10 @@
 											<option value="false">Female</option>
 										</select>
 									</div>
-									
+									<div class="col-md-6">
+										<input type="text" name="role"
+											placeholder="Role *" readonly/>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -95,17 +102,109 @@
 							<div class="input-fields">
 								<div class="row">
 									<div class="col-md-6">
-										<input type="text" name="tentaikhoan"
+										<input type="text" required="required" name="tentaikhoan"
 											placeholder="your@email.com *" />
 									</div>
 									<div class="col-md-6">
-										<input type="password" name="matkhau" placeholder="Password *" />
+										<input type="password" required="required" name="matkhau" placeholder="Password *" />
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-4 column">
 							<button class="book-now">Sign In</button>
+						</div>
+					</div>
+				</form>
+				<!-- form -->
+			</div>
+			
+			<div class="forgot-form"  th:classappend="${classActiveForgetPassword}? 'in active'">
+				<h3>
+					Forgot Password <span>Now</span>
+				</h3>
+				<p>Quis autem velum lure reprehe nderit. Lorem ipsum dolor
+					sitnulla or narjusto.</p>
+					
+					<div class="col-md-6">
+					<div th:if="${emailNotExist}" class="alert alert-danger">Email doesn't exist.</div>
+					<div th:if="${forgetPasswordEmailSent}" class="alert alert-success">Email sent.</div>
+					</div>
+				<form th:action="@{/forgetPassword}" method="post">
+					<div class="row">
+						<div class="col-md-8 column">
+							<div class="input-fields">
+								<div class="row">
+									<div class="col-md-6">
+									
+										<input type="text" id="recoverEmail" name="email" required="required"
+											placeholder="your@email.com *" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 column">
+							<button class="book-now">Reset Password</button>
+						</div>
+					</div>
+				</form>
+				<!-- form -->
+			</div>
+			
+				<div class="profile-form" th:classappend="${classActiveEdit}? ' in active'">
+				<h3>
+					Profile  <span>Customer</span>
+				</h3>
+				<p>Quis autem velum lure reprehe nderit. Lorem ipsum dolor
+					sitnulla or narjusto.</p>
+				<form action="#">
+					<div class="row">
+						<div class="col-md-8 column">
+							<div class="input-fields">
+								<div class="row">
+									<div class="col-md-6">
+										<input type="text" name="tentaikhoan" placeholder="User Name *" />
+									</div>
+									
+									<div class="col-md-6">
+										<input type="text" name="hoten" placeholder="Full Name *" 
+										/>
+									</div>
+									<div class="col-md-6">
+										<input type="password" name="matkhau" placeholder="Password *" />
+									</div>
+									<div class="col-md-6">
+										<input type="password" name="reMatkhau" placeholder="Req Password *"/>
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<input type="email" name="email" placeholder="your@email.com *"/>
+									</div>
+									<div class="col-md-6">
+										<input type="number" name="sodt" placeholder="Phone Number*" />
+									</div>
+									<div class="col-md-6">
+										<select  class="form-control">
+											<option value="" selected>Select All Gender</option>
+											<option value="true">Male</option>
+											<option value="false">Female</option>
+										</select>
+									</div>
+									<div class="col-md-6">
+										<input type="text" name="role"
+											placeholder="Role *" readonly/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 column">
+							<p>
+								By creating an account, you agree to our <a href="#" title="">Terms
+									& Conditions.</a>
+							</p>
+							<button class="book-now">Create Account</button>
 						</div>
 					</div>
 				</form>
@@ -126,15 +225,16 @@
 			<div class="registration-buttons">
 			 <th:block th:if="${attr_user == null}">
 				<a id="register-btn" href="#" title="">Register</a> 
-				
 				<a id="login-btn" href="#" title="">Login</a> 
+				<a id="forgot-btn" th:classappend="${classActiveForgetPassword}? 'active'" href="#" title="">Forgot Password</a> 
 				</th:block>
+				<a th:if="${attr_user != null}" id="profile-btn" th:classappend="${classActiveEdit}? 'active'" href="#" title="">Hello: 
+                         <span th:text="${attr_user} ? ${attr_user.username}"></span>
+                    </a>
 			</div>
 			
 			 <div th:if="${attr_user != null}" class="display_user">
-                    <a>Hello:
-                        <span th:text="${attr_user} ? ${attr_user.username}"></span>
-                    </a>
+                    
                     <a th:href="@{/hotels/}" sec:authorize="hasRole('Admin')">
                         <span>Manager</span>
                         
@@ -193,7 +293,7 @@
 					<li><a th:href="@{/contacts/about}" title="">About</a></li>
 					<li><a th:href="@{/contacts/}" title="">Contact</a></li>
 				</ul>
-				<a class="book-now call-popup" href="#" title="">History</a>
+				<a th:if="${attr_user != null}" class="book-now call-popup" href="#" title="">History</a>
 			</nav>
 			<!-- nav -->
 		</div>

@@ -1,5 +1,6 @@
 package edu.poly.fpt.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -48,25 +50,22 @@ import edu.poly.fpt.services.ThanhphoService;
 public class ListAllCustomer {
 
 	@Autowired
-	private ThanhphoService thanhphoService;
-	@Autowired
-	private LoaikhachsanService loaikhachsanService;
+	private PhongService phongService;
 	@Autowired
 	private KhachsanService khachsanService;
-	
+
 	@Autowired
 	private TaikhoanService taikhoanService;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	private static final int BUTTONS_TO_SHOW = 7;
 	private static final int INITIAL_PAGE = 0;
-	private static final int INITIAL_PAGE_SIZE = 3;
-	private static final int INITIAL_PAGE_SIZES = 9;
-
-	private static final int INITIAL_PAGE_SIZEs = 9;
-
+	private static final int INITIAL_PAGE_SIZE = 3; // list 3 sản phẩm khách sạn trang phụ
+	private static final int INITIAL_PAGE_SIZES = 9; //List 9 sản phẩm khách sạn chính 
+	private static final int INITIAL_PAGE_SIZESS = 5; // view/saveUser list lại page 5 phòng
+	private static final int INITIAL_PAGE_SIZEs = 9;// filter tìm kiếm khách sạn
 
 	@GetMapping("/room-packages-grid")
 	public ModelAndView Homepage(@RequestParam("page") Optional<Integer> page) {
@@ -103,37 +102,42 @@ public class ListAllCustomer {
 		modelAndView.addObject("pager", pager);
 		return modelAndView;
 	}
-	
-	 @GetMapping("profile/{id}")
-	    public String profile(@PathVariable("id")Long id, ModelMap model){
-	        if(khachsanService.findById(id).isPresent()){
-	            model.addAttribute("item", khachsanService.findById(id).get());
-	            return "customer/packages-detail";
-	        }
-	        return "redirect:view/";
-	    }
+
+	@GetMapping("profile/{id}")
+	public String profile(@PathVariable("id") Long id, ModelMap model) {
+		if (khachsanService.findById(id).isPresent()) {
+			model.addAttribute("item", khachsanService.findById(id).get());
+			return "customer/packages-detail";
+		}
+		return "redirect:view/";
+	}
 
 	@PostMapping("filter")
-	public String filter(@RequestParam(defaultValue = "") String ten, @RequestParam("lks") int lks, @RequestParam("dg") int dg,
-			@RequestParam("giatn") int min,@RequestParam("giacn") int max, ModelMap model,
+	public String filter(@RequestParam(defaultValue = "") String ten, @RequestParam("lks") int lks,
+			@RequestParam("dg") int dg, @RequestParam("giatn") int min, @RequestParam("giacn") int max, ModelMap model,
 			@RequestParam("page") Optional<Integer> page) {
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 		Page<KhachSan> list = null;
 		PagerModel pager = null;
+		System.out.println(ten);
 		System.out.println(lks);
 		System.out.println(dg);
-		if(!ten.isEmpty()&&lks== 0) {
-			list = khachsanService.filterKhachSanbyCity(ten,dg,min,max,PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
+		if (!ten.isEmpty() && lks == 0) {
+			list = khachsanService.filterKhachSanbyCity(ten, dg, min, max,
+					PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
 			pager = new PagerModel(list.getTotalPages(), list.getNumber(), BUTTONS_TO_SHOW);
-		}else if(ten.isEmpty()&&lks!=0) {
-			list = khachsanService.filterKhachSanbyTypeofCity(lks,dg,min,max,PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
+		} else if (ten.isEmpty() && lks != 0) {
+			list = khachsanService.filterKhachSanbyTypeofCity(lks, dg, min, max,
+					PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
 			pager = new PagerModel(list.getTotalPages(), list.getNumber(), BUTTONS_TO_SHOW);
-		}else if(!ten.isEmpty()&&lks!=0) {
-			list = khachsanService.filterKhachSanbyAll(ten,lks,dg,min,max,PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
+		} else if (!ten.isEmpty() && lks != 0) {
+			list = khachsanService.filterKhachSanbyAll(ten, lks, dg, min, max,
+					PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
 			pager = new PagerModel(list.getTotalPages(), list.getNumber(), BUTTONS_TO_SHOW);
-		}else {
-		list = khachsanService.filterKhachSanbyNone(dg,min,max,PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
-		pager = new PagerModel(list.getTotalPages(), list.getNumber(), BUTTONS_TO_SHOW);
+		} else {
+			list = khachsanService.filterKhachSanbyNone(dg, min, max,
+					PageRequest.of(evalPage, INITIAL_PAGE_SIZEs, Sort.by("id")));
+			pager = new PagerModel(list.getTotalPages(), list.getNumber(), BUTTONS_TO_SHOW);
 		}
 		model.addAttribute("hotelDto", new hotelDto());
 		model.addAttribute("hotel", list);
@@ -141,31 +145,45 @@ public class ListAllCustomer {
 		model.addAttribute("pager", pager);
 		return "customer/room-packages-grid";
 	}
+
 	
-	@PostMapping("saveUser")
-	public String save(ModelMap model, @Validated userDto UserDto, BindingResult result
-			,RedirectAttributes redire) {
-		 if(taikhoanService.existsById(UserDto.getTentaikhoan())){
-	            model.addAttribute("edit", true);
-	        }
+	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+	public String save(ModelMap model, @Validated userDto UserDto, BindingResult result, RedirectAttributes redire,
+			@RequestParam("page") Optional<Integer> page) {
+		if (taikhoanService.existsById(UserDto.getTentaikhoan())) {
+			model.addAttribute("edit", true);
+		}
 		if (result.hasErrors()) {
 			model.addAttribute("userDto", UserDto);
+			int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+			Page<Phong> roomList = phongService.findAll(PageRequest.of(evalPage, INITIAL_PAGE_SIZESS, Sort.by("id")));
+			PagerModel pager = new PagerModel(roomList.getTotalPages(), roomList.getNumber(), BUTTONS_TO_SHOW);
+			model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZESS);
+			model.addAttribute("roomDto", new roomDto());
+			model.addAttribute("phong", roomList);
+			model.addAttribute("pager", pager);
 			return "customer/index";
 		}
 		if (!UserDto.getMatkhau().equals(UserDto.getReMatkhau())) {
 			model.addAttribute("userDto", UserDto);
-
+			
+			int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+			Page<Phong> roomList = phongService.findAll(PageRequest.of(evalPage, INITIAL_PAGE_SIZESS, Sort.by("id")));
+			PagerModel pager = new PagerModel(roomList.getTotalPages(), roomList.getNumber(), BUTTONS_TO_SHOW);
+			model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZESS);
+			model.addAttribute("roomDto", new roomDto());
+			model.addAttribute("phong", roomList);
+			model.addAttribute("pager", pager);
 			model.addAttribute("err", true);
 			return "customer/index";
 		}
 
 		TaiKhoan user = new TaiKhoan();
 		user.setTentaikhoan(UserDto.getTentaikhoan());
-		 user.setMatkhau(passwordEncoder.encode(UserDto.getMatkhau()));
+		user.setMatkhau(passwordEncoder.encode(UserDto.getMatkhau()));
 		user.setHoten(UserDto.getHoten());
 		user.setGioitinh(UserDto.getGioitinh());
-		
-		
+
 		user.setSodt(UserDto.getSodt());
 		user.setEmail(UserDto.getEmail());
 		user.setRole("USER");
@@ -175,14 +193,19 @@ public class ListAllCustomer {
 		redire.addFlashAttribute("success", "Saved Users successfully!");
 		return "redirect:/";
 	}
-	
+
+	@ModelAttribute(name = "loaikhachsan")
+	public List<LoaiKhachSan> getLoaikhachsan() {
+		return khachsanService.findAllLoaikhachsan();
+	}
+
 	@ModelAttribute("attr_user")
-    public org.springframework.security.core.userdetails.User getUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())) {
-            return (User) auth.getPrincipal();
-        }
-        return null;
-    }
+	public org.springframework.security.core.userdetails.User getUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())) {
+			return (User) auth.getPrincipal();
+		}
+		return null;
+	}
 
 }

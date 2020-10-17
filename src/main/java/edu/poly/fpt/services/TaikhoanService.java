@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import edu.poly.fpt.entities.PasswordResetToken;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.TaiKhoan;
 
@@ -34,6 +35,14 @@ public interface TaikhoanService {
 	TaiKhoan save(TaiKhoan entity);
 	Page<TaiKhoan> findAll(Pageable pageable);
 	
+	TaiKhoan findByEmail(String email);
+	TaiKhoan findByTentaikhoan(String tentaikhoan);
+	
 	List<TaiKhoan> findByTentaikhoanLikeOrderByTentaikhoan(String hoten);
+	
+	
+	 PasswordResetToken getPasswordResetToken(final String token);
+	  
+	  void createPasswordResetTokenForUser( final TaiKhoan user, final String token);
 
 }

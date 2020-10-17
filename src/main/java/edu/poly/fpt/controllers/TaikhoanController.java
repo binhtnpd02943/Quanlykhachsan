@@ -2,17 +2,22 @@ package edu.poly.fpt.controllers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -25,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.poly.fpt.config.MailConstructor;
+import edu.poly.fpt.config.SecurityUtility;
 import edu.poly.fpt.dto.roomDto;
 import edu.poly.fpt.dto.userDto;
 import edu.poly.fpt.entities.PagerModel;
@@ -42,6 +49,7 @@ public class TaikhoanController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
 
     @GetMapping("/")
     public String add(ModelMap model) {
@@ -125,7 +133,7 @@ public class TaikhoanController {
 	        System.out.println("======" + list);
 	        return "users/dsTaikhoan";
 	    }
-
+	 
 	@ModelAttribute("attr_user")
     public org.springframework.security.core.userdetails.User getUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

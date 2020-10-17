@@ -49,22 +49,16 @@
 										<label>City</label>
 										<div class="field">
 											<input class="form-control" type="text"
-												placeholder="Nhập Thành Phố" name="tentp" id="tentp" />
+												placeholder="Nhập Thành Phố" name="ten" id="ten" />
 										</div>
 									</div>
 									<div class="col-md-3">
 										<label>Types of Hotel</label>
 										<div class="field">
 											 <select  id="lks" name="lks" class="custom-select"> 
-												<option selected value="1">Khách Sạn</option>
-												<option value="2">Biệt Thự</option>
-												<option value="3">Căn Hộ</option>
-												<option value="4">Glamping</option>
-												<option value="5">Nhà Gỗ</option>
-												<option value="6">Nhà Khách</option>
-												<option value="7">Nhà trọ</option>
-												<option value="8">Resort</option>
-												<option value="9">Thôn Dã</option>
+												<option th:each="lks : ${loaikhachsan}"
+															th:value="${lks.id}"
+															th:text="${lks.ten}"></option>
 												
 											</select>
 										</div>

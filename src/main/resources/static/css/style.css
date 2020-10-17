@@ -393,6 +393,7 @@ header,
     width:100%;
 }
 .registration-form,
+.forgot-form,
 .login-form {
     float:left;
     width:100%;
@@ -400,6 +401,7 @@ header,
     display:none;
 }
 .registration-form form,
+.forgot-form form,
 .login-form form {
     float:left;
     width:100%;

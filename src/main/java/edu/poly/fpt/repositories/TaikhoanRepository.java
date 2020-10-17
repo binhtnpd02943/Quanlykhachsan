@@ -13,4 +13,6 @@ public interface TaikhoanRepository extends JpaRepository<TaiKhoan, String>{
 
 	List<TaiKhoan> findByTentaikhoanLikeOrderByTentaikhoan(String hoten);
 	TaiKhoan findByTentaikhoan(String tentaikhoan);
+	TaiKhoan findByEmail(String email);
+	
 }

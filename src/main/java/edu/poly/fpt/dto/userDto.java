@@ -30,7 +30,7 @@ public class userDto {
 	@NotNull(message = "Vui lòng nhập email!")
 	private String email;
 
-	@NotNull
+	@Size(min = 0, max = 25)
 	private String role;
 
 	public userDto() {
@@ -40,7 +40,7 @@ public class userDto {
 	public userDto(@NotBlank String tentaikhoan, @Size(min = 6, max = 25) String matkhau,
 			@Size(min = 6, max = 25) String reMatkhau, @NotBlank String hoten, Boolean gioitinh,
 			@NotNull(message = "vui lòng nhập SĐT!") String sodt,
-			@NotNull(message = "Vui lòng nhập email!") String email, @NotNull String role) {
+			@NotNull(message = "Vui lòng nhập email!") String email, @Size(min = 0, max = 25) String role) {
 		super();
 		this.tentaikhoan = tentaikhoan;
 		this.matkhau = matkhau;
