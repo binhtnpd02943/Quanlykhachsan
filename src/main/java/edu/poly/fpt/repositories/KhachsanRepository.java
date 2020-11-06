@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+
 import edu.poly.fpt.entities.KhachSan;
 
 
@@ -17,8 +18,8 @@ import edu.poly.fpt.entities.KhachSan;
 
 @Repository
 public interface KhachsanRepository extends JpaRepository<KhachSan, Long>,PagingAndSortingRepository<KhachSan, Long>{
-	
-	 Page<KhachSan> findByTenLikeOrderByTen(String ten,Pageable pageble);
+		
+	Page<KhachSan> findByTenLikeOrderByTen(String ten,Pageable pageble);
 	 
 	 @Query(value="select * from tbkhachsan ks join tbphong p on ks.id=p.khachsan_id join tbthanhpho tp on tp.id = ks.thanhpho_id group by ks.id  having tp.ten=? && ks.danhgia<=? &&  min(p.giathue)>=? && max(p.giathue)<=?", nativeQuery = true)
 	 Page<KhachSan> filterKhachSanbyCity(String tentp,int dg,int min,int max,Pageable pageble);

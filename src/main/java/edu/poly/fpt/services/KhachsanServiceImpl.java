@@ -8,13 +8,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import edu.poly.fpt.entities.DichVu;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.LoaiKhachSan;
 import edu.poly.fpt.entities.ThanhPho;
-
+import edu.poly.fpt.repositories.DichvuRepository;
 import edu.poly.fpt.repositories.KhachsanRepository;
 import edu.poly.fpt.repositories.LoaikhachsanRepository;
 import edu.poly.fpt.repositories.ThanhphoRepositoty;
+
+
 
 @Service
 public class KhachsanServiceImpl implements KhachsanService{
@@ -46,6 +49,13 @@ public class KhachsanServiceImpl implements KhachsanService{
 	@Autowired 
 	private LoaikhachsanRepository loaikhachsanRepository;
 	
+	@Autowired
+	private DichvuRepository dichvuRepository;
+	
+	@Override
+	public List<DichVu> findAllDichvu(){
+		return dichvuRepository.findAll();
+	}
 
 	@Override
 	public List<ThanhPho>findAllThanhpho(){

@@ -33,12 +33,14 @@ import edu.poly.fpt.dto.hotelDto;
 import edu.poly.fpt.dto.roomDto;
 import edu.poly.fpt.dto.typeDto;
 import edu.poly.fpt.dto.userDto;
+import edu.poly.fpt.entities.DichVu;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.LoaiKhachSan;
 import edu.poly.fpt.entities.PagerModel;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.TaiKhoan;
 import edu.poly.fpt.entities.ThanhPho;
+import edu.poly.fpt.services.DichvuService;
 import edu.poly.fpt.services.KhachsanService;
 import edu.poly.fpt.services.LoaikhachsanService;
 import edu.poly.fpt.services.PhongService;
@@ -51,6 +53,8 @@ public class ListAllCustomer {
 
 	@Autowired
 	private PhongService phongService;
+	@Autowired
+	private DichvuService dichvuService;
 	@Autowired
 	private KhachsanService khachsanService;
 
@@ -109,7 +113,15 @@ public class ListAllCustomer {
 			model.addAttribute("item", khachsanService.findById(id).get());
 			return "customer/packages-detail";
 		}
-		return "redirect:view/";
+		return "redirect:/view/";
+	}
+	@GetMapping("book/{id}")
+	public String booking(@PathVariable("id") Integer id, ModelMap model) {
+		if (phongService.findById(id).isPresent()) {
+			model.addAttribute("item", phongService.findById(id).get());
+			return "customer/booking-form";
+		}
+		return "redirect:/view/";
 	}
 
 	@PostMapping("filter")
@@ -162,6 +174,7 @@ public class ListAllCustomer {
 			model.addAttribute("roomDto", new roomDto());
 			model.addAttribute("phong", roomList);
 			model.addAttribute("pager", pager);
+			model.addAttribute("message", true);
 			return "customer/index";
 		}
 		if (!UserDto.getMatkhau().equals(UserDto.getReMatkhau())) {
@@ -197,6 +210,11 @@ public class ListAllCustomer {
 	@ModelAttribute(name = "loaikhachsan")
 	public List<LoaiKhachSan> getLoaikhachsan() {
 		return khachsanService.findAllLoaikhachsan();
+	}
+	
+	@ModelAttribute(name = "dichvu")
+	public List<DichVu> getDichvu() {
+		return khachsanService.findAllDichvu();
 	}
 
 	@ModelAttribute("attr_user")

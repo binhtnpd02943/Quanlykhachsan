@@ -31,7 +31,7 @@
 											<div class="room-name">
 												<h4>
 													<span th:text="${item.ten}"></span>
-													Diện tích: <td  th:text="${item.dientich}+ 'm'"></td>
+													Acreage: <td  th:text="${item.dientich}+ 'm'"></td>
 												</h4>
 											</div>
 											<div class="room-detail">
@@ -47,7 +47,7 @@
 															class="fa fa-umbrella"></i></span>
 													</div>
 													<div class="view-more">
-														<a th:href="@{/view/booking-form}" title="">view more
+														<a th:href="@{'/view/book/' + ${item.id}}" title="">view more
 															detail <i class="fa fa-long-arrow-right"></i>
 														</a>
 													</div>
@@ -108,21 +108,21 @@
 										<li class="active"><a href="#about-hotel"
 											data-toggle="tab">
 												<div class="tab-name">
-													<i class="fa fa-building"></i> <span>Who We Are<strong>About
-															Hotel</strong></span>
+													<i class="fa fa-building"></i> <span>Who We Are<strong th:text="#{body.abouthotel}">
+													</strong></span>
 												</div>
 										</a></li>
 										<li><a href="#find-hotel" data-toggle="tab">
 												<div class="tab-name">
 													<i class="fa fa-search"></i> <span>Any Where
-														Worldwide <strong>Find Your Ideal Hotel</strong>
+														Worldwide <strong th:text="#{body.findhotel}"></strong>
 													</span>
 												</div>
 										</a></li>
 										<li><a href="#book-hotel" data-toggle="tab">
 												<div class="tab-name">
 													<i class="fa fa-briefcase"></i> <span>Credit cards,
-														Paypal ... <strong>Book Your Hotel</strong>
+														Paypal ... <strong th:text="#{body.bookhotel}"></strong>
 													</span>
 												</div>
 										</a></li>
@@ -131,21 +131,18 @@
 										<div role="tabpanel" class="tab-pane fade in active"
 											id="about-hotel">
 											<div class="tab-data">
-												<strong>Welcome To</strong>
+												<strong th:text="#{body.welcome}"></strong>
 												<h4>Luxury Best Hotel</h4>
-												<p>Duis at ante nec neque rhoncus pretium. Utpl mollis,
-													est non scelerisque blandit, velit nunc lao in vehicula sem
-													phasellu efore. Proin gravida nibh vel velit auctor
-													aliquet.</p>
+												<p th:text="#{body.not}"></p>
 												<ul>
 													<li>
-														<p>World Best Resort No</p> <span>06</span>
+														<p th:text="#{body.wordbest}"></p> <span>06</span>
 													</li>
 													<li>
-														<p>We Are Awarded In</p> <span>2014</span>
+														<p th:text="#{body.weare}"></p> <span>2014</span>
 													</li>
 													<li>
-														<p>Brunches In Countries</p> <span>24</span>
+														<p th:text="#{body.countrie}"></p> <span>24</span>
 													</li>
 												</ul>
 												<!-- ul -->

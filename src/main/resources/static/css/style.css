@@ -426,7 +426,6 @@ header,
 .input-fields textarea {
     background:#ffffff none repeat scroll 0 0;
     border:medium none;
-    color:#878787;
     float:left;
     font-family:roboto;
     font-size:11px;
@@ -435,6 +434,7 @@ header,
     margin-bottom:10px;
     padding:15px 15px 15px 30px;
     width:100%;
+ /*= color:#878787; =*/
 }
 .input-fields textarea{
     height:auto;
@@ -501,6 +501,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     float: right;
 }
 .display_user >a {
+    background:rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-left:1px solid #253540;
+    border-right:1px solid #415664;
+    color:#d0cfcf;
+    float:left;
+    font-family:roboto;
+    font-size:11px;
+    font-weight:300;
+    padding:12px 30px;
+    position:relative;
+    text-transform:uppercase;
+}
+.display{
+	border-left: 1px solid #415664;
+    border-right: 1px solid #415664;
+    float: left;
+}
+.display >a {
     background:rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border-left:1px solid #253540;
     border-right:1px solid #415664;
@@ -1370,6 +1388,30 @@ form label {
     float:left;
     width:100%;
     border:1px solid #dbdada;
+}
+.full{
+    color:#646464;
+    float:left;
+    font-family:arimo;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:0.3px;
+    margin:0 0 10px;
+    text-transform:uppercase;
+    width:20%;
+}
+.input-fields textarea.ratingcmt {
+    background:#ffffff none repeat scroll 0 0;
+    border:medium none;
+    color:#878787;
+    float:left;
+    font-family:roboto;
+    font-size:15px;
+    font-weight:400;
+    height:50px;
+    margin-bottom:10px;
+    padding:15px 15px 15px 30px;
+    width:100%;
 }
 .field .custom-select{
 	height :100%;
@@ -6194,3 +6236,23 @@ footer .block.bar-off {padding:90px 0;}
     font-size: 13px;
     font-style: normal;
 }
+
+/*reset css*/
+div,label{margin:0;padding:0;}
+
+h1{font-size:4em;margin:10px;}
+/****** Style Star Rating Widget *****/
+#rating{border:none;float:left;}
+#rating>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating>label:before{margin:5px;font-size:4em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating>input:checked~label,
+#rating:not(:checked)>label:hover, 
+#rating:not(:checked)>label:hover~label{color:#fbff00;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#rating>input:checked+label:hover,
+#rating>input:checked~label:hover,
+#rating>label:hover~input:checked~label,
+#rating>input:checked~label:hover~label{color:#ebe713;}

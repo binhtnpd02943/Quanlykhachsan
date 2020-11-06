@@ -3,6 +3,9 @@ package edu.poly.fpt.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import edu.poly.fpt.entities.DanhGia;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.TaiKhoan;
@@ -35,5 +38,4 @@ public interface DanhgiaService {
 
 	List<TaiKhoan> findAllTaikhoans();
 	
-
 }
