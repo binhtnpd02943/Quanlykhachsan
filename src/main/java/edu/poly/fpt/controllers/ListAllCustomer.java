@@ -273,7 +273,7 @@ public class ListAllCustomer {
 	}
 	@ModelAttribute(name = "danhgia")
 	public List<Object[]> getdanhgia() {
-		return danhgiaService.listdanhgia(13);
+		return danhgiaService.listdanhgia(3);
 	}
 	
 
