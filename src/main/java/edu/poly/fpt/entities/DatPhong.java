@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
+@Entity()
 @Table(name = "tbdatphong")
 public class DatPhong implements Serializable {
 	@Id
@@ -46,6 +46,13 @@ public class DatPhong implements Serializable {
 	private int nguoilon;
 	@Column
 	private int trecon;
+	@Column
+	private int sophong;
+	@Column(columnDefinition = "nvarchar(50)")
+	private String ten;
+
+	@Column(columnDefinition = "nvarchar(50)")
+	private String cmt;
 
 	@Column(columnDefinition = "nvarchar(200)")
 	private String ghichu;
@@ -58,23 +65,19 @@ public class DatPhong implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tentaikhoan", columnDefinition = "varchar(50)")
-	private TaiKhoan taikhoan;
+	public TaiKhoan taikhoan;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "phongId")
 	private Phong phong;
 
-	
-
 	public DatPhong() {
 		super();
 	}
 
-
-
 	public DatPhong(Integer id, Date ngaydat, Date ngayden, Date ngaytra, String dichvu, int nguoilon, int trecon,
-			String ghichu, Float thanhtien, Boolean dahuy, TaiKhoan taikhoan, Phong phong) {
-		super();
+			int sophong, String ten, String cmt, String ghichu, Float thanhtien, Boolean dahuy, TaiKhoan taikhoan,
+			Phong phong) {
 		this.id = id;
 		this.ngaydat = ngaydat;
 		this.ngayden = ngayden;
@@ -82,155 +85,137 @@ public class DatPhong implements Serializable {
 		this.dichvu = dichvu;
 		this.nguoilon = nguoilon;
 		this.trecon = trecon;
+		this.sophong = sophong;
+		this.ten = ten;
+		this.cmt = cmt;
 		this.ghichu = ghichu;
 		this.thanhtien = thanhtien;
 		this.dahuy = dahuy;
 		this.taikhoan = taikhoan;
 		this.phong = phong;
 	}
-
-
 
 	public Integer getId() {
 		return id;
 	}
 
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public Date getNgaydat() {
 		return ngaydat;
 	}
 
-
-
 	public void setNgaydat(Date ngaydat) {
 		this.ngaydat = ngaydat;
 	}
-
-
 
 	public Date getNgayden() {
 		return ngayden;
 	}
 
-
-
 	public void setNgayden(Date ngayden) {
 		this.ngayden = ngayden;
 	}
-
-
 
 	public Date getNgaytra() {
 		return ngaytra;
 	}
 
-
-
 	public void setNgaytra(Date ngaytra) {
 		this.ngaytra = ngaytra;
 	}
-
-
 
 	public String getDichvu() {
 		return dichvu;
 	}
 
-
-
 	public void setDichvu(String dichvu) {
 		this.dichvu = dichvu;
 	}
-
-
 
 	public int getNguoilon() {
 		return nguoilon;
 	}
 
-
-
 	public void setNguoilon(int nguoilon) {
 		this.nguoilon = nguoilon;
 	}
-
-
 
 	public int getTrecon() {
 		return trecon;
 	}
 
-
-
 	public void setTrecon(int trecon) {
 		this.trecon = trecon;
 	}
 
+	public int getSophong() {
+		return sophong;
+	}
 
+	public void setSophong(int sophong) {
+		this.sophong = sophong;
+	}
+
+	public String getTen() {
+		return ten;
+	}
+
+	public void setTen(String ten) {
+		this.ten = ten;
+	}
+
+	public String getCmt() {
+		return cmt;
+	}
+
+	public void setCmt(String cmt) {
+		this.cmt = cmt;
+	}
 
 	public String getGhichu() {
 		return ghichu;
 	}
 
-
-
 	public void setGhichu(String ghichu) {
 		this.ghichu = ghichu;
 	}
-
-
 
 	public Float getThanhtien() {
 		return thanhtien;
 	}
 
-
-
 	public void setThanhtien(Float thanhtien) {
 		this.thanhtien = thanhtien;
 	}
-
-
 
 	public Boolean getDahuy() {
 		return dahuy;
 	}
 
-
-
 	public void setDahuy(Boolean dahuy) {
 		this.dahuy = dahuy;
 	}
-
-
 
 	public TaiKhoan getTaikhoan() {
 		return taikhoan;
 	}
 
-
-
 	public void setTaikhoan(TaiKhoan taikhoan) {
 		this.taikhoan = taikhoan;
 	}
-
-
 
 	public Phong getPhong() {
 		return phong;
 	}
 
-
-
 	public void setPhong(Phong phong) {
 		this.phong = phong;
 	}
+
+	
+	
 
 }

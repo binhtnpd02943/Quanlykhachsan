@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.trace.http.HttpTrace.Principal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.poly.fpt.dto.cityDto;
+import edu.poly.fpt.dto.datphongDto;
 import edu.poly.fpt.dto.hotelDto;
 import edu.poly.fpt.dto.roomDto;
 import edu.poly.fpt.dto.serviceDto;
@@ -41,6 +43,8 @@ import edu.poly.fpt.entities.PagerModel;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.TaiKhoan;
 import edu.poly.fpt.entities.ThanhPho;
+import edu.poly.fpt.services.DanhgiaService;
+import edu.poly.fpt.services.DatphongService;
 import edu.poly.fpt.services.DichvuService;
 import edu.poly.fpt.services.KhachsanService;
 import edu.poly.fpt.services.LoaikhachsanService;
@@ -54,13 +58,15 @@ public class ListAllCustomer {
 	
 	@Autowired
 	private DichvuService dichvuService;
-
+	@Autowired
+	private DanhgiaService danhgiaService;
 	@Autowired
 	private PhongService phongService;
 	
 	@Autowired
 	private KhachsanService khachsanService;
-
+	@Autowired
+	private DatphongService datphongService;
 	@Autowired
 	private TaikhoanService taikhoanService;
 
@@ -122,7 +128,7 @@ public class ListAllCustomer {
 		}
 		return "redirect:/view/";
 	}
-	@GetMapping("book/{id}")
+	@GetMapping("booking/{id}")
 	public String booking(@PathVariable("id") Integer id, ModelMap model) {
 		if (phongService.findById(id).isPresent()) {
 			model.addAttribute("item", phongService.findById(id).get());
@@ -137,7 +143,15 @@ public class ListAllCustomer {
 			return "customer/service-detail";
 		}
 		return "redirect:view/";
-		
+	}	
+	@GetMapping("bookroom/{id}")
+	public String findiD(ModelMap model,@PathVariable("id") Integer id) {
+		if (phongService.findById(id).isPresent()) {
+			model.addAttribute("item", phongService.findById(id).get());
+			return "customer/booking-form";
+		}
+		return "redirect:view/";
+	
 	}
 
 	@PostMapping("filter")
@@ -229,13 +243,6 @@ public class ListAllCustomer {
 	}
 	
 
-	
-	
-	
-	
-	
-	
-	
 
 	@GetMapping("/services")
 	public ModelAndView homepage(@RequestParam("page") Optional<Integer> page) {
@@ -264,8 +271,14 @@ public class ListAllCustomer {
 	public List<DichVu> getDichvu() {
 		return khachsanService.findAllDichvu();
 	}
+	@ModelAttribute(name = "danhgia")
+	public List<Object[]> getdanhgia() {
+		return danhgiaService.listdanhgia(13);
+	}
+	
 
-
+	
+	
 	@ModelAttribute("attr_user")
 	public org.springframework.security.core.userdetails.User getUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

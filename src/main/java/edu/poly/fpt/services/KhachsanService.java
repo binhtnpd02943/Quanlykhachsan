@@ -30,7 +30,7 @@ public interface KhachsanService {
 
 	List<KhachSan> findAll();
 	
-
+	
 	boolean existsById(Long id);
 
 	Optional<KhachSan> findById(Long id);
@@ -45,7 +45,7 @@ public interface KhachsanService {
 
 	List<ThanhPho> findAllThanhpho();
 
-
+	List<DichVu> findAlldichvu();
 	 Page<KhachSan> findByTenLikeOrderByTen(String ten,Pageable pageble);
 
 	Page<KhachSan> filterKhachSanbyNone(int dg, int min, int max, Pageable pageable);

@@ -58,6 +58,10 @@ public class KhachsanServiceImpl implements KhachsanService{
 	}
 
 	@Override
+	public List<DichVu> findAlldichvu(){
+		return dichvuRepository.findAll();
+	}
+	@Override
 	public List<ThanhPho>findAllThanhpho(){
 		return (List<ThanhPho>)thanhphoRepositoty.findAll();
 	}

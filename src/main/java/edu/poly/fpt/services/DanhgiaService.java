@@ -10,7 +10,7 @@ import edu.poly.fpt.entities.DanhGia;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.TaiKhoan;
 
-public interface DanhgiaService {
+public interface DanhgiaService { 
 
 	void deleteAll();
 
@@ -37,5 +37,6 @@ public interface DanhgiaService {
 	List<KhachSan> findAllKhachsans();
 
 	List<TaiKhoan> findAllTaikhoans();
-	
+	@Query(value="select a.* from dbquanlykhachsan.tbdanhgia a inner join dbquanlykhachsan.tbkhachsan b on a.khachsan_id= b.id where b.id= :id",nativeQuery = true)	 
+	List<Object[]> listdanhgia(long id) ;
 }

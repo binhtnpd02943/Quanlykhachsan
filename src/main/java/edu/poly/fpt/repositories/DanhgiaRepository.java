@@ -11,10 +11,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.fpt.entities.DanhGia;
-import edu.poly.fpt.entities.KhachSan;
+import edu.poly.fpt.entities.KhachSan; 
 @Repository
 public interface DanhgiaRepository extends JpaRepository<DanhGia, Integer>{
 
-	 @Query(value="select a.* from tbdanhgia a inner join tbkhachsan b on a.khachsan_id= b.id where b.id = :id",nativeQuery = true)
-	 List<int[]> getListDanhgia(@Param("id")Long id);
+	 @Query(value="select a.* from dbquanlykhachsan.tbdanhgia a inner join dbquanlykhachsan.tbkhachsan b on a.khachsan_id= b.id where b.id= :id",nativeQuery = true)
+	 List<Object[]> getListDanhgia(@Param("id")Long id);
 }

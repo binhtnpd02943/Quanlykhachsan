@@ -7,16 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import edu.poly.fpt.dto.datphongDto;
 import edu.poly.fpt.entities.DanhGia;
+import edu.poly.fpt.entities.DatPhong;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.TaiKhoan;
 import edu.poly.fpt.repositories.DanhgiaRepository;
+import edu.poly.fpt.repositories.DatphongRepository;
 import edu.poly.fpt.repositories.KhachsanRepository;
 import edu.poly.fpt.repositories.TaikhoanRepository;
 
 @Service
-public class DanhgiaServiceImpl implements DanhgiaService {
+public class DanhgiaServiceImpl implements DanhgiaService { 
 	@Autowired
 	private DanhgiaRepository danhgiaRepository;
 	
@@ -24,6 +27,8 @@ public class DanhgiaServiceImpl implements DanhgiaService {
 	private TaikhoanRepository taikhoanRepository;
 	@Autowired 
 	private KhachsanRepository khachsanRepository;
+
+	
 	
 	@Override
 	public List<TaiKhoan> findAllTaikhoans(){
@@ -88,6 +93,12 @@ public class DanhgiaServiceImpl implements DanhgiaService {
 	@Override
 	public void deleteAll() {
 		danhgiaRepository.deleteAll();
+	}
+	@Override
+	@Query(value="select a.* from dbquanlykhachsan.tbdanhgia a inner join dbquanlykhachsan.tbkhachsan b on a.khachsan_id= b.id where b.id= :id",nativeQuery = true)	 
+	public List<Object[]> listdanhgia(long id) {
+	
+	return danhgiaRepository.getListDanhgia(id);
 	}
 
 }

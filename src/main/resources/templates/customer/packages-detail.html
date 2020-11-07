@@ -252,13 +252,13 @@
 						<div class="comments-thread">
 							<ul>
 								<li>
-									<div class="comment">
+									<div class="comment" th:each="dg : ${danhgia}">
 										<img src="http://placehold.it/107x107" alt="" />
 										<a class="reply" href="#" title="">Reply</a>
 										<div class="comment-detail">
 											<div class="comment-info">
-												<h6>MARGARETTE <i>Says:</i></h6>
-												<span>November 17, 2014</span>
+												<h6 th:text="${dg[4]}">MARGARETTE <i>Says:</i></h6>
+												<span th:text="${dg[5]}">November 17, 2014</span>
 												<span>at 9:55 am</span>
 											</div>
 											<div class="comment-rating">
@@ -271,7 +271,7 @@
 													<i class="fa fa-star-o"></i>
 												</div>
 											</div>
-											<p>Curabitur blandit tempus porttitor. Maecenas sediam egetrius blandit sit accumsan urna molestie interdum.</p>
+											<p th:text="${dg[2]}">Curabitur blandit tempus porttitor. Maecenas sediam egetrius blandit sit accumsan urna molestie interdum.</p>
 										</div>
 									</div><!-- Comment -->
 								</li>								

@@ -27,7 +27,7 @@ import edu.poly.fpt.services.LoaikhachsanService;
 import edu.poly.fpt.services.PhongService;
 import edu.poly.fpt.services.ThanhphoService;
 
-;
+
 
 @Controller
 public class ImageController {

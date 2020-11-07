@@ -14,8 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +28,7 @@ import edu.poly.fpt.dto.roomDto;
 import edu.poly.fpt.entities.PagerModel;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.TaiKhoan;
+import edu.poly.fpt.services.DatphongService;
 import edu.poly.fpt.services.PhongService;
 import edu.poly.fpt.services.TaikhoanService;
 
@@ -42,6 +45,8 @@ public class HomeController {
 
 	@Autowired
 	private PhongService phongService;
+	@Autowired
+	private DatphongService datphongService;
     
     @Autowired
 	private TaikhoanService taikhoanService;
@@ -156,5 +161,18 @@ public class HomeController {
     @ModelAttribute("indexActive")
     public String getActive(){
         return "active";
+	}
+	@ModelAttribute(name ="lichsu")
+	public List<Object[]> getlichsu( Principal principal){
+		// if(principal.getName().isEmpty()==false){
+			return datphongService.listDatphong("admin");
+		// }
+		// return null;
+	}
+	@GetMapping("huyphong/{id}")
+    public String huyphong(@PathVariable("id") Integer id, ModelMap model){
+		datphongService.huyphong(id);
+		return "redirect:/";
     }
+
 }

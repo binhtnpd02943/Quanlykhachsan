@@ -276,7 +276,7 @@
 	<header>
 		<div class="container">
 			<div class="logo-sec">
-				<a href="#"><img th:src="@{/images/logo.png}" alt="" /></a>
+				<a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="" /></a>
 			</div>
 			<!-- logo -->
 			<nav>
@@ -302,6 +302,7 @@
 							<li class="menu-item-has-children"><a
 								th:href="@{/view/blog-grid}" title="" th:text="#{header.page1}"></a>
 								<ul>
+<<<<<<< Updated upstream
 									<li><a th:href="@{/contacts/blog-list}" title="">Blog List View</a></li>
 									<li><a th:href="@{/contacts/blog-detail}" title="">Blog Detail</a></li>
 								</ul>
@@ -313,6 +314,20 @@
 									<li><a th:href="@{/contacts/blog-detail}" title="" th:text="#{header.page9}"></a></li>
 								</ul></li>
 							
+=======
+									<li><a th:href="@{/contacts/blog-list}" title="" th:text="#{header.page8}"></a></li>
+									<li><a th:href="@{/contacts/blog-detail}" title="" th:text="#{header.page9}"></a></li>
+								</ul></li>
+							<li><a th:href="@{/view/services}" title=""
+								th:text="#{header.page2}"></a></li>
+							<li><a th:href="@{/view/service-detail}" title=""
+								th:text="#{header.page3}"></a></li>
+							<li><a th:href="@{/view/dinnings}" title=""
+								th:text="#{header.page4}"></a></li>
+							<li><a th:href="@{/view/luxury-tours}" title=""
+								th:text="#{header.page5}"></a></li>
+						</ul></li>
+>>>>>>> Stashed changes
 					<li class="menu-item-has-children"><a href="#" title=""
 						th:text="#{header.package}"></a>
 						<ul>
@@ -509,31 +524,41 @@
 					<span>Not valid for bookings less than 3 days </span>
 				</div>
 				<!-- Popup Title -->
-				<div class="popup-details">
-
+				<div class="popup-details" th:each=" ls : ${lichsu}">
+					
 					<!-- Popup Block -->
 					<div class="popup-block">
 						<div class="row">
 							<div class="col-md-5 column">
 								<div class="popup-block-title">
-									<span>Awesome Rooms</span>
-									<h4>Your Room Summary</h4>
+									
+									<h4 th:text="${ls[9]}" ></h4></br>
+									<h6 th:text="'DAY BOOK '+${ls[3]}" ></h6></br>
+									<h6 th:text="'CHECK IN '+${ls[4]}" ></h6></br>
+									<h6 th:text="'CHECK OUT '+${ls[5]}" ></h6>
 								</div>
+
 							</div>
 							<div class="col-md-7">
 								<div class="popup-rooms">
 									<div class="popup-room">
 										<div class="popup-room-img">
-											<img th:src="@{/images/resource/popup-room.jpg}" alt="" />
+											<img th:src="@{'/getImg/' + ${ls[8]}}" alt="" />
+											
 										</div>
 										<div class="popup-room-detail">
 											<i>Awesome Features Room</i>
-											<h5>Super Star Luxury Hotle</h5>
+											<h5 th:text="${ls[7]}"></h5>
 											<div class="room-price-from">
-												<strong>Start From </strong> <span>$289</span> <strong>Per
+												<strong  >Start From </strong> <span th:text="'$'+ ${ls[6]}"></span> <strong>Per
 													Person</strong>
 											</div>
-											<a class="book-now" href="#" title="">SEE DETAILS</a>
+											<div th:switch="${ls[1]}">
+												<a th:case="false" th:href="@{'/huyphong/' + ${ls[0]}}" class="book-now"  title="">CANCER ROOM</a>
+											
+												<a th:case="true" class="book-now" style="background-color: red;"  title="">ROOM HAS BEEN CANCER</a>
+											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -545,6 +570,8 @@
 			</div>
 		</div>
 	</div>
+
+	
 	<!-- Booking Popup -->
 
 	<div class="popup">
@@ -564,6 +591,9 @@
 	<th:block layout:fragment="js">
 		<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/chosen.jquery.js}" type="text/javascript"></script>
+		<script th:src="@{/js/prism.js}" type="text/javascript"></script>
+		<script th:src="@{/js/init.js}" type="text/javascript"></script>
 		<script th:src="@{/js/owl.carousel.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/jquery.poptrox.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/enscroll-0.5.2.min.js}" type="text/javascript"></script>
