@@ -21,11 +21,11 @@ public class cityDto implements Serializable{
 	@Length(min = 0, max = 50, message = "Tên nằm ngoài phạm vi!")
 	private String ten;
 	
-	
+	@NotNull(message = "vui long nhập mô tả dịch vụ")
 	private String mota;
 	
 	
-	@NotNull(message = "vui long chon anh")
+	@NotNull(message = "vui lòng chọn ảnh")
 	private MultipartFile photo;
 	
 	private String imageName;
@@ -40,7 +40,7 @@ public class cityDto implements Serializable{
 
 	public cityDto(Integer id,
 			@NotNull @NotEmpty(message = "Vui lòng nhập tên") @Length(min = 5, max = 50, message = "Tên nằm ngoài phạm vi!") String ten,
-			String mota, @NotNull(message = "vui long chon anh") MultipartFile photo, String imageName) {
+			String mota, @NotNull(message = "vui lòng chọn ảnh") MultipartFile photo, String imageName) {
 		super();
 		this.id = id;
 		this.ten = ten;

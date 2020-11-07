@@ -34,10 +34,14 @@
 				</div>
 				<ul class="list-group collapse show" style="cursor: pointer;"
 					id="chungloai">
+					<a th:href="@{/}">
+                        <span th:text="${attr_user} ? ${attr_user.username}"></span>
+                    </a>
 					<a th:href="@{/users/}" class="list-group-item">Tài Khoản</a>
 					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
 					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
 					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
+					<a th:href="@{/services/}" class="list-group-item ">Dịch Vụ</a>
 					<a th:href="@{/rooms/}" class="list-group-item ">Phòng</a>
 
 				</ul>
@@ -143,14 +147,15 @@
 											<div class="form-group row">
 												<label class="col-sm-3"> Hình Ảnh</label>
 												<div class="col-sm-9">
-													<input type="file" class="form-control" th:field="*{photo}" id="urlhinhanh" th:required="*{id == 0}">
-                                       <label class="custom-file-label" for="photo" th:if="*{imageName}" th:text="*{imageName}"></label>
+										<input type="file" class="custom-file-input" th:field="*{photo}" id="photo" th:required="*{id == 0}">
+                                        <label class="custom-file-label" for="photo" th:if="*{imageName}" th:text="*{imageName}"></label>
+                                        <label class="custom-file-label" for="photo" th:unless="*{imageName}">choose image</label>
 												</div>
 											</div>
 											<div class="row" style="margin: 5px;">
 												<div class="form-group col-sm-12">
 													<label for="validationTextarea">Mô Tả</label>
-													<textarea rows="4" class="form-control" th:field="*{mota}"
+													<textarea  rows="6" class="form-control" th:field="*{mota}"
 														id="mota" placeholder="Mô tả...">
                                                     </textarea>
 												</div>
@@ -187,9 +192,8 @@
 											</div>
 											<div class="row" style="margin: 5px;">
 												<div class="form-group col-md-6">
-													<label>Thành Phố</label> <select th:field="*{thanhphoId}"
-														class="form-control">
-
+													<label>Thành Phố</label> 
+													<select th:field="*{thanhphoId}" class="form-control">
 														<option th:each="thanhpho : ${tbthanhpho}"
 															th:value="${thanhpho.id}" th:text="${thanhpho.ten}"></option>
 													</select>
@@ -237,7 +241,7 @@
 								<th>SĐT</th>
 								<th>Cách trung tâm</th>
 								<th>Hình ảnh</th>
-								<th style="width: 300px;">Mo Ta</th>
+								<th style="width: 350px;">Mo Ta</th>
 								<th>Giáp Biển</th>
 								<th>Đánh Gia</th>
 								<th style="width: 100px">Bữa ăn</th>

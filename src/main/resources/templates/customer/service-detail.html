@@ -35,32 +35,20 @@
 		<div class="block gray">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-8 column">
+					<div class="col-md-8 column" >
 						<div class="service-detail">
 							<div class="service-image-tabs">
-								<div class="tab-content">
+								<div class="tab-content" >
 									<div role="tabpanel" class="tab-pane fade in active" id="service-image1">
-										<img th:src="@{/images/resource/service-detail1.jpg}" alt="" />
+										<img th:src="@{'/getanh/' +${item.id}}" height="415" width="620" alt="" />
 									</div>
-									<div role="tabpanel" class="tab-pane fade" id="service-image2">
-										<img th:src="@{/images/resource/service-detail2.jpg}" alt="" />
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="service-image3">
-										<img th:src="@{/images/resource/service-detail3.jpg}" alt="" />
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="service-image4">
-										<img th:src="@{/images/resource/service-detail4.jpg}" alt="" />
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="service-image5">
-										<img th:src="@{/images/resource/service-detail5.jpg}" alt="" />
-									</div>
-									<div class="service-info">
+									<div class="service-info" >
 										<div class="service-info-center">
 											<span>The Best</span>
-											<strong>Dinning Retrate</strong>
-											<p>Not valid for bookings less than 3 days </p>
-											<div class="cost">FROM <strong>$510.00</strong> / PERSON</div>
-											<a class="book-now" href="booking-form.html" title="">Book Now</a>
+											<strong th:text="${item.ten}"></strong>
+											<p>Not valid for bookings less than 1 days </p>
+											<div class="cost">FROM <strong th:text="${item.giadv} + ' VND'"></strong> / PERSON</div>
+											<a class="book-now" th:href="@{/view/booking-form}" title="">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -92,7 +80,10 @@
 								<li><strong>24 hour front desk staff </strong></li>
 								<li><strong>Swimming pool</strong></li>
 							</ul>
-							<p>Prima luce, cum quibus mons aliud consensu ab eo. Praeterea iter est quasdam res quas ex communi. Etiam habebi sem dicantur magna mollis euismod. Ut enim ad minim veniam, quis nostrud exercitation. Vivamus sagittis lacus vel augue laoreet rutrum faucibus. Contraegem facit qui id facit. Cum ceteris in veneratione tui montes, nascetur mus. Non equidem invideo, miror magis posuere velit aliquet. Priema luce, cum quibus mons aliud consensu ab eo. Prae terea iter est quasdam res dicantur magna mollis euismod. Ut enim ad minim veniam, quis nostrud exercitation. Viva mus sagittis lacus vel augue laoreet rutrum faucibus. Contra legem facit qui id facit. Cum ceteris in veneratione tuim ontes, nascetur mus. Non equidem invideo, miror magis posuere velit aliquet. Prima luce, cum quibus mons aliud consensab eo. Praeterea iter est quasdam residicantur magna mollis euismod. Ut enim ad minim veniam, quis nostr ud exercitation. Vivamus sagitis lacus vel augue laoreet rutrum faucibus. Contra legem facit qui id facit. Cum ceteris in veneratione tui montes, nascetur mus. Non equidem invideo, miror magis posuere velit aliquet. Prima luce, cumqu ibus mons aliud consensu ab eo. Praeterea iter est quasdam resdicantur magna mollis euismod.</p>
+						
+							<h2>Service Description</h2>
+							<h4 th:text="${item.ten}"></h4>
+							<p th:text="${item.mota}"></p>
 						</div><!-- Service Details -->
 					</div>
 

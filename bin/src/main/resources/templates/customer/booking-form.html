@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/clone.html}">
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Hotel HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+</head>
+<body itemscope>
+<div class="theme-layout">
+	<div class="header-container stick">
+		<div layout:fragment="header"></div>
+	</div><!-- Header Container -->
+
+
+<div layout:fragment="content">
+	<div class="pagetop">
+		<div class="container">
+			<h1>Booking Form</h1>
+			<ul>
+				<li><a title="" th:href="@{/}">Home</a></li>
+				<li><a title="" th:href="@{/view/rooms-packages}">Packages</a></li>
+				<li><a title="" th:href="@{/view/packages-detail}">Package Detail</a></li>
+				<li>Booking Form</li>
+			</ul>		
+		</div>
+	</div><!-- Page Top -->
+
+
+	<section>
+		<div class="block gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="booking-form">
+							<div class="booking-image">
+								<img th:src="@{/images/resource/booking-image.jpg}" alt="" />
+							</div><!-- Booking Image -->
+							<div class="booking-detail">
+								<div class="booking-name">
+									<span>Awesome Features Room</span>
+									<h5>Super Star Luxury Hotle</h5>
+								</div>
+								<div class="package-price">
+									<strong>Start From</strong>
+									<i>$559</i>
+									<span>Per Person</span>
+								</div><!-- Package price -->
+								<div class="see-details">
+									<a class="book-now" th:href="@{/view/packages-detail}" title="">SEE DETAILS</a>
+								</div>
+							</div><!-- Booking Detail -->
+							<div class="center-heading">
+								<h3>Booking From</h3>
+								<span>Book rooms for your stay. It's quick and easy.</span>
+							</div>
+							<form>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="field"><input type="text" placeholder="Your Name" /></div>
+									</div>
+									<div class="col-md-6">
+										<div class="field"><input type="text" placeholder="Mobile Number" /></div>
+									</div>
+									<div class="col-md-6">
+										<div class="field"><input type="email" placeholder="Email" /></div>
+									</div>
+									<div class="col-md-6">
+										<div class="field">	
+											<input class="popupDatepicker" type="text" placeholder="CheckOut">
+											<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="field">	
+											<input class="popupDatepicker" type="text" placeholder="CheckIn">
+											<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+										</div>
+									</div>
+									<div class="col-md-4">
+										<label>Select No Of Rooms</label>
+										<div class="field">	
+											<input class="inc-dec" value="00" type="text" placeholder="">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<label>Adults Per Room</label>
+										<div class="field">	
+											<input class="inc-dec" value="00" type="text" placeholder="">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<label>No Of Children</label>
+										<div class="field">	
+											<input class="inc-dec" value="00" type="text" placeholder="">
+										</div>
+									</div>
+								</div>
+								<div class="payment-method">
+									<h5>PAYMENT METHOD <span>Would you like to buy one of our items?</span></h5>
+									<ul>
+										<li>
+											<div class="check-radio">
+												<input type="radio" name="a" class="styled" /><span>Room Price:</span><strong>$ 120.00 USD</strong>
+											</div>											
+										</li>
+										<li>
+											<span>Room Discount</span>
+											<strong>$ 35.00 USD</strong>
+										</li>
+										<li>
+											<span>Total</span>
+											<strong>$ 85.00 USD</strong>
+										</li>
+									</ul>
+								</div>
+								<div class="payment-method">
+									<h5>SELECT PAYMENT OPTION</h5>
+									<ul>
+										<li>
+											<div class="check-radio">
+												<input type="radio" name="b" class="styled" />
+												<span><img th:src="@{/images/paypal.png}" alt="" /></span>
+											</div>											
+										</li>
+										<li>
+											<p>In Case of credit card ,Transaction in Doller($) will be accepted.</p>
+											<div class="check-radio">
+												<input type="radio" name="b" class="styled" />
+												<span><img th:src="@{/images/visa.png}" alt="" /></span>
+											</div>											
+										</li>
+									</ul>
+								</div>
+
+								<div class="card-info">
+									<div class="row">
+										<div class="col-md-12">
+											<label>Card Type:</label>
+											<div class="field">
+												<select class="select">
+													<option>Card Type 1</option>
+													<option>Card Type 2</option>
+													<option>Card Type 3</option>
+													<option>Card Type 4</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<label>Enter Your 16 Digit Card Number:</label>
+											<div class="field">
+												<input type="" placeholder="xxxx-xxxxxxx-xxx-xxxx-xx">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label>Month & Year of Expiry:</label>
+											<div class="field">
+												<select class="select">
+													<option>January</option>
+													<option>Feburary</option>
+													<option>March</option>
+													<option>April</option>
+													<option>May</option>
+													<option>June</option>
+													<option>July</option>
+													<option>August</option>
+													<option>September</option>
+													<option>October</option>
+													<option>November</option>
+													<option>December</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label>Select Year:</label>
+											<div class="field">
+												<select class="select">
+													<option>2015</option>
+													<option>2016</option>
+													<option>2017</option>
+													<option>2018</option>
+													<option>2019</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label>Card Verification Number:</label>
+											<div class="field">
+												<input type="" placeholder="xxxx-xxxxxxx-xxx-xxxx-xx">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<button class="book-now" type="submit">Book Now</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div><!-- Booking Form -->
+					</div>
+
+					<aside class="col-md-4 column">
+						<div class="sidebar">
+							<div class="widget">
+								<form class="searchform">
+									<input type="text" placeholder="Search">
+									<button><i class="fa fa-search"></i></button>
+								</form>
+							</div><!-- Widget -->
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Rooms Packages</h4>
+									<span>Local Guide</span>
+								</div>
+								<div class="offers-widget">
+									<div class="offer">
+										<img th:src="@{/images/resource/footer-room1.jpg}" alt="" />
+										<div class="offer-overlay">
+											<span>Couple Room</span>
+											<a href="#">Honymoon Suite</a>
+										</div>
+									</div><!-- Offer -->
+									<div class="offer">
+										<img th:src="@{/images/resource/footer-room2.jpg}" alt="" />
+										<div class="offer-overlay">
+											<span>Couple Room</span>
+											<a href="#">Honymoon Suite</a>
+										</div>
+									</div><!-- Offer -->
+									<div class="offer">
+										<img th:src="@{/images/resource/footer-room3.jpg}" alt="" />
+										<div class="offer-overlay">
+											<span>Couple Room</span>
+											<a href="#">Honymoon Suite</a>
+										</div>
+									</div><!-- Offer -->
+								</div><!-- Offers Widget -->
+							</div><!-- Widget -->
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Recent News</h4>
+									<span>Blog Posts</span>
+								</div>
+								<div class="widget-news">
+									<div class="recent-news">
+										<span class="date">
+											<i>August</i><strong>25</strong>
+										</span>
+										<a href="#" title="">An Exceptional Hotel Template!</a>
+									</div><!-- News -->
+									<div class="recent-news">
+										<span class="date">
+											<i>August</i><strong>18</strong>
+										</span>
+										<a href="#" title="">Comfortable & Spacious Apartment</a>
+									</div><!-- News -->
+								</div><!-- News Widget -->
+							</div><!-- Widget -->
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Categories List</h4>
+									<span>Local Guide</span>
+								</div>
+								<ul>
+									<li><i class="fa fa-umbrella"></i> Boutiques</li>
+									<li><i class="fa fa-laptop"></i> Complimentary wireless internet</li>
+									<li><i class="fa fa-clock-o"></i> Private beach with service</li>
+									<li><i class="fa fa-wifi"></i> Pet-friendly resort</li>
+									<li><i class="fa fa-umbrella"></i> Tennis courts</li>
+								</ul><!-- ul -->
+							</div><!-- Widget -->			
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Popular Posts</h4>
+									<span>Local Guide</span>
+								</div>
+								<div class="popular-posts">
+									<div class="sidebar-post">
+										<div class="sidebar-post-img">
+											<img th:src="@{/images/resource/popular-post1.jpg}" alt="" />
+											<ul class="meta">
+												<li>By <a href="#" title="">admin</a></li>
+												<li><a href="#" title="">July 01 2015</a></li>
+											</ul>
+										</div>
+										<h4><a href="#" title="">An Exceptional Hotel Template! </a></h4>
+									</div><!-- Sidebar Post -->
+									<div class="sidebar-post">
+										<div class="sidebar-post-img">
+											<img th:src="@{/images/resource/popular-post2.jpg}" alt="" />
+											<ul class="meta">
+												<li>By <a href="#" title="">admin</a></li>
+												<li><a href="#" title="">July 01 2015</a></li>
+											</ul>
+										</div>
+										<h4><a href="#" title="">An Exceptional Hotel Template! </a></h4>
+									</div><!-- Sidebar Post -->
+								</div><!-- Popular Posts -->
+							</div><!-- Widget -->
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Meta Links</h4>
+									<span>Local Guide</span>
+								</div>
+								<ul>
+									<li><a href="#" title="">Log in</a></li>
+									<li><a href="#" title="">Entries RSS</a></li>
+									<li><a href="#" title="">Comments RSS</a></li>
+									<li><a href="#" title="">Wordpress.org</a></li>
+								</ul><!-- ul -->
+							</div><!-- Widget -->							
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>	
+</div>
+
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>

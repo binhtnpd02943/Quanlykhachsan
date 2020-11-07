@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Hotel HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+	<!-- Styles -->
+	<th:block layout:fragment="css">
+	<link rel="stylesheet" type="text/css" th:href="@{/font-awesome/css/font-awesome.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/color.css}" />
+
+
+	<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/extralayers.css}" media="screen" />	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/settings.css}" media="screen" />
+	</th:block>
+</head>
+<body itemscope>
+<div class="theme-layout">
+	<div class="header-container creative-header light-menu stick">
+		<div class="topbar"></div>
+		<header class="middle-logo">
+			<div class="container">
+				<nav>	
+					<a class="responsive-menu-btn" href="#" title=""><i class="fa fa-align-justify"></i></a>
+					<ul class="first-menu">
+						<li class="menu-item-has-children"><a href="#" title="">Home</a>
+							<ul>
+								<li><a href="index-2.html" title="">Hotel or Resort Demo1</a></li>
+								<li><a href="index2.html" title="">Hotel or Resort Demo2</a></li>
+								<li><a href="index3.html" title="">Travel Demo</a></li>
+								<li><a href="index4.html" title="">Single Property Demo</a></li>
+								<li class="menu-item-has-children"><a href="#" title="">Header Styles</a>
+									<ul>
+										<li><a href="header-fancy-logo.html" title="">Header Fancy Logo</a></li>
+										<li><a href="header-middle-fancy-logo.html" title="">Header With Fancy Middle Logo</a></li>
+										<li><a href="header-middle-fancy-logo-with-booknow.html" title="">Header With Fancy Middle Logo With Book Now Button</a></li>
+										<li><a href="header-middle-simple-logo.html" title="">Header With Simple Middle Logo</a></li>
+										<li><a href="transparent-header.html" title="">Transparent Header</a></li>
+										<li><a href="index3.html" title="">Creative Header</a></li>
+									</ul>
+								</li>
+								<li class="menu-item-has-children"><a href="#" title="">Featured Area Styles</a>
+									<ul>
+										<li><a href="index3.html" title="">Revolution Slider</a></li>
+										<li><a href="index-2.html" title="">Fancy Featured Area</a></li>
+										<li><a href="index2.html" title="">Search and Booking Form</a></li>
+										<li><a href="transparent-header.html" title="">Video Slider</a></li>
+									</ul>
+								</li>
+
+							</ul>
+						</li>
+						<li class="menu-item-has-children"><a href="#" title="">Gallery</a>
+							<ul>
+								<li><a href="gallery.html" title="">Gallery Style 1</a></li>
+								<li><a href="gallery2.html" title="">Gallery Style 2</a></li>
+								<li><a href="gallery3.html" title="">Gallery Style 3</a></li>
+								<li><a href="gallery4.html" title="">Gallery Style 4</a></li>
+							</ul>
+						</li>
+						<li class="menu-item-has-children"><a href="#" title="">More Pages</a>
+							<ul>
+								<li class="menu-item-has-children"><a href="blog-grid.html" title="">Blog Pages</a>
+									<ul>
+										<li><a href="blog-grid.html" title="">Blog Grid View</a></li>
+										<li><a href="blog-list.html" title="">Blog List View</a></li>
+										<li><a href="blog-detail.html" title="">Blog Detail</a></li>
+									</ul>
+								</li>
+								<li><a href="services.html" title="">Services</a></li>
+								<li><a href="service-detail.html" title="">Service Detail</a></li>
+								<li><a href="dinnings.html" title="">Dinnings</a></li>
+								<li><a href="faqs.html" title="">FAQ'S</a></li>
+								<li><a href="luxury-tours.html" title="">Luxury Tours</a></li>
+							</ul>
+						</li>
+					</ul>
+					<div class="logo-sec">
+						<a href="#"><img th:src="@{/images/footer-logo.png}" alt="" /></a>
+					</div><!-- logo -->
+					<ul class="second-menu">
+						<li class="menu-item-has-children"><a href="room-packages-grid.html" title="">Packages</a>
+							<ul>
+								<li><a href="room-packages-grid.html" title="">Packages Grid View</a></li>
+								<li><a href="rooms-packages.html" title="">Packages List View</a></li>
+								<li><a href="packages-detail.html" title="">Packages Detail Page</a></li>
+								<li><a href="all-flights.html" title="">All Flights</a></li>
+								<li><a href="flight-packages-detail.html" title="">Flight Package Detail</a></li>
+								<li><a href="booking-form.html" title="">Booking Form</a></li>
+							</ul>
+						</li>
+						<li><a href="about.html" title="">About</a></li>
+						<li><a href="contact.html" title="">Contact</a></li>
+					</ul>
+				</nav><!-- nav -->
+			</div>
+		</header><!-- Header -->
+	</div><!-- Header Container -->
+
+	<section>
+		<div class="block no-padding">
+			<div class="row">
+				<div class="col-md-12 column">
+				<div class="tp-banner-container">
+					<div class="tp-banner" >
+						<ul>	
+							<li data-transition="slidedown"  data-masterspeed="500">
+								<img th:src="@{/images/resource/travel-slide1.jpg}"  alt="">
+								<div class="tp-caption slide-big-text skewfromrightshort" data-x="0" data-y="170" data-speed="500" data-start="1000" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" style="font-size:50px;">"Enjoy</div>
+								<div class="tp-caption slide-big-text skewfromrightshort" data-x="0" data-y="240" data-speed="500" data-start="1600" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" style="font-size:50px;">Spectacular</div>
+								<div class="tp-caption slide-big-text skewfromrightshort" data-x="0" data-y="310" data-speed="500" data-start="2200" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" style="font-size:50px;">Countryside"</div>
+								<div class="tp-caption slide-text fadefrombottom" data-x="0" data-y="410" data-speed="500" data-start="2300" data-easing="Power3.easeInOut" style="font-size:15px; line-height:30px">Vestibulum id ligula porta felis euismod semper. Aenean eu leo <br/> quam. Pellentesque ornare sem lacinia quam venenatis.</div>
+								<a href="#" class="tp-caption slide-btn" data-x="0" data-y="470" data-speed="500" data-start="2600" data-easing="Power3.easeInOut" style="font-size:12px; padding:15px 30px;">READ ABOUT US</a>
+							</li><!-- SLIDE  -->
+							<li data-transition="slideleft cube-horizontal"  data-masterspeed="500">
+								<img th:src="@{/images/resource/travel-slide2.jpg}"  alt="" >
+								<div class="tp-caption slide-big-text sfb" data-x="center" data-y="190" data-speed="500" data-start="1000" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" style="font-size:75px;">MULTI CUISINE</div>
+								<div class="tp-caption slide-big-text sft" data-x="center" data-y="280" data-speed="500" data-start="1400" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" style="font-size:60px;">Restaurant</div>
+								<div class="tp-caption slide-text fadefrombottom" data-x="center" data-y="390" data-speed="500" data-start="2300" data-easing="Power3.easeInOut" style="font-size:15px; line-height:30px; text-align:center;">Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque orn<br/> are sem lacinia quam venenatis. Fusce dapibus, tellus ac cursus commodo<br/> massa. mentum sit amet risus.</div>
+							</li><!-- SLIDE  -->
+							<li data-transition="slideup"  data-masterspeed="500">
+								<img th:src="@{/images/resource/travel-slide3.jpg}"  alt="" >
+								<div class="tp-caption slide-box sfb" data-x="350" data-y="150" data-speed="500" data-start="1000" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" style="width:23%; height:65%;border:30px solid;"></div>
+								<div class="tp-caption slide-big-text sfr" data-x="430" data-y="220" data-speed="500" data-start="1400" data-easing="Power3.easeInOut" style="font-size:65px; font-weight:900; letter-spacing:1px;">Super Star</div>
+								<div class="tp-caption slide-big-text sfl" data-x="430" data-y="300" data-speed="500" data-start="1400" data-easing="Power3.easeInOut" style="font-size:65px; font-weight:900; letter-spacing:1px;">LUXURY HOTEL</div>
+								<div class="tp-caption black-box sfr" data-x="430" data-y="400" data-speed="500" data-start="1400" data-easing="Power3.easeInOut" style="font-size:18px; padding:15px 30px; font-weight:700;letter-spacing:0.4px;">Complimentry <span>Services & Amenities</span></div>
+							</li><!-- SLIDE  -->
+						</ul>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<section>
+		<div class="block half-gray overlap-container">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 column">
+						<div class="fancy-search-tabs">
+							<div class="col-md-3">
+								<ul class="nav nav-tabs">
+									<li class="active">
+										<a href="#find-hotel" data-toggle="tab">
+											<div class="tab-name">
+												<i class="fa fa-building"></i>
+												<span>Search & Book<strong>Find Hotels</strong></span>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#find-flight" data-toggle="tab">
+											<div class="tab-name">
+												<i class="fa fa-search"></i>
+												<span>Search & Book <strong>Flights</strong></span>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#search-tour" data-toggle="tab">
+											<div class="tab-name">
+												<i class="fa fa-plane"></i>
+												<span>Search & Book<strong>Search Tours</strong></span>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-9">
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane fade in active" id="find-hotel">
+										<form>
+											<div class="row">
+												<div class="col-md-3">
+													<label>Leaving From</label>
+													<div class="field">
+														<select class="select">
+															<option>Dubai</option>
+															<option>London</option>
+															<option>Sydney</option>
+															<option>Newyork</option>
+															<option>Capetown</option>
+															<option>Singapore</option>
+															<option>Sharjah</option>
+															<option>Islamabad</option>
+															<option>Toronto</option>
+															<option>Paris</option>
+															<option>Delhi</option>
+															<option>Colombo</option>
+															<option>Auckland</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Going To</label>
+													<div class="field">
+														<select class="select">
+															<option>Dubai</option>
+															<option>London</option>
+															<option>Sydney</option>
+															<option>Newyork</option>
+															<option>Capetown</option>
+															<option>Singapore</option>
+															<option>Sharjah</option>
+															<option>Islamabad</option>
+															<option>Toronto</option>
+															<option>Paris</option>
+															<option>Delhi</option>
+															<option>Colombo</option>
+															<option>Auckland</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Departure Date</label>
+													<div class="field">	
+														<input class="popupDatepicker" type="text" placeholder="Select Date">
+														<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="check-radio">
+														<input type="radio" name="a" class="styled" />
+														<span>One-way Flight</span>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Return Date</label>
+													<div class="field">	
+														<input class="popupDatepicker" type="text" placeholder="Select Date">
+														<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Students</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Under 26</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Adult 26+</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-3">
+													<button class="book-now" type="submit">Search Now</button>
+												</div>
+											</div>
+										</form><!-- Tab Form -->
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="find-flight">
+										<form action="http://themes.webinane.com/hotel-room/all-flights.html">
+											<div class="row">
+												<div class="col-md-3">
+													<label>Leaving From</label>
+													<div class="field">
+														<select class="select">
+															<option>Dubai</option>
+															<option>London</option>
+															<option>Sydney</option>
+															<option>Newyork</option>
+															<option>Capetown</option>
+															<option>Singapore</option>
+															<option>Sharjah</option>
+															<option>Islamabad</option>
+															<option>Toronto</option>
+															<option>Paris</option>
+															<option>Delhi</option>
+															<option>Colombo</option>
+															<option>Auckland</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Going To</label>
+													<div class="field">
+														<select class="select">
+															<option>Dubai</option>
+															<option>London</option>
+															<option>Sydney</option>
+															<option>Newyork</option>
+															<option>Capetown</option>
+															<option>Singapore</option>
+															<option>Sharjah</option>
+															<option>Islamabad</option>
+															<option>Toronto</option>
+															<option>Paris</option>
+															<option>Delhi</option>
+															<option>Colombo</option>
+															<option>Auckland</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Departure Date</label>
+													<div class="field">	
+														<input class="popupDatepicker" type="text" placeholder="Select Date">
+														<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="check-radio">
+														<input type="radio" name="a" class="styled" />
+														<span>One-way Flight</span>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Return Date</label>
+													<div class="field">	
+														<input class="popupDatepicker" type="text" placeholder="Select Date">
+														<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Students</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Under 26</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Adult 26+</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-3">
+													<button class="book-now" type="submit">Search Now</button>
+												</div>
+											</div>
+										</form><!-- Tab Form -->
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="search-tour">
+										<form action="http://themes.webinane.com/hotel-room/luxury-tours.html">
+											<div class="row">
+												<div class="col-md-3">
+													<label>Leaving From</label>
+													<div class="field">
+														<select class="select">
+															<option>Dubai</option>
+															<option>London</option>
+															<option>Sydney</option>
+															<option>Newyork</option>
+															<option>Capetown</option>
+															<option>Singapore</option>
+															<option>Sharjah</option>
+															<option>Islamabad</option>
+															<option>Toronto</option>
+															<option>Paris</option>
+															<option>Delhi</option>
+															<option>Colombo</option>
+															<option>Auckland</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Going To</label>
+													<div class="field">
+														<select class="select">
+															<option>Dubai</option>
+															<option>London</option>
+															<option>Sydney</option>
+															<option>Newyork</option>
+															<option>Capetown</option>
+															<option>Singapore</option>
+															<option>Sharjah</option>
+															<option>Islamabad</option>
+															<option>Toronto</option>
+															<option>Paris</option>
+															<option>Delhi</option>
+															<option>Colombo</option>
+															<option>Auckland</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Departure Date</label>
+													<div class="field">	
+														<input class="popupDatepicker" type="text" placeholder="Select Date">
+														<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="check-radio">
+														<input type="radio" name="a" class="styled" />
+														<span>One-way Flight</span>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<label>Return Date</label>
+													<div class="field">	
+														<input class="popupDatepicker" type="text" placeholder="Select Date">
+														<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Students</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Under 26</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label>Adult 26+</label>
+													<div class="field">	
+														<input class="inc-dec" value="00" type="text" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-3">
+													<button class="book-now" type="submit">Search Now</button>
+												</div>
+											</div>
+										</form><!-- Tab Form -->
+									</div>
+								</div>								
+							</div>
+						</div><!-- Fancy Search Tabs -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="block  half-gray  remove-gap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5 column">
+						<div class="about-simple">
+							<strong>The Best</strong>
+							<h2>Experience <span>Ever</span></h2>
+							<i>Not valid for bookings less than 3 days </i>
+							<p>Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus nibh.</p>
+							<a class="book-now" href="#" title="">DOWNLOAD GUIDE</a>
+						</div><!-- About Simple -->
+					</div>
+					<div class="col-md-offset-1 col-md-6 column">
+						<div class="all-fancy-services">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="fancy-service">
+										<img th:src="@{/images/resource/fancy-service1.jpg}" alt="" />
+										<div class="fancy-service-text">
+											<span>italy tours & Vaccations</span>
+											<h3><a href="service-detail.html" title="">Group Booking</a></h3>
+										</div>
+									</div><!-- Fancy Service -->
+								</div>
+								<div class="col-md-6">
+									<div class="fancy-service">
+										<img th:src="@{/images/resource/fancy-service2.jpg}" alt="" />
+										<div class="fancy-service-text">
+											<span>italy tours & Vaccations</span>
+											<h3><a href="service-detail.html" title="">Car Hiring</a></h3>
+										</div>
+									</div><!-- Fancy Service -->
+								</div>
+								<div class="col-md-6">
+									<div class="fancy-service">
+										<img th:src="@{/images/resource/fancy-service3.jpg}" alt="" />
+										<div class="fancy-service-text">
+											<span>italy tours & Vaccations</span>
+											<h3><a href="service-detail.html" title="">Travel Insurance</a></h3>
+										</div>
+									</div><!-- Fancy Service -->
+								</div>
+								<div class="col-md-6">
+									<div class="fancy-service">
+										<img th:src="@{/images/resource/fancy-service4.jpg}" alt="" />
+										<div class="fancy-service-text">
+											<span>italy tours & Vaccations</span>
+											<h3><a href="service-detail.html" title="">Travel Guidelines</a></h3>
+										</div>
+									</div><!-- Fancy Service -->
+								</div>
+							</div>
+						</div><!-- All Fancy Services -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<section>
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 column">
+						<div class="title">
+							<span>Resort World Best Places</span>
+							<h4>SPECIAL OFFERS</h4>
+						</div><!-- Title -->
+
+						<div class="special-offers">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="sp-offer">
+										<div class="offer-img">
+											<img th:src="@{/images/resource/special-offer1.jpg}" alt="" />
+											<ul>
+												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
+												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
+												<li><i class="fa fa-male"></i> Person: 02</li>
+											</ul>
+										</div>
+										<div class="offer-detail">
+											<span>Italy Tours & Vacations</span>
+											<h3><a href="flight-packages-detail.html" title="">The Gold Standard Tour</a></h3>
+											<div class="cost">FROM <strong>$420.00</strong>/ Person</div>
+											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
+										</div>
+									</div><!-- Offer -->
+								</div>
+								<div class="col-md-4">
+									<div class="sp-offer">
+										<div class="offer-img">
+											<img th:src="@{/images/resource/special-offer2.jpg}" alt="" />
+											<ul>
+												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
+												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
+												<li><i class="fa fa-male"></i> Person: 02</li>
+											</ul>
+										</div>
+										<div class="offer-detail">
+											<span>Italy Tours & Vacations</span>
+											<h3><a href="flight-packages-detail.html" title="">Cinque Terre & Rome Tour</a></h3>
+											<div class="cost">FROM <strong>$159.00</strong>/ Person</div>
+											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
+										</div>
+									</div><!-- Offer -->
+								</div>
+								<div class="col-md-4">
+									<div class="sp-offer">
+										<div class="offer-img">
+											<img th:src="@{/images/resource/special-offer3.jpg}" alt="" />
+											<ul>
+												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
+												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
+												<li><i class="fa fa-male"></i> Person: 02</li>
+											</ul>
+										</div>
+										<div class="offer-detail">
+											<span>Italy Tours & Vacations</span>
+											<h3><a href="flight-packages-detail.html" title="">Art, Food, and Culture Tour</a></h3>
+											<div class="cost">FROM <strong>$212.00</strong>/ Person</div>
+											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
+										</div>
+									</div><!-- Offer -->
+								</div>
+							</div>
+						</div><!-- Special Offers -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="block blackish">
+			<div data-velocity="-.1" style="background: url(images/parallax4.jpg) repeat scroll 50% 0 transparent;" class="parallax"></div>
+			<div class="row">
+				<div class="col-md-6 column">
+					<div class="destination-slide overlap">
+						<div data-hash="one" class="destination-image">
+							<img th:src="@{/images/resource/destination-image1.jpg}" alt="" />
+							<div class="destination-detail">
+								<div class="destination-name">
+									<h4>Cinque Terre & Rome Tour</h4>
+									<div class="cost">FROM <strong>$520.00</strong> / PERSON</div>
+								</div>
+								<a class="book-now" href="#" title="">Book Now</a>
+							</div>
+						</div><!-- Destination Image -->
+						<div data-hash="two" class="destination-image">
+							<img th:src="@{/images/resource/destination-image2.jpg}" alt="" />
+							<div class="destination-detail">
+								<div class="destination-name">
+									<h4>Cinque Terre & Rome Tour</h4>
+									<div class="cost">FROM <strong>$325.00</strong> / PERSON</div>
+								</div>
+								<a class="book-now" href="#" title="">Book Now</a>
+							</div>
+						</div><!-- Destination Image -->
+						<div data-hash="three" class="destination-image">
+							<img th:src="@{/images/resource/destination-image3.jpg}" alt="" />
+							<div class="destination-detail">
+								<div class="destination-name">
+									<h4>Cinque Terre & Rome Tour</h4>
+									<div class="cost">FROM <strong>$635.00</strong> / PERSON</div>
+								</div>
+								<a class="book-now" href="#" title="">Book Now</a>
+							</div>
+						</div><!-- Destination Image -->
+						<div data-hash="four" class="destination-image">
+							<img th:src="@{/images/resource/destination-image4.jpg}" alt="" />
+							<div class="destination-detail">
+								<div class="destination-name">
+									<h4>Cinque Terre & Rome Tour</h4>
+									<div class="cost">FROM <strong>$123.00</strong> / PERSON</div>
+								</div>
+								<a class="book-now" href="#" title="">Book Now</a>
+							</div>
+						</div><!-- Destination Image -->
+					</div><!-- Destination Slide -->
+				</div>
+				<div class="col-md-6 column">
+					<div class="destination">
+						<h3>Destination Arround</h3>
+						<span>The World</span>
+						<p>Curabitur blandit tempus porttitor. Maecenas sediam eget risus varius blandit sit accumsan urna vitamolestie interdum. Nam sed placerat libero, noleifendet non magna. Fusce dapibus, tellusac.</p>
+						<div class="destination-carousel">
+							<div class="destination-thumb">
+								<a class="true url" href="#one" title=""><img th:src="@{/images/resource/destination-thumb1.jpg}" alt="" /></a>
+								<span>Flights To France</span>
+							</div><!-- Destination Thumb -->
+							<div class="destination-thumb">
+								<a class="url" href="#two" title=""><img th:src="@{/images/resource/destination-thumb2.jpg}" alt="" /></a>
+								<span>Flights To Sweden</span>
+							</div><!-- Destination Thumb -->
+							<div class="destination-thumb">
+								<a class="url" href="#three" title=""><img th:src="@{/images/resource/destination-thumb3.jpg}" alt="" /></a>
+								<span>Flights To Paris</span>
+							</div><!-- Destination Thumb -->
+							<div class="destination-thumb">
+								<a class="url" href="#four" title=""><img th:src="@{/images/resource/destination-thumb4.jpg}" alt="" /></a>
+								<span>Flights To Egypt</span>
+							</div><!-- Destination Thumb -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="block remove-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 column">
+						<div class="title">
+							<span>Resort World Best Places</span>
+							<h4>BEST OFFERED TOURS</h4>
+						</div><!-- Title -->
+						<div class="best-offered-tours">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="best-offered">
+										<img th:src="@{/images/resource/best-tour1.jpg}" alt="" />
+										<div class="tour-name">
+											<h4><a href="packages-detail.html" title="">GORGEOUS LONDON</a></h4>
+											<div class="cost">FROM <strong>$510.00</strong> / PERSON</div>
+										</div>
+									</div><!-- Best Offered -->
+								</div>
+								<div class="col-md-3">
+									<div class="best-offered">
+										<img th:src="@{/images/resource/best-tour2.jpg}" alt="" />
+										<div class="tour-name">
+											<h4><a href="packages-detail.html" title="">EUROPE TOUR</a></h4>
+											<div class="cost">FROM <strong>$510.00</strong> / PERSON</div>
+										</div>
+									</div><!-- Best Offered -->
+								</div>
+								<div class="col-md-3">
+									<div class="best-offered">
+										<img th:src="@{/images/resource/best-tour3.jpg}" alt="" />
+										<div class="tour-name">
+											<h4><a href="packages-detail.html" title="">TROPICAL COSTA RICA</a></h4>
+											<div class="cost">FROM <strong>$510.00</strong> / PERSON</div>
+										</div>
+									</div><!-- Best Offered -->
+								</div>
+								<div class="col-md-3">
+									<div class="best-offered">
+										<img th:src="@{/images/resource/best-tour4.jpg}" alt="" />
+										<div class="tour-name">
+											<h4><a href="packages-detail.html" title="">SHADES OF IRELAND</a></h4>
+											<div class="cost">FROM <strong>$510.00</strong> / PERSON</div>
+										</div>
+									</div><!-- Best Offered -->
+								</div>
+							</div>
+						</div><!-- Best Offered Tours -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="block less-spacing">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 column">
+						<div class="clients-carousel">
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client3.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client4.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client5.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+							</div><!-- Client -->
+							<div class="client">
+								<a title="" href="#"><img th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+							</div><!-- Client -->
+						</div><!-- Clients Carousel -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<footer>
+		<div class="block bar-off darkblue-layer">
+			<div data-velocity="-.1" style="background: url(images/parallax3.jpg) repeat scroll 50% 0 transparent;" class="parallax"></div>
+			<div class="container">
+				<div class="footer-widgets">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="widget">
+								<div class="about-widget">
+									<a href="#"><img th:src="@{/images/footer-logo.png}" alt="" /></a>
+									<p>Vestibulum id ligula porta felis euismod sem per. Aenean eu leo quam. Pellentesque orn are sem lacinia quam venenatis. Fusce dap ibus, tellus ac cursus commodo ut fermentu massa. mentum sit amet risus.</p>
+								</div>
+							</div><!-- Widget -->
+						</div>
+						<div class="col-md-3">
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Special Tours</h4>
+									<span>Local Guide</span>
+								</div>
+								<ul>
+									<li><i class="fa fa-umbrella"></i> Boutiques</li>
+									<li><i class="fa fa-laptop"></i> Complimentary wireless internet</li>
+									<li><i class="fa fa-clock-o"></i> Private beach with service</li>
+									<li><i class="fa fa-wifi"></i> Pet-friendly resort</li>
+									<li><i class="fa fa-umbrella"></i> Tennis courts</li>
+								</ul><!-- ul -->
+							</div><!-- Luxury Offers -->
+						</div>
+						<div class="col-md-3">
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Dinnings</h4>
+									<span>Local Guide</span>
+								</div>
+								<ul>
+									<li><i class="fa fa-umbrella"></i> Boutiques</li>
+									<li><i class="fa fa-laptop"></i> Complimentary wireless internet</li>
+									<li><i class="fa fa-clock-o"></i> Private beach with service</li>
+									<li><i class="fa fa-wifi"></i> Pet-friendly resort</li>
+									<li><i class="fa fa-umbrella"></i> Tennis courts</li>
+								</ul><!-- ul -->
+							</div><!-- Luxury Offers -->
+						</div>
+						<div class="col-md-3">
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Luxury Offer</h4>
+									<span>Local Guide</span>
+								</div>
+								<ul>
+									<li><i class="fa fa-umbrella"></i> Boutiques</li>
+									<li><i class="fa fa-laptop"></i> Complimentary wireless internet</li>
+									<li><i class="fa fa-clock-o"></i> Private beach with service</li>
+									<li><i class="fa fa-wifi"></i> Pet-friendly resort</li>
+									<li><i class="fa fa-umbrella"></i> Tennis courts</li>
+								</ul><!-- ul -->
+							</div><!-- Luxury Offers -->
+						</div>
+					</div>
+				</div><!-- Footer Widgets -->
+			</div>
+		</div>
+	</footer><!-- footer -->
+
+	<div class="bottom-footer">
+		<div class="container">
+			<p>&copy; 2015 <a href="#">Resort</a> - All Rights Reserved - Made By <a href="#">Webinane</a></p>
+		</div><!-- container -->
+	</div><!-- after-footer -->
+
+	<div class="booking-popup">
+		<div class="popup-container">
+			<div class="popup-inner">
+				<span class="close-btn"><img th:src="@{/images/cross.png}" alt="" /></span>
+				<div class="popup-title">
+					<span>Any Time Worldwide</span>
+					<h4>Book Your Room</h4>
+					<span>Not valid for bookings less than 3 days </span>
+				</div><!-- Popup Title -->
+				<div class="popup-details">
+					<div class="popup-block">
+						<div class="row">
+							<div class="col-md-5 column">
+								<div class="popup-block-title">
+									<span>Any Time</span>
+									<h4>Choose Your Date</h4>
+								</div>
+							</div>
+							<div class="col-md-7 column">
+								<form>
+									<div class="row">
+										<div class="col-md-6">
+											<label>Check In</label>
+											<div class="field">	
+												<input class="popupDatepicker" type="text" placeholder="">
+												<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label>Check Out</label>
+											<div class="field">	
+												<input class="popupDatepicker" type="text" placeholder="">
+												<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label>Adults</label>
+											<div class="field">
+												<input class="inc-dec" value="00" type="text" placeholder="">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label>Kids</label>
+											<div class="field">	
+												<input class="inc-dec" value="00" type="text" placeholder="">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label>Rooms</label>
+											<div class="field">	
+												<input class="inc-dec" value="00" type="text" placeholder="">
+											</div>
+										</div>
+									</div>
+								</form><!-- Tab Form -->							
+							</div>
+						</div>
+					</div><!-- Popup Block -->
+					<div class="popup-block">
+						<div class="row">
+							<div class="col-md-5 column">
+								<div class="popup-block-title">
+									<span>Awesome Rooms</span>
+									<h4>Your Room Summary</h4>
+								</div>
+							</div>
+							<div class="col-md-7">
+								<div class="popup-rooms">
+									<div class="popup-room">
+										<div class="popup-room-img">
+											<img th:src="@{/images/resource/popup-room.jpg}" alt="" />
+										</div>									
+										<div class="popup-room-detail">
+											<i>Awesome Features Room</i>
+											<h5>Super Star Luxury Hotle</h5>
+											<div class="room-price-from">
+												<strong>Start From </strong>
+												<span>$289</span>
+												<strong>Per Person</strong>
+											</div>
+											<a class="book-now" href="#" title="">SEE DETAILS</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- Popup Block -->		
+					<div class="popup-block">
+						<div class="row">
+							<div class="col-md-5 column">
+								<div class="popup-block-title">
+									<span>We Stand By</span>
+									<h4>Reservation Details</h4>
+								</div>
+							</div>
+							<div class="col-md-7 column">
+								<form>
+									<div class="row">
+										<div class="col-md-6">
+											<label>First Name</label>
+											<div class="field">
+												<input type="text" placeholder="" />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label>Last Name</label>
+											<div class="field">	
+												<input type="text" placeholder="" />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label>Email</label>
+											<div class="field">	
+												<input type="email" placeholder="" />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label>Phone</label>
+											<div class="field">	
+												<input type="email" placeholder="" />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label>City</label>
+											<div class="field">	
+												<input type="email" placeholder="" />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label>Address</label>
+											<div class="field">	
+												<input type="email" placeholder="" />
+											</div>
+										</div>
+										<div class="col-md-12">
+											<label>Requirements</label>
+											<div class="field textarea">	
+												<textarea></textarea>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<button class="book-now" type="submit">BOOK NOW</button>
+										</div>
+									</div>
+								</form><!-- Tab Form -->							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- Booking Popup -->
+</div>
+<th:block layout:fragment="js">
+	<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+	<script type="text/javascript" th:src="@{/js/revolution/jquery.themepunch.tools.min.js}"></script>   
+	<script type="text/javascript" th:src="@{/js/revolution/jquery.themepunch.revolution.min.js}"></script>
+
+	<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/owl.carousel.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/jquery.poptrox.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/enscroll-0.5.2.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/jquery.scrolly.js}" type="text/javascript"></script>
+	<script th:src="@{/js/bootstrap-datepicker.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/userincr.js}" type="text/javascript"></script>	
+	<script th:src="@{/js/select2.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/check-radio-box.js}" type="text/javascript"></script>
+	<script th:src="@{/js/script.js}" type="text/javascript"></script>
+	<script th:src="@{/js/jquery.simpleWeather.min.js}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			jQuery('.tp-banner').show().revolution({
+				delay:15000,
+				startwidth:1170,
+				startheight:650,
+				autoHeight:"off",
+				navigationType:"none",
+				hideThumbs:10,
+				fullWidth:"on",
+				fullScreen:"off",
+				fullScreenOffsetContainer:""
+			});
+
+			$(".select").select2();
+
+			$('.clients-carousel').owlCarousel({
+				autoplay:true,
+				autoplayTimeout:30000,
+				smartSpeed:2000,
+				loop:true,
+				dots:false,
+				nav:true,
+				margin:10,
+				items:5,
+				autoHeight:true,
+				responsive:{
+					0:{items:1},
+					600:{items:2},
+					1000:{items:3},
+					1200:{items:5}
+				}
+			});				
+		});
+
+		$(window).load(function(){
+			$('.destination-carousel').owlCarousel({
+				autoplay:false,
+				autoplayTimeout:30000,
+				smartSpeed:2000,
+				loop:false,
+				dots:false,
+				mouseDrag:true,
+				nav:true,
+				margin:30,
+				items:2,
+				autoHeight:true,
+		        autoplayHoverPause:true,
+		        URLhashListener:true,
+		        startPosition: 'URLHash',
+				responsive:{
+					0:{items:1},
+					600:{items:2},
+					1000:{items:2},
+					1200:{items:2}
+				}
+			});				
+
+			$(".destination-slide").owlCarousel({
+				autoplay:false,
+				autoplayTimeout:30000,
+				smartSpeed:2000,
+				loop:false,
+				dots:false,
+				nav:false,
+				items:1,
+				singleItem:true,
+				autoHeight:true,
+		        URLhashListener:true,
+			});
+
+		});
+	</script>
+		</th:block>
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>

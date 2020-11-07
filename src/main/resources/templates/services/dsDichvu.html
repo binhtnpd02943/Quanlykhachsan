@@ -38,7 +38,7 @@
 				<ul class="list-group collapse show" style="cursor: pointer;"
 					id="chungloai">
 					<a th:href="@{/users/}" class="list-group-item">Tài Khoản</a>
-					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
+					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
 					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
 					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
 					<a th:href="@{/services/}" class="list-group-item ">Dịch Vụ</a>
@@ -52,13 +52,13 @@
 				</div>
 				<ul class="list-group collapse show" style="cursor: pointer;"
 					id="nguoidung">
-					<li class="list-group-item "><i class="fas fa-user"></i> Tài
-						Khoản</li>
-					<li class="list-group-item "><i class="fas fa-cogs"></i> Chưa
-						Nghĩ Ra</li>
+					<li class="list-group-item "><i class="fas fa-user"></i> TÃ i
+						Khoáº£n</li>
+					<li class="list-group-item "><i class="fas fa-cogs"></i> ChÆ°a
+						NghÄ© Ra</li>
 					<a class="list-group-item " th:href="@{/logout}"
 						th:if="${attr_user != null}"><i class="fas fa-sign-out-alt"></i>
-						Đăng Xuất</a>
+						ÄÄng Xuáº¥t</a>
 
 
 				</ul>
@@ -70,7 +70,7 @@
 							class="row alert alert-success alert-dismissible">
 							<button type="button" class="close" data-dismiss="alert"
 								aria-label="Close">
-								<span aria-hidden="true">×</span>
+								<span aria-hidden="true">x</span>
 							</button>
 							<span th:text="${success}"></span>
 						</div>
@@ -86,12 +86,11 @@
 
 								<div class="modal-content">
 									<div class="modal-header">
-										<!--  
+										
 									<div th:if="${message !=null}">
 										<h3 th:text="${message}"></h3>
 									</div>
-									-->
-										<h5 class="modal-title">Thêm Dịch Vụ</h5>
+												<h5 class="modal-title">Thêm Dịch Vụ</h5>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -99,8 +98,7 @@
 									</div>
 									<div class="modal-body">
 										<form th:action="@{/services/saveOrUpdate}"
-											th:object="${serviceDto}" method="post">
-
+											th:object="${serviceDto}" method="post" enctype="multipart/form-data">
 											<div th:if="${id>0}">
 												<div class="form-group row">
 
@@ -127,6 +125,28 @@
 														th:field="*{giadv}" placeholder="Giá Dịch Vụ...">
 												</div>
 											</div>
+											
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Mô Tả Dịch Vụ</label>
+												<div class="col-sm-9">
+													<textarea rows="4" class="form-control"
+														id="mota"
+														placeholder="Mô tả dịch vụ..." th:field="*{mota}">
+                                                    </textarea>
+												</div>
+											</div>
+											
+											 <div class="form-group row">
+												<label class="col-sm-3"> Hình Ảnh</label>
+												<div class="col-sm-9">
+											
+                                        			<input type="file" class="custom-file-input" th:field="*{photo}" id="photo" th:required="*{id == 0}">
+                                        			<label class="custom-file-label" for="photo" th:if="*{imageName}" th:text="*{imageName}"></label>
+                                        			<label class="custom-file-label" for="photo" th:unless="*{imageName}" >choose image</label>
+											</div>
+											</div>
+											
+											
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Khách Sạn</label>
 												<div class="col-sm-9">
@@ -139,13 +159,12 @@
 												</div>
 											</div>
 											
-											
 										
 											<input type="submit" value="Add" class="btn btn-primary"
-												th:if="${id<=0}" /> <input type="submit" value="Update"
+												th:if="${id<=0}" /> 
+											<input type="submit" value="Update"
 												class="btn btn-primary" th:if="${id>0}" /> <a
 												th:href="@{/services/}" class="btn btn-outline-secondary">Cancel</a>
-
 										</form>
 									</div>
 									<div class="card-footer">
@@ -153,7 +172,7 @@
 										<ul style="color: red;"
 											th:if="${#fields.hasErrors('${serviceDto.*}')}">
 											<li th:each="err: ${#fields.errors('${serviceDto.*}')}"
-												th:text="${err}">Input is inncorrect</li>
+												th:text="${err}">Input is incorrect</li>
 										</ul>
 									</div>
 								</div>
@@ -166,10 +185,11 @@
 							<tr>
 								<th>Mã</th>
 								<th>Tên Dịch Vụ</th>
-								<th>Gía Dịch vụ</th>
-								
+								<th>Giá Dịch Vụ</th>
+								<th>Mô Tả Dịch Vụ</th>
+								<th>Hình Ảnh</th>
 								<th>Khách Sạn</th>
-								<th>Thao tác</th>
+								<th>Thao Tác</th>
 							</tr>
 
 						</thead>
@@ -178,8 +198,11 @@
 							<td th:text="${item.id}"></td>
 								<td th:text="${item.ten}"></td>
 								
-								<td th:text="${item.giadv} + ' VNĐ'"></td>
-								
+								<td th:text="${item.giadv} + ' VND'"></td>
+								<td th:text="${item.mota}"></td>
+								<td><img alt="" th:src="@{'/getanh/' +${item.id}}"
+									width="100" height="90" class="avatar"
+									style="border-radius: 40px; vertical-align: middle;"></td>
 								<td th:text="${item.khachsan.ten}"></td>
 
 								<td class="text-right py-0 align-middle">
@@ -198,8 +221,7 @@
 
 					<div class="card-footer">
 
-						<nav aria-label="Contacts Page Navigation"
-							th:if="${services.totalPages}">
+						<nav aria-label="Contacts Page Navigation" th:if="${services.totalPages}">
 							<ul class="pagination justify-content-center m-0">
 								<li
 									th:class="${services.number == 0}?'disabled page-item':'page-item'">

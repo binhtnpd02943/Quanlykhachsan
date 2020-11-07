@@ -38,6 +38,7 @@
 					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
 					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
 					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
+					<a th:href="@{/services/}" class="list-group-item ">Dịch Vụ</a>
 					<a th:href="@{/rooms/}" class="list-group-item ">Phòng</a>
 
 				</ul>
@@ -114,8 +115,10 @@
 										<div class="form-group row">
 											<label class="col-sm-3"> Hình Ảnh</label>
 											<div class="col-sm-9">
-												<input type="file" class="form-control" th:field="*{photo}" id="urlhinhanh" th:required="*{id == 0}">
-                                       <label class="custom-file-label" for="photo" th:if="*{imageName}" th:text="*{imageName}"></label>
+											
+                                        <input type="file" class="custom-file-input" th:field="*{photo}" id="urlhinhanh" th:required="*{id == 0}">
+                                        <label class="custom-file-label" for="photo" th:if="*{imageName}" th:text="*{imageName}"></label>
+                                        <label class="custom-file-label" for="photo" th:unless="*{imageName}" >choose image</label>
 											</div>
 										</div>
 										<div class="row" style="margin: 5px;">

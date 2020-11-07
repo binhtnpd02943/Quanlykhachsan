@@ -37,6 +37,7 @@
 					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
 					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
 					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
+					<a th:href="@{/services/}" class="list-group-item ">Dịch Vụ</a>
 					<a th:href="@{/rooms/}" class="list-group-item ">Phòng</a>
 
 				</ul>
@@ -92,7 +93,7 @@
 								</div>
 								<div class="modal-body">
 									<form th:action="@{/rooms/saveOrUpdate}" th:object="${roomDto}"
-										method="post">
+										method="post" enctype="multipart/form-data">
 
 										<div th:if="${id>0}">
 											<div class="form-group row">
@@ -133,6 +134,14 @@
 													placeholder="Tiện Nghi...">
 											</div>
 										</div>
+										<div class="form-group row">
+												<label class="col-sm-3"> Hình Ảnh</label>
+												<div class="col-sm-9">
+													<input type="file" class="custom-file-input" th:field="*{photo}" id="photo" th:required="*{id == 0}">
+                                        <label class="custom-file-label" for="photo" th:if="*{imageName}" th:text="*{imageName}"></label>
+                                        <label class="custom-file-label" for="photo" th:unless="*{imageName}">choose image</label>
+												</div>
+											</div>
 										<div class="row" style="margin: 5px;">
 											<div class="form-group col-md-6">
 												<label>Khách sạn</label> <select th:field="*{khachsanId}"
@@ -192,8 +201,9 @@
 							<th>Diện Tích</th>
 							<th>Gía Thuê</th>
 							<th>Tiện Nghi</th>
+							<th>Hinh Anh</th>
 							<th>Loại Giường</th>
-							<th style="max-width: 250px;">Mo Ta</th>
+							<th style="width:300px;">Mo Ta</th>
 							<th>Khách Sạn</th>
 							<th>Thao tác</th>
 						</tr>
@@ -208,6 +218,9 @@
 							<td th:text="${item.tiennghi}"></td>
 							<td><span
 								th:text="${item.loaigiuong} ? 'Giường Đơn':'Giường Đôi'"></span></td>
+								<td><img alt="" th:src="@{'/getImg/' +${item.id}}"
+									width="100" height="90" class="avatar"
+									style="border-radius: 40px; vertical-align: middle;"></td>
 							<td th:text="${item.mota}"></td>
 							<td th:text="${item.khachsan.ten}"></td>
 

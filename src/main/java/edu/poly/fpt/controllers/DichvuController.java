@@ -34,6 +34,7 @@ import edu.poly.fpt.entities.DichVu;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.PagerModel;
 import edu.poly.fpt.entities.Phong;
+import edu.poly.fpt.entities.ThanhPho;
 import edu.poly.fpt.services.DichvuService;
 
 @Controller
@@ -50,26 +51,54 @@ public class DichvuController {
 	public ModelAndView homepage(@RequestParam("page") Optional<Integer> page) {
 		return getStaffsAndPage(new serviceDto(), page);
 	}
+	@GetMapping("/service-detail")
+	public String details() {
+		return "customer/service-detail";
+	}
 
 	@PostMapping("saveOrUpdate")
 	public String saveOrUpdate(ModelMap model, @Validated serviceDto serviceDto, BindingResult result,
-			RedirectAttributes redire) {
+			RedirectAttributes redire,@RequestParam("page") Optional<Integer> page) {
 		if (result.hasErrors()) {
+			int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+			Page<DichVu> roomList = dichvuService.findAll(PageRequest.of(evalPage, INITIAL_PAGE_SIZE, Sort.by("id")));
+			PagerModel pager = new PagerModel(roomList.getTotalPages(), roomList.getNumber(), BUTTONS_TO_SHOW);
+			
+			model.addAttribute("services", roomList);
+			model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);
+			model.addAttribute("pager", pager);
 			model.addAttribute("message", "vui long nhap tat ca cac du lieu!!");
-			model.addAttribute("roomDto", serviceDto);
+			model.addAttribute("serviceDto", serviceDto);
 			return "services/dsDichvu";
 		}
 
 		// add new
 		if (serviceDto.getId() != null && serviceDto.getId() > 0) {
 		}
+		Path path = Paths.get("images/");
+
+		try {
+			InputStream inputStream = serviceDto.getPhoto().getInputStream();
+			Files.copy(inputStream, path.resolve(serviceDto.getPhoto().getOriginalFilename()),
+					StandardCopyOption.REPLACE_EXISTING);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("message", "error :" + e.getMessage());
+		}
 
 		DichVu dv = new DichVu();
-
+		
 		dv.setId(serviceDto.getId());
 		dv.setTen(serviceDto.getTen());
 		dv.setGiadv(serviceDto.getGiadv());
-
+		dv.setMota(serviceDto.getMota());
+		if (serviceDto.getPhoto().isEmpty()) {
+			DichVu oldStaff = dichvuService.findById(serviceDto.getId()).get();
+			dv.setHinhanh(oldStaff.getHinhanh());
+		} else {
+			dv.setHinhanh(serviceDto.getPhoto().getOriginalFilename());
+		}
 		KhachSan ks = new KhachSan();
 		ks.setId(serviceDto.getKhachsanId());
 		dv.setKhachsan(ks);
@@ -88,8 +117,10 @@ public class DichvuController {
 		serviceDto serviceDto = new serviceDto();
 
 		serviceDto.setId(dv.getId());
-		serviceDto.setTen(dv.getTen());
+		serviceDto.setTen(dv.getTen());	
 		serviceDto.setGiadv(dv.getGiadv());
+		serviceDto.setMota(dv.getMota());
+		serviceDto.setImageName(dv.getHinhanh());
 		serviceDto.setKhachsanId(dv.getKhachsan().getId());
 
 		return getStaffsAndPage(serviceDto, page);
@@ -138,7 +169,7 @@ public class DichvuController {
 		modelAndView.addObject("pager", pager);
 		return modelAndView;
 	}
-
+	
 	@ModelAttribute("attr_user")
 	public org.springframework.security.core.userdetails.User getUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

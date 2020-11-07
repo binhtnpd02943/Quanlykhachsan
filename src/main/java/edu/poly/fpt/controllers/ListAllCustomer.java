@@ -31,14 +31,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.poly.fpt.dto.cityDto;
 import edu.poly.fpt.dto.hotelDto;
 import edu.poly.fpt.dto.roomDto;
+import edu.poly.fpt.dto.serviceDto;
 import edu.poly.fpt.dto.typeDto;
 import edu.poly.fpt.dto.userDto;
+import edu.poly.fpt.entities.DichVu;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.LoaiKhachSan;
 import edu.poly.fpt.entities.PagerModel;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.TaiKhoan;
 import edu.poly.fpt.entities.ThanhPho;
+import edu.poly.fpt.services.DichvuService;
 import edu.poly.fpt.services.KhachsanService;
 import edu.poly.fpt.services.LoaikhachsanService;
 import edu.poly.fpt.services.PhongService;
@@ -48,6 +51,9 @@ import edu.poly.fpt.services.ThanhphoService;
 @Controller
 @RequestMapping("/view")
 public class ListAllCustomer {
+	
+	@Autowired
+	private DichvuService dichvuService;
 
 	@Autowired
 	private PhongService phongService;
@@ -59,6 +65,8 @@ public class ListAllCustomer {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	
 
 	private static final int BUTTONS_TO_SHOW = 7;
 	private static final int INITIAL_PAGE = 0;
@@ -66,6 +74,8 @@ public class ListAllCustomer {
 	private static final int INITIAL_PAGE_SIZES = 9; //List 9 sản phẩm khách sạn chính 
 	private static final int INITIAL_PAGE_SIZESS = 5; // view/saveUser list lại page 5 phòng
 	private static final int INITIAL_PAGE_SIZEs = 9;// filter tìm kiếm khách sạn
+	
+	private static final int INITIAL_PAGE_SIZEz = 15; // list services
 
 	@GetMapping("/room-packages-grid")
 	public ModelAndView Homepage(@RequestParam("page") Optional<Integer> page) {
@@ -110,6 +120,15 @@ public class ListAllCustomer {
 			return "customer/packages-detail";
 		}
 		return "redirect:view/";
+	}
+	@GetMapping("profiles/{id}")
+	public String profiles(@PathVariable("id") Integer id, ModelMap model) {
+		if (dichvuService.findById(id).isPresent()) {
+			model.addAttribute("item", dichvuService.findById(id).get());
+			return "customer/service-detail";
+		}
+		return "redirect:view/";
+		
 	}
 
 	@PostMapping("filter")
@@ -198,6 +217,37 @@ public class ListAllCustomer {
 	public List<LoaiKhachSan> getLoaikhachsan() {
 		return khachsanService.findAllLoaikhachsan();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+	@GetMapping("/services")
+	public ModelAndView homepage(@RequestParam("page") Optional<Integer> page) {
+		return getServiceAndPage(new serviceDto(), page);
+	}
+	
+	public ModelAndView getServiceAndPage(serviceDto serviceDto, @RequestParam("page") Optional<Integer> page) {
+
+		ModelAndView modelAndView = new ModelAndView("customer/services");
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+		Page<DichVu> roomList = dichvuService.findAll(PageRequest.of(evalPage, INITIAL_PAGE_SIZEz, Sort.by("id")));
+		PagerModel pager = new PagerModel(roomList.getTotalPages(), roomList.getNumber(), BUTTONS_TO_SHOW);
+		modelAndView.addObject("serviceDto", serviceDto);
+		modelAndView.addObject("services", roomList);
+		modelAndView.addObject("selectedPageSize", INITIAL_PAGE_SIZEz);
+		modelAndView.addObject("pager", pager);
+		return modelAndView;
+	}
+
+	
+	
+	
+	
 
 	@ModelAttribute("attr_user")
 	public org.springframework.security.core.userdetails.User getUser() {

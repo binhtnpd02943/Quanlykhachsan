@@ -29,6 +29,12 @@ public class DichVu implements Serializable{
 	@Column
 	private Float giadv;
 	
+	@Column(columnDefinition = "nvarchar(200)")
+	private String mota;
+	
+	@Column(length = 100)
+	private String hinhanh;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "khachsanId")
 	private KhachSan khachsan;
@@ -39,11 +45,13 @@ public class DichVu implements Serializable{
 	}
 
 
-	public DichVu(Integer id, String ten, Float giadv, KhachSan khachsan) {
+	public DichVu(Integer id, String ten, Float giadv, String mota, String hinhanh, KhachSan khachsan) {
 		super();
 		this.id = id;
 		this.ten = ten;
 		this.giadv = giadv;
+		this.mota = mota;
+		this.hinhanh = hinhanh;
 		this.khachsan = khachsan;
 	}
 
@@ -75,6 +83,25 @@ public class DichVu implements Serializable{
 
 	public void setGiadv(Float giadv) {
 		this.giadv = giadv;
+	}
+	
+	public String getMota() {
+		return mota;
+	}
+
+
+	public void setMota(String mota) {
+		this.mota = mota;
+	}
+
+
+	public String getHinhanh() {
+		return hinhanh;
+	}
+
+
+	public void setHinhanh(String hinhanh) {
+		this.hinhanh = hinhanh;
 	}
 
 

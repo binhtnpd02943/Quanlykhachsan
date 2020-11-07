@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.poly.fpt.entities.DichVu;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.LoaiKhachSan;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.ThanhPho;
+import edu.poly.fpt.services.DichvuService;
 import edu.poly.fpt.services.KhachsanService;
 import edu.poly.fpt.services.LoaikhachsanService;
 import edu.poly.fpt.services.PhongService;
@@ -37,6 +39,33 @@ public class ImageController {
 	private LoaikhachsanService loaikhachsanService; 
 	@Autowired
 	private PhongService phongService;
+	@Autowired
+	private DichvuService dichvuService;
+	
+	@RequestMapping( value = "getanh/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> downloadLinkAnh(@PathVariable Integer id){
+		Optional<DichVu> sop = dichvuService.findById(id);
+		
+		if(sop.isPresent()) {
+			DichVu dichvu = sop.get();
+			try {
+				Path filename = Paths.get("images", dichvu.getHinhanh());
+				byte[] buffer = Files.readAllBytes(filename);
+				
+				ByteArrayResource bsr = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						.contentType(MediaType.parseMediaType("images/jpg"))
+						.body(bsr);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	
 	
 	@RequestMapping( value = "getimage/{id}", method = RequestMethod.GET)
 	@ResponseBody

@@ -35,11 +35,7 @@ public class DatphongController {
 	public String gallery() {
 		return "customer/gallery";
 	}
-	@GetMapping("/services")
-	public String service() {
-		return "customer/services";
-	}
-	
+
 	@GetMapping("/packages-detail")
 	public String detail() {
 		return "customer/packages-detail";

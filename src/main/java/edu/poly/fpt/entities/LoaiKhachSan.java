@@ -25,7 +25,7 @@ public class LoaiKhachSan implements Serializable{
 	@Column( columnDefinition = "nvarchar(100)")
 	private String ten;
 	
-	@Column( columnDefinition = "nvarchar(200)")
+	@Column( columnDefinition = "nvarchar(255)")
 	private String mota;
 	
 	@Column(length = 100)

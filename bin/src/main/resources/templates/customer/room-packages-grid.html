@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/clone.html}">
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hotel HTML Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+</head>
+<body itemscope>
+	<div class="theme-layout">
+		<div class="header-container stick">
+			<div layout:fragment="header"></div>
+		</div>
+		<!-- Header Container -->
+
+
+		<div layout:fragment="content">
+			<div class="pagetop">
+				<div class="container">
+					<h1>Room Packages</h1>
+					<ul>
+						<li><a title="" th:href="@{/}">Home</a></li>
+						<li><a title="" href="#">Packages</a></li>
+						<li>Room Packages</li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Top -->
+
+
+
+			<section>
+				<div class="block">
+					<div class="container">
+
+
+						<div class="tab-form search-filter">
+							<div class="tab-from-title">
+								<span>Any Time Worldwide</span>
+								<h4>Find Your Ideal Hotel</h4>
+							</div>
+							<form th:action="@{/view/filter}" method="post">
+								<div class="row">
+									<div class="col-md-3">
+										<label>City</label>
+										<div class="field">
+											<input class="form-control" type="text"
+												placeholder="Nhập Thành Phố" name="tentp" id="tentp" />
+										</div>
+									</div>
+									<div class="col-md-3">
+										<label>Types of Hotel</label>
+										<div class="field">
+											 <select  id="lks" name="lks" class="custom-select"> 
+												<option selected value="1">Khách Sạn</option>
+												<option value="2">Biệt Thự</option>
+												<option value="3">Căn Hộ</option>
+												<option value="4">Glamping</option>
+												<option value="5">Nhà Gỗ</option>
+												<option value="6">Nhà Khách</option>
+												<option value="7">Nhà trọ</option>
+												<option value="8">Resort</option>
+												<option value="9">Thôn Dã</option>
+												
+											</select>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<label>Rating</label>
+										<div class="field">
+											 <select  id="dg" name="dg" class="custom-select"> 
+												<option selected value="5">5 Star</option>
+												<option value="4">4 Star</option>
+												<option value="3">3 Star</option>
+												<option value="2">2 Star</option>
+												<option value="1">1 Star</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<label>lower price</label>
+										<div class="field">
+											<input class="form-control" type="number" value="0"
+												name="giatn" id="giatn" />
+										</div>
+									</div>
+									<div class="col-md-2">
+										<label>Higher price</label>
+										<div class="field">
+											<input class="form-control" type="number" value="5000"
+												name="giacn" id="giacn" />
+									</div>
+									</div>
+									<div class="col-md-12 ">
+										<button class="book-now" type="submit">Search Now</button>
+									</div>
+								</div>
+							</form>
+							<!-- Tab Form -->
+						</div>
+
+
+
+
+
+
+						<div class="row">
+							<div class="col-md-12 column">
+								<div class="special-offers">
+									<div class="row">
+										<div class="col-md-4" th:each="item: ${hotel}">
+											<div class="sp-offer">
+												<div class="offer-img">
+													<img th:src="@{'/getimage/' +${item.id}}" alt="" />
+													<ul>
+														<li><i class="fa fa-bank"></i> Hotel:
+															<td th:text="${item.danhgia} +' Star'"></td></li>
+														<li><i class="fa fa-map-marker"></i> Address:
+															<td th:text="${item.diachi}"></td></li>
+														<li><i class="fa fa-phone"></i> Phone:
+															<td th:text="${item.sodt}"></td></li>
+													</ul>
+												</div>
+												<div class="offer-detail">
+												<span th:text=" 'Loại khách sạn: ' + ${item.loaikhachsan.ten}"></span>
+													<h3>
+														<a href="flight-packages-detail.html" title=""
+															th:text="${item.ten}"></a>
+													</h3>
+													<div class="cost">
+														Thành Phố: <strong th:text="${item.thanhpho.ten}"></strong>/Vietnam
+													</div>
+													<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="">View Detail</a>
+												</div>
+											</div>
+											<!-- Offer -->
+										</div>
+									</div>
+									<div class="title">
+										<nav class="text-center margin-top-65 margin-bottom-75"
+											aria-label="Contacts Page Navigation"
+											th:if="${hotel.totalPages}">
+											<ul class="pagination justify-content-center m-0">
+												<li
+													th:class="${hotel.number == 0}?'disabled page-item':'page-item'">
+													<a class="page-link"
+													th:href="@{/view/room-packages-grid/(page=1)}">&laquo;</a>
+												</li>
+												<li
+													th:class="${hotel.number == 0} ?'disabled page-item':'page-item'"><a
+													class="page-link"
+													th:href="@{/view/room-packages-grid/(page=${hotel.number})}">&larr;</a>
+												</li>
+												<li
+													th:class="${hotel.number == (page - 1)}?'active page-item':'page-item'"
+													th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+													<a class="page-link"
+													th:href="@{/view/room-packages-grid/(page=${page})}"
+													th:text="${page}"></a>
+												</li>
+												<li
+													th:class="${hotel.number + 1 == hotel.totalPages} ?'disabled page-item':'page-item'">
+													<a class="page-link"
+													th:href="@{/view/room-packages-grid/(page=${hotel.number + 2})}">&rarr;</a>
+												</li>
+												<li
+													th:class="${hotel.number+ 1 == hotel.totalPages}?'disabled page-item':'page-item'">
+													<a class="page-link"
+													th:href="@{/view/room-packages-grid/(page=${hotel.totalPages})}">&raquo;</a>
+												</li>
+											</ul>
+										</nav>
+									</div>
+
+								</div>
+								<!-- Special Offers -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>
