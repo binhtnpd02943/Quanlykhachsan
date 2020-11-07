@@ -302,7 +302,6 @@
 							<li class="menu-item-has-children"><a
 								th:href="@{/view/blog-grid}" title="" th:text="#{header.page1}"></a>
 								<ul>
-<<<<<<< HEAD
 									<li><a th:href="@{/contacts/blog-list}" title="">Blog List View</a></li>
 									<li><a th:href="@{/contacts/blog-detail}" title="">Blog Detail</a></li>
 								</ul>
@@ -310,20 +309,10 @@
 							<li><a th:href="@{/view/services}" title="">Services</a></li>					
 							<li><a th:href="@{/view/dinnings}" title="">Dinnings</a></li>
 							<li><a th:href="@{/view/luxury-tours}" title="">Luxury Tours</a></li>
-=======
-									<li><a th:href="@{/contacts/blog-list}" title="" th:text="#{header.page8}"></a></li>
+							<li><a th:href="@{/contacts/blog-list}" title="" th:text="#{header.page8}"></a></li>
 									<li><a th:href="@{/contacts/blog-detail}" title="" th:text="#{header.page9}"></a></li>
 								</ul></li>
-							<li><a th:href="@{/view/services}" title=""
-								th:text="#{header.page2}"></a></li>
-							<li><a th:href="@{/view/service-detail}" title=""
-								th:text="#{header.page3}"></a></li>
-							<li><a th:href="@{/view/dinnings}" title=""
-								th:text="#{header.page4}"></a></li>
-							<li><a th:href="@{/view/luxury-tours}" title=""
-								th:text="#{header.page5}"></a></li>
->>>>>>> 3d82adb277ce02fb6a309071a60c7383787ca7a9
-						</ul></li>
+							
 					<li class="menu-item-has-children"><a href="#" title=""
 						th:text="#{header.package}"></a>
 						<ul>
@@ -352,7 +341,7 @@
 	</header>
 	<!-- Header -->
 	<div layout:fragment="header"></div>
-	</div>
+	
 	<!-- Header Container -->
 
 
@@ -512,7 +501,7 @@
 	<div class="booking-popup">
 		<div class="popup-container">
 			<div class="popup-inner">
-				<span class="close-btn"><img thsrc="@{/images/cross.png}"
+				<span class="close-btn"><img th:src="@{/images/cross.png}"
 					alt="" /></span>
 				<div class="popup-title">
 					<span>Any Time Worldwide</span>

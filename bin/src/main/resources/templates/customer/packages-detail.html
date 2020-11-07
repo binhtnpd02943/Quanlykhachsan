@@ -247,7 +247,7 @@
 		<div class="block remove-gap gray">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12" >
 						<h2 class="side-title">PEOPLE <span>REVIEWS</span></h2>
 						<div class="comments-thread">
 							<ul>
@@ -274,74 +274,47 @@
 											<p>Curabitur blandit tempus porttitor. Maecenas sediam egetrius blandit sit accumsan urna molestie interdum.</p>
 										</div>
 									</div><!-- Comment -->
-								</li>
-								<li>
-									<div class="comment">
-										<img src="http://placehold.it/107x107" alt="" />
-										<a class="reply" href="#" title="">Reply</a>
-										<div class="comment-detail">
-											<div class="comment-info">
-												<h6>MARGARETTE <i>Says:</i></h6>
-												<span>November 17, 2014</span>
-												<span>at 9:55 am</span>
-											</div>
-											<div class="comment-rating">
-												<span>Quality</span>
-												<div class="stars">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-											</div>
-											<p>Curabitur blandit tempus porttitor. Maecenas sediam egetrius blandit sit accumsan urna molestie interdum.</p>
-										</div>
-									</div><!-- Comment -->
-									<ul>
-										<li>
-											<div class="comment">
-												<img src="http://placehold.it/107x107" alt="" />
-												<a class="reply" href="#" title="">Reply</a>
-												<div class="comment-detail">
-													<div class="comment-info">
-														<h6>MARGARETTE <i>Says:</i></h6>
-														<span>November 17, 2014</span>
-														<span>at 9:55 am</span>
-													</div>
-													<div class="comment-rating">
-														<span>Quality</span>
-														<div class="stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-													</div>
-													<p>Curabitur blandit tempus porttitor. Maecenas sediam egetrius blandit sit accumsan urna molestie interdum.</p>
-												</div>
-											</div><!-- Comment -->
-										</li>
-									</ul>									
-								</li>
+								</li>								
 							</ul>
 						</div><!-- Comments Thread -->
-						<div class="block-gap"></div>
-						<div class="comment-form">
-							<h2 class="side-title">LEAVE <span>A REPLY</span></h2>
-							<div class="input-fields">
-								<div class="row">
-									<div class="col-md-4"><input type="text" placeholder="Complete Name *" /></div>
-									<div class="col-md-4"><input type="email" placeholder="Email Address *" /></div>
-									<div class="col-md-4"><input type="text" placeholder="Website" /></div>
-									<div class="col-md-12"><textarea placeholder="Enter Your Message"></textarea></div>
-									<div class="col-md-12"><button class="book-now" type="submit">Submit Now</button></div>
-								</div>												
-							</div>
-						</div>
+								<div class="block-gap"></div>
+								<div class="comment-form">
+									<h2 class="side-title">
+										LEAVE <span>A REPLY</span>
+									</h2>
+									
+									<div class="input-fields">
+										<form th:action="@{/rating/newRating/__${item.id}__}" th:object="${ratingDto}" method="POST">
+											<div class="row">
+											
+												<div id="rating">
+													<input type="radio" id="star5" name="danhgia" th:value="5" />
+													<label class="full" for="star5" title="Awesome - 5 stars"></label>
 
-					</div>
+													<input type="radio" id="star4" name="danhgia" th:value="4" />
+													<label class="full" for="star4" title="Pretty good - 4 stars"></label> 
+													
+													<input type="radio" id="star3" name="danhgia" th:value="3" /> 
+													<label class="full" for="star3" title="Meh - 3 stars"></label> 
+													
+													<input type="radio" id="star2" name="danhgia" th:value="2" /> 
+													<label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+													<input type="radio" id="star1" name="danhgia" th:value="1" />
+													<label class="full" for="star1" title="Sucks big time - 1 star"></label>
+												</div>
+												<div class="col-md-12">
+													<textarea name="noidung" class="ratingcmt" placeholder="Enter Your Message"></textarea>
+												</div>
+												<div class="col-md-12">
+													<button class="book-now" type="submit">Submit Now</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+
+							</div>
 				</div>
 			</div>
 		</div>

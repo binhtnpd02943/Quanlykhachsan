@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-	
+
 <!-- Nulled by http://www.baobinh.net by tieulonglanh -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,8 +14,10 @@
 
 <!-- Styles -->
 <th:block layout:fragment="css">
-	<link rel="stylesheet" type="text/css" th:href="@{/font-awesome/css/font-awesome.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/font-awesome/css/font-awesome.min.css}" />
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/color.css}" />
@@ -28,27 +30,46 @@
 				alt="" /></span>
 			<div class="registration-form">
 				<h3>
-					Join For <span>Luxury Rooms</span>
+					Register For <span>Luxury Rooms</span>
 				</h3>
 				<p>Quis autem velum lure reprehe nderit. Lorem ipsum dolor
 					sitnulla or narjusto.</p>
-				<form th:action="@{/view/saveUser}" th:object="${UserDto}" method="post">>
+				<form th:action="@{/view/saveUser}" th:object="${UserDto}"
+					method="post">
 					<div class="row">
 						<div class="col-md-8 column">
+							<th:block th:if="${err}">
+								<div class="alert alert-warning" role="alert">
+									 <span th:text="#{user.err}"></span>
+								</div>
+							</th:block>
+							<div th:if="${message}" class="alert alert-warning" role="alert">
+								 <span th:text="#{user.err.field}"></span>
+							</div>
+							<div th:if="${success}"
+								class="row alert alert-success alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+								<span th:text="${success}"></span>
+							</div>
 							<div class="input-fields">
 								<div class="row">
 									<div class="col-md-6">
-										<input type="text" name="tentaikhoan" placeholder="User Name *" />
+										<input type="text" name="tentaikhoan"
+											th:placeholder="#{register.input.placeUsername}" />
+									</div>
+
+									<div class="col-md-6">
+										<input type="text" name="hoten" th:placeholder="#{register.input.placeFullname}" />
 									</div>
 									<div class="col-md-6">
-										<input type="text" name="hoten" placeholder="Full Name *" />
+										<input type="password" name="matkhau" th:placeholder="#{register.input.placePassword}" />
 									</div>
 									<div class="col-md-6">
-										<input type="password" name="matkhau"
-											placeholder="Password *" />
-									</div>
-									<div class="col-md-6">
-										<input type="password" name="reMatkhau" placeholder="Req Password *" />
+										<input type="password" name="reMatkhau"
+											th:placeholder="#{register.input.placeRePassword}" />
 									</div>
 
 								</div>
@@ -58,16 +79,18 @@
 											placeholder="your@email.com *" />
 									</div>
 									<div class="col-md-6">
-										<input type="number" name="sodt" placeholder="Phone Number*" />
+										<input type="number" name="sodt" th:placeholder="#{register.input.placePhone }" />
 									</div>
 									<div class="col-md-6">
 										<select class="form-control">
-											<option value="" selected>Select All Gender</option>
-											<option value="true">Male</option>
-											<option value="false">Female</option>
+											<option value="" selected th:text="#{register.input.list}"></option>
+											<option value="true" th:text="#{register.input.male}"></option>
+											<option value="false" th:text="#{register.input.female}"></option>
 										</select>
 									</div>
-									
+									<div class="col-md-6">
+										<input type="text" name="role" th:placeholder="#{register.input.role}" readonly />
+									</div>
 								</div>
 							</div>
 						</div>
@@ -76,13 +99,13 @@
 								By creating an account, you agree to our <a href="#" title="">Terms
 									& Conditions.</a>
 							</p>
-							<button class="book-now">Create Account</button>
+							<button class="book-now" th:text="#{btn.register}"></button>
 						</div>
 					</div>
 				</form>
 				<!-- form -->
 			</div>
-			
+
 			<div class="login-form">
 				<h3>
 					Sign In <span>Now</span>
@@ -95,26 +118,126 @@
 							<div class="input-fields">
 								<div class="row">
 									<div class="col-md-6">
-										<input type="text" name="tentaikhoan"
+										<input type="text" required="required" name="tentaikhoan"
 											placeholder="your@email.com *" />
 									</div>
 									<div class="col-md-6">
-										<input type="password" name="matkhau" placeholder="Password *" />
+										<input type="password" required="required" name="matkhau" th:placeholder="#{login.input.password}" />
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-4 column">
-							<button class="book-now">Sign In</button>
+							<button class="book-now" th:text="#{btn.signin}"></button>
+						</div>
+					</div>
+				</form>
+				<!-- form -->
+			</div>
+
+			<!-- FORM FORGOT PASSWORD -->
+			<div class="forgot-form"
+				th:classappend="${classActiveForgetPassword}? 'in active'">
+				<h3>
+					Forgot Password <span>Now</span>
+				</h3>
+				<p>Quis autem velum lure reprehe nderit. Lorem ipsum dolor
+					sitnulla or narjusto.</p>
+
+				<div class="col-md-6">
+					<div th:if="${emailNotExist}" class="alert alert-danger" th:text="#{user.err.email}"></div>
+					<div th:if="${forgetPasswordEmailSent}" class="alert alert-success" th:text="#{user.success.email}"></div>
+				</div>
+				<form th:action="@{/forgetPassword}" method="post">
+					<div class="row">
+						<div class="col-md-8 column">
+							<div class="input-fields">
+								<div class="row">
+									<div class="col-md-6">
+
+										<input type="text" id="recoverEmail" name="email"
+											required="required" placeholder="your@email.com *" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 column">
+							<button class="book-now" th:text="#{btn.forgot}"></button>
 						</div>
 					</div>
 				</form>
 				<!-- form -->
 			</div>
 			
+			<!-- FORM PROFILE CUSTOMER 
+			
+			<div class="profile-form" th:classappend="${classActiveEdit}? ' in active'">
+				<h3>
+					Profile <span>Customer</span>
+				</h3>
+				<p>Quis autem velum lure reprehe nderit. Lorem ipsum dolor
+					sitnulla or narjusto.</p>
+				<form action="#">
+					<div class="row">
+						<div class="col-md-8 column">
+							<div class="input-fields">
+								<div class="row">
+									<div class="col-md-6">
+										<input type="text" name="tentaikhoan" placeholder="User Name *"
+											th:value="${user} ? ${user.tentaikhoan} " />
+									</div>
+
+									<div class="col-md-6">
+										<input type="text" name="hoten" placeholder="Full Name *"
+											th:value="${user} ? ${user.hoten} " />
+
+									</div>
+									<div class="col-md-6">
+										<input type="password" name="matkhau" placeholder="Password *" />
+									</div>
+									<div class="col-md-6">
+										<input type="password" name="reMatkhau" placeholder="Req Password *" />
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<input type="email" name="email" placeholder="your@email.com *"
+											th:value="${user} ? ${user.email} " />
+									</div>
+									<div class="col-md-6">
+										<input type="number" name="sodt" placeholder="Phone Number*"
+											th:value="${user} ? ${user.sodt} " />
+									</div>
+									<div class="col-md-6">
+										<select class="form-control"
+											th:value="${user} ? ${user.gioitinh}">
+											<option value="" selected>Select All Gender</option>
+											<option th:value="true">Male</option>
+											<option th:value="false">Female</option>
+										</select>
+									</div>
+									<div class="col-md-6">
+										<input type="text" name="role" th:value="${user} ? ${user.role} " placeholder="Role *"readonly />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 column">
+							<p>
+								By creating an account, you agree to our <a href="#" title="">Terms
+									& Conditions.</a>
+							</p>
+							<button class="book-now">Create Account</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			-->
+
 		</div>
 	</div>
-	
+
 	<!-- Registration -->
 
 	<div class="topbar">
@@ -122,33 +245,32 @@
 			<div class="weather-wrapper">
 				<div id="weather"></div>
 			</div>
-
+			<!-- KHI CHƯA LOGIN -->
 			<div class="registration-buttons">
-			 <th:block th:if="${attr_user == null}">
-				<a id="register-btn" href="#" title="">Register</a> 
-				
-				<a id="login-btn" href="#" title="">Login</a> 
+				<th:block th:if="${attr_user == null}">
+					<a id="register-btn" href="#" title="" th:text="#{nav.register}"></a>
+					<a id="login-btn" href="#" title="" th:text="#{nav.login}"></a>
+					<a id="forgot-btn" th:classappend="${classActiveForgetPassword}? 'active'" href="#" title="" th:text="#{nav.forgot}"></a>
 				</th:block>
+				<a th:if="${attr_user != null}" id="profile-btn" th:classappend="${classActiveEdit}? 'active'"
+					th:href="@{/myProfile}" title="">Hello -
+					<span th:text="${attr_user} ? ${attr_user.username}"></span>
+				</a>
 			</div>
-			
-			 <div th:if="${attr_user != null}" class="display_user">
-                    <a>Hello:
-                        <span th:text="${attr_user} ? ${attr_user.username}"></span>
-                    </a>
-                    <a th:href="@{/hotels/}" sec:authorize="hasRole('Admin')">
-                        <span>Manager</span>
-                        
-                    </a>
-                     <a th:href="@{/logout}">
-                        <span>Logout</span>
-                        
-                    </a>
-                </div>
-			
-			
+			<!-- SAU KHI LOGIN -->
+			<div th:if="${attr_user != null}" class="display_user">
+				<a th:href="@{/hotels/}" sec:authorize="hasRole('Admin')"> <span>Manager</span>
+				</a> <a th:href="@{/logout}"> <span th:text="#{nav.logout}"></span>
+				</a>
+			</div>
+			<!-- language -->
+			<div class="display">
+				<a class="nav-link" th:href="@{/?language=en}">English</a> <a
+					class="nav-link" th:href="@{/?language=vi}">VietNamese</a>
+			</div>
 		</div>
 	</div>
-	 
+
 	<!-- Topbar -->
 
 	<header>
@@ -158,42 +280,71 @@
 			</div>
 			<!-- logo -->
 			<nav>
-				<a class="responsive-menu-btn" href="#" title=""><i class="fa fa-align-justify"></i></a>
+				<a class="responsive-menu-btn" href="#" title=""><i
+					class="fa fa-align-justify"></i></a>
 				<ul>
-					<li class="menu-item-has-children"><a th:href="@{/}" title="">Home</a>
+					<li class="menu-item-has-children"><a th:href="@{/}" title=""
+						th:text="#{header.home}"></a>
 						<ul>
-							<li><a th:href="@{/}" title="">Hotel or Resort Demo1</a></li>
-							<li><a th:href="@{/view/index3}" title="">Travel Demo</a></li>
+							<li><a th:href="@{/}" title="" th:text="#{header.page6}"></a></li>
+							<li><a th:href="@{/view/index3}" title=""
+								th:text="#{header.page7}"></a></li>
 						</ul></li>
-					<li class="menu-item-has-children"><a th:href="@{/view/gallery}" title="">Gallery</a>
+					<li class="menu-item-has-children"><a
+						th:href="@{/view/gallery}" title="" th:text="#{header.gallery}"></a>
 						<ul>
-							<li><a th:href="@{/view/gallery}" title="">Gallery Style 1</a></li>
+							<li><a th:href="@{/view/gallery}" title=""
+								th:text="#{header.gallery1}"></a></li>
 						</ul></li>
-					<li class="menu-item-has-children"><a href="#" title="">More Pages</a>
+					<li class="menu-item-has-children"><a href="#" title=""
+						th:text="#{header.page}"></a>
 						<ul>
-							<li class="menu-item-has-children"><a th:href="@{/view/blog-grid}" title="">Blog Pages</a>
+							<li class="menu-item-has-children"><a
+								th:href="@{/view/blog-grid}" title="" th:text="#{header.page1}"></a>
 								<ul>
+<<<<<<< HEAD
 									<li><a th:href="@{/contacts/blog-list}" title="">Blog List View</a></li>
 									<li><a th:href="@{/contacts/blog-detail}" title="">Blog Detail</a></li>
 								</ul>
 							</li>
-							<li><a th:href="@{/view/services}" title="">Services</a></li>
-							<li><a th:href="@{/view/service-detail}" title="">Service Detail</a></li>
+							<li><a th:href="@{/view/services}" title="">Services</a></li>					
 							<li><a th:href="@{/view/dinnings}" title="">Dinnings</a></li>
 							<li><a th:href="@{/view/luxury-tours}" title="">Luxury Tours</a></li>
+=======
+									<li><a th:href="@{/contacts/blog-list}" title="" th:text="#{header.page8}"></a></li>
+									<li><a th:href="@{/contacts/blog-detail}" title="" th:text="#{header.page9}"></a></li>
+								</ul></li>
+							<li><a th:href="@{/view/services}" title=""
+								th:text="#{header.page2}"></a></li>
+							<li><a th:href="@{/view/service-detail}" title=""
+								th:text="#{header.page3}"></a></li>
+							<li><a th:href="@{/view/dinnings}" title=""
+								th:text="#{header.page4}"></a></li>
+							<li><a th:href="@{/view/luxury-tours}" title=""
+								th:text="#{header.page5}"></a></li>
+>>>>>>> 3d82adb277ce02fb6a309071a60c7383787ca7a9
 						</ul></li>
-					<li class="menu-item-has-children"><a href="#" title="">Packages</a>
+					<li class="menu-item-has-children"><a href="#" title=""
+						th:text="#{header.package}"></a>
 						<ul>
-							<li><a th:href="@{/view/room-packages-grid}" title="">Packages List View Grid</a></li>
-							<li><a th:href="@{/view/rooms-packages}" title="">Packages List View</a></li>
-							<li><a th:href="@{/view/all-flights}" title="">All Flights</a></li>
-							<li><a th:href="@{/view/flight-packages-detail}" title="">Flight Package Detail</a></li>
-							<li><a th:href="@{/view/booking-form}" title="">Booking Form</a></li>
+							<li><a th:href="@{/view/room-packages-grid}" title=""
+								th:text="#{header.package1}"></a></li>
+							<li><a th:href="@{/view/rooms-packages}" title=""
+								th:text="#{header.package2}"></a></li>
+							<li><a th:href="@{/view/all-flights}" title=""
+								th:text="#{header.package3}"></a></li>
+							<li><a th:href="@{/view/flight-packages-detail}" title=""
+								th:text="#{header.package4}"></a></li>
+							<li><a th:href="@{/view/booking-form}" title="">Booking
+									Form</a></li>
 						</ul></li>
-					<li><a th:href="@{/contacts/about}" title="">About</a></li>
-					<li><a th:href="@{/contacts/}" title="">Contact</a></li>
+					<li><a th:href="@{/contacts/about}" title=""
+						th:text="#{header.about}"></a></li>
+					<li><a th:href="@{/contacts/}" title=""
+						th:text="#{header.contact}"></a></li>
 				</ul>
-				<a class="book-now call-popup" href="#" title="">History</a>
+				<a th:if="${attr_user != null}" class="book-now call-popup" href="#"
+					title="">History</a>
 			</nav>
 			<!-- nav -->
 		</div>
@@ -370,7 +521,7 @@
 				</div>
 				<!-- Popup Title -->
 				<div class="popup-details">
-					
+
 					<!-- Popup Block -->
 					<div class="popup-block">
 						<div class="row">
@@ -400,7 +551,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -430,7 +581,8 @@
 		<script th:src="@{/js/jquery.scrolly.js}" type="text/javascript"></script>
 		<script th:src="@{/js/jquery.isotope.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/isotope-initialize.js}" type="text/javascript"></script>
-		<script th:src="@{/js/bootstrap-datepicker.min.js}"type="text/javascript"></script>
+		<script th:src="@{/js/bootstrap-datepicker.min.js}"
+			type="text/javascript"></script>
 		<script th:src="@{/js/userincr.js}" type="text/javascript"></script>
 		<script th:src="@{/js/jquery.simpleWeather.min.js}"></script>
 		<script th:src="@{/js/script.js}" type="text/javascript"></script>
@@ -532,7 +684,7 @@
 
 		});
 	</script>
-		
+
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$(".select").select2();

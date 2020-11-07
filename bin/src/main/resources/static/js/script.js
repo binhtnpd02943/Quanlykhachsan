@@ -53,6 +53,12 @@ jQuery(document).ready(function() {
             if (target.is('#register-btn')) {
                 $(".registration .registration-form").slideDown();
             }
+            if (target.is('#forgot-btn')) {
+                $(".registration .forgot-form").slideDown();
+            }
+            if (target.is('#profile-btn')) {
+                $(".registration .profile-form").slideDown();
+            }
 
             $(".registration").css({
                 "margin-top": 0

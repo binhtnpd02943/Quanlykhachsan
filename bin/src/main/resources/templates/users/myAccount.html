@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin.html}">
+<body>
+		<div layout:fragment="header"></div>
+	<div layout:fragment="content">
+	<div class="container">
+		<div class="row" style="margin-bottom: -100px">
+			<div class="col-xs-8">
+				<h2 class="section-headline">
+					<span>User Account</span>
+				</h2>
+			</div>
+		
+		</div>
+	
+	</div>
+	<!--  end of container-->
+	<div class="row" style="margin-top: 100px;">
+	
+		<div class="col-md-9 col-xs-offset-3 "style="margin-left: 21%;">
+
+			<!-- Nav tab -->
+			<ul class="nav nav-tabs">
+				
+						
+						
+						
+						
+				<li th:classappend="${classActiveForgetPassword}? 'active'"><a href="#tab-2" data-toggle="tab"><span
+						style="color: red">Forget Password</span></a></li>
+			</ul>
+
+		
+			
+			
+			
+				<div 
+					 th:classappend="${classActiveForgetPassword}? 'in active'">
+					<div class="panel-group">
+						<div class="panel panel-default" style="border: none;">
+							<div class="panel-body"
+								style="background-color: #ededed; margin-top: 20px;">
+								<div th:if="${emailNotExist}" class="alert alert-danger">Email doesn't exist.</div>
+								<div th:if="${forgetPasswordEmailSent}" class="alert alert-success">Email sent.</div>				
+								<form th:action="@{/users/forgetPassword}" method="post">
+									<div class="form-group">
+										<label for="recoverEmail">* Your name: </label> <input
+											required="required" type="text" class="form-control"
+											id="recoverEmail" name="email">
+										<p style="color: #828282">Enter your registered email address here.</p>
+									</div>
+									
+									
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+								</div>
+							</div>
+						</div>
+			</div>
+			
+			</div>
+</div>
+
+
+
+			</div>
+</body>
+</html>

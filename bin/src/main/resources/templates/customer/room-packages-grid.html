@@ -40,37 +40,31 @@
 
 						<div class="tab-form search-filter">
 							<div class="tab-from-title">
-								<span>Any Time Worldwide</span>
-								<h4>Find Your Ideal Hotel</h4>
+								<span th:text="#{body.worldwide}"></span>
+								<h4 th:text="#{body.findhotel}">Find Your Ideal Hotel</h4>
 							</div>
 							<form th:action="@{/view/filter}" method="post">
 								<div class="row">
 									<div class="col-md-3">
-										<label>City</label>
+										<label th:text="#{body.city}"></label>
 										<div class="field">
 											<input class="form-control" type="text"
-												placeholder="Nhập Thành Phố" name="tentp" id="tentp" />
+												placeholder="Nhập Thành Phố" name="ten" id="ten" />
 										</div>
 									</div>
 									<div class="col-md-3">
-										<label>Types of Hotel</label>
+										<label th:text="#{body.typehotel}"></label>
 										<div class="field">
 											 <select  id="lks" name="lks" class="custom-select"> 
-												<option selected value="1">Khách Sạn</option>
-												<option value="2">Biệt Thự</option>
-												<option value="3">Căn Hộ</option>
-												<option value="4">Glamping</option>
-												<option value="5">Nhà Gỗ</option>
-												<option value="6">Nhà Khách</option>
-												<option value="7">Nhà trọ</option>
-												<option value="8">Resort</option>
-												<option value="9">Thôn Dã</option>
+												<option th:each="lks : ${loaikhachsan}"
+															th:value="${lks.id}"
+															th:text="${lks.ten}"></option>
 												
 											</select>
 										</div>
 									</div>
 									<div class="col-md-2">
-										<label>Rating</label>
+										<label th:text="#{body.rating}"></label>
 										<div class="field">
 											 <select  id="dg" name="dg" class="custom-select"> 
 												<option selected value="5">5 Star</option>
@@ -82,21 +76,21 @@
 										</div>
 									</div>
 									<div class="col-md-2">
-										<label>lower price</label>
+										<label th:text="#{body.lowprice}"></label>
 										<div class="field">
 											<input class="form-control" type="number" value="0"
 												name="giatn" id="giatn" />
 										</div>
 									</div>
 									<div class="col-md-2">
-										<label>Higher price</label>
+										<label th:text="#{body.higherprice}"></label>
 										<div class="field">
 											<input class="form-control" type="number" value="5000"
 												name="giacn" id="giacn" />
 									</div>
 									</div>
 									<div class="col-md-12 ">
-										<button class="book-now" type="submit">Search Now</button>
+										<button class="book-now" type="submit" th:text="#{btn.search}"></button>
 									</div>
 								</div>
 							</form>
@@ -134,7 +128,7 @@
 													<div class="cost">
 														Thành Phố: <strong th:text="${item.thanhpho.ten}"></strong>/Vietnam
 													</div>
-													<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="">View Detail</a>
+													<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="" th:text="#{btn.detail}"></a>
 												</div>
 											</div>
 											<!-- Offer -->
