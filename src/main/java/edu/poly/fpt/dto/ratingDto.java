@@ -1,60 +1,53 @@
-package edu.poly.fpt.entities;
+package edu.poly.fpt.dto;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-@Table(name = "tbdanhgia")
-public class DanhGia implements Serializable {
+import edu.poly.fpt.entities.KhachSan;
+import edu.poly.fpt.entities.TaiKhoan;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ratingDto {
+
 	private Integer id;
 
-	@Column
-	@Max(5)
-	@Min(0)
+	@NotNull(message = "Vui lòng chọn đánh giá!")
 	private int danhgia;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date ngay;
 
-	@Column(columnDefinition = "nvarchar(200)")
+	@NotNull(message = "Vui lòng nhập nội dung!")
 	private String noidung;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tentaikhoan",columnDefinition = "varchar(50)")
-	private TaiKhoan taikhoan;
+	
+	private String taikhoan;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "khachsanId")
-	private KhachSan khachsan;
+	
+	private Long khachsan;
 
 
-	public DanhGia() {
+	public ratingDto() {
 		super();
 	}
 
 
-	public DanhGia(Integer id, @Max(5) @Min(0) int danhgia, Date ngay, String noidung, TaiKhoan taikhoan,
-			KhachSan khachsan) {
+	public ratingDto(Integer id, @NotNull(message = "Vui lòng chọn đánh giá!") int danhgia, Date ngay,
+			@NotNull(message = "Vui lòng nhập nội dung!") String noidung, String taikhoan, Long khachsan) {
 		super();
 		this.id = id;
 		this.danhgia = danhgia;
@@ -105,25 +98,24 @@ public class DanhGia implements Serializable {
 	}
 
 
-	public TaiKhoan getTaikhoan() {
+	public String getTaikhoan() {
 		return taikhoan;
 	}
 
 
-	public void setTaikhoan(TaiKhoan taikhoan) {
+	public void setTaikhoan(String taikhoan) {
 		this.taikhoan = taikhoan;
 	}
 
 
-	public KhachSan getKhachsan() {
+	public Long getKhachsan() {
 		return khachsan;
 	}
 
 
-	public void setKhachsan(KhachSan khachsan) {
+	public void setKhachsan(Long khachsan) {
 		this.khachsan = khachsan;
 	}
 
-
-
+	
 }

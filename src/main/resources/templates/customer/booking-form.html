@@ -34,6 +34,7 @@
 			<!-- Page Top -->
 
 
+
 			<section>
 				<div class="block gray">
 					<div class="container">
@@ -42,6 +43,39 @@
 								<div class="booking-form">
 									<div class="booking-image">
 										<img th:src="@{/images/resource/booking-image.jpg}" alt="" />
+=======
+	<section>
+		<div class="block gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="booking-form">
+							<div class="booking-image">
+								<img th:src="@{'/getImg/' +${item.id}}" alt="" />
+							</div><!-- Booking Image -->
+							<div class="booking-detail">
+								<div class="booking-name">
+									<span th:text="'Tên khách sạn: ' + ${item.khachsan.ten}"></span>
+									<h5 th:text="'Tên phòng: ' + ${item.ten}"></h5>
+								</div>
+								<div class="package-price">
+									<strong>Start From</strong>
+									<i th:text="'$' + ${item.giathue}"></i>
+									<span>Per Person</span>
+								</div><!-- Package price -->
+								<div class="see-details">
+									<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="">SEE DETAILS</a>
+								</div>
+							</div><!-- Booking Detail -->
+							<div class="center-heading">
+								<h3>Booking Form</h3>
+								<span>Book rooms for your stay. It's quick and easy.</span>
+							</div>
+							<form>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="field"><input type="text" placeholder="Your Name" /></div>
+
 									</div>
 									<!-- Booking Image -->
 									<div class="booking-detail">

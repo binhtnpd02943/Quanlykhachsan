@@ -3,9 +3,11 @@ package edu.poly.fpt.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import edu.poly.fpt.entities.DichVu;
 import edu.poly.fpt.entities.KhachSan;
 import edu.poly.fpt.entities.LoaiKhachSan;
 import edu.poly.fpt.entities.ThanhPho;
@@ -53,6 +55,8 @@ public interface KhachsanService {
 	Page<KhachSan> filterKhachSanbyCity(String tentp, int dg, int min, int max, Pageable pageble);
 
 	Page<KhachSan> filterKhachSanbyAll(String tentp, int lks, int dg, int min, int max, Pageable pageable);
+
+	List<DichVu> findAllDichvu();
 	
 	
 	

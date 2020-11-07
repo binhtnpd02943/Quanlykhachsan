@@ -57,6 +57,7 @@ public class ListAllCustomer {
 
 	@Autowired
 	private PhongService phongService;
+	
 	@Autowired
 	private KhachsanService khachsanService;
 
@@ -119,7 +120,15 @@ public class ListAllCustomer {
 			model.addAttribute("item", khachsanService.findById(id).get());
 			return "customer/packages-detail";
 		}
-		return "redirect:view/";
+		return "redirect:/view/";
+	}
+	@GetMapping("book/{id}")
+	public String booking(@PathVariable("id") Integer id, ModelMap model) {
+		if (phongService.findById(id).isPresent()) {
+			model.addAttribute("item", phongService.findById(id).get());
+			return "customer/booking-form";
+		}
+		return "redirect:/view/";
 	}
 	@GetMapping("profiles/{id}")
 	public String profiles(@PathVariable("id") Integer id, ModelMap model) {
@@ -181,6 +190,7 @@ public class ListAllCustomer {
 			model.addAttribute("roomDto", new roomDto());
 			model.addAttribute("phong", roomList);
 			model.addAttribute("pager", pager);
+			model.addAttribute("message", true);
 			return "customer/index";
 		}
 		if (!UserDto.getMatkhau().equals(UserDto.getReMatkhau())) {
@@ -218,6 +228,7 @@ public class ListAllCustomer {
 		return khachsanService.findAllLoaikhachsan();
 	}
 	
+
 	
 	
 	
@@ -248,6 +259,12 @@ public class ListAllCustomer {
 	
 	
 	
+
+	@ModelAttribute(name = "dichvu")
+	public List<DichVu> getDichvu() {
+		return khachsanService.findAllDichvu();
+	}
+
 
 	@ModelAttribute("attr_user")
 	public org.springframework.security.core.userdetails.User getUser() {

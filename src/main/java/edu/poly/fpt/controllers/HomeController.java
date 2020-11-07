@@ -109,16 +109,24 @@ public class HomeController {
 				password);
 
 		mailSender.send(newEmail);
-		model.addAttribute("forgetPasswordEmailSent", "true");
+		model.addAttribute("forgetPasswordEmailSent", true);
 
 		return "redirect:/";
 	}
     @RequestMapping("/myProfile")
-	public String myProfile(Model model, Principal principal) {
+	public String myProfile(Model model, Principal principal,@RequestParam("page") Optional<Integer> page) {
     	TaiKhoan user = taikhoanService.findByTentaikhoan(principal.getName());
 		
 		model.addAttribute("user", user);
 		
+		
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+		Page<Phong> roomList = phongService.findAll(PageRequest.of(evalPage, INITIAL_PAGE_SIZE, Sort.by("id")));
+		PagerModel pager = new PagerModel(roomList.getTotalPages(), roomList.getNumber(), BUTTONS_TO_SHOW);
+		model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);
+		model.addAttribute("roomDto", new roomDto());
+		model.addAttribute("phong", roomList);
+		model.addAttribute("pager", pager);
 		
 		model.addAttribute("classActiveEdit", true);
 		return "customer/index";
