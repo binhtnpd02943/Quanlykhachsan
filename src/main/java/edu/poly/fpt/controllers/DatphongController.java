@@ -95,7 +95,6 @@ private PhongService phongService;
 		model.addAttribute("success","dat thanh cong");
 		System.out.println("==================================" + datphongDto.getId());
 		
-		
 		// return "redirect:/view/booking-form";
 		return "redirect:/";
 	}

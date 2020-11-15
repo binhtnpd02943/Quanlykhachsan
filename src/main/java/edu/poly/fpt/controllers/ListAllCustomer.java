@@ -74,7 +74,7 @@ public class ListAllCustomer {
 	private PasswordEncoder passwordEncoder;
 	
 	
-
+	Long profile_id = (long) 0;
 	private static final int BUTTONS_TO_SHOW = 7;
 	private static final int INITIAL_PAGE = 0;
 	private static final int INITIAL_PAGE_SIZE = 3; // list 3 sản phẩm khách sạn trang phụ
@@ -120,14 +120,7 @@ public class ListAllCustomer {
 		return modelAndView;
 	}
 
-	@GetMapping("profile/{id}")
-	public String profile(@PathVariable("id") Long id, ModelMap model) {
-		if (khachsanService.findById(id).isPresent()) {
-			model.addAttribute("item", khachsanService.findById(id).get());
-			return "customer/packages-detail";
-		}
-		return "redirect:/view/";
-	}
+	
 	@GetMapping("booking/{id}")
 	public String booking(@PathVariable("id") Integer id, ModelMap model) {
 		if (phongService.findById(id).isPresent()) {
@@ -136,14 +129,6 @@ public class ListAllCustomer {
 		}
 		return "redirect:/view/";
 	}
-	@GetMapping("profiles/{id}")
-	public String profiles(@PathVariable("id") Integer id, ModelMap model) {
-		if (dichvuService.findById(id).isPresent()) {
-			model.addAttribute("item", dichvuService.findById(id).get());
-			return "customer/service-detail";
-		}
-		return "redirect:view/";
-	}	
 	@GetMapping("bookroom/{id}")
 	public String findiD(ModelMap model,@PathVariable("id") Integer id) {
 		if (phongService.findById(id).isPresent()) {
@@ -153,6 +138,62 @@ public class ListAllCustomer {
 		return "redirect:view/";
 	
 	}
+	
+		@GetMapping("profile/{id}")
+		public String profile(@PathVariable("id") Long id,ModelMap model) {
+			
+			if (khachsanService.findById(id).isPresent()) {
+				List<KhachSan> hotellist =null;
+				hotellist = khachsanService.top6khachsan();
+				model.addAttribute("hotel", hotellist);
+				List<Phong> list = phongService.findAllphongbyksid(id);
+				profile_id = id;
+				 model.addAttribute("item", khachsanService.findById(id).get());
+					model.addAttribute("roomDto", new roomDto());
+					model.addAttribute("phong",list); 
+				return "customer/packages-detail";
+			}
+			return "redirect:view/";
+		}
+		
+		@PostMapping("profile/filter")
+		public String filterprofile(ModelMap model,@RequestParam("dientich") Float dientich,
+				@RequestParam("gia") Float gia,@RequestParam("loaigiuong") String loaigiuong) {
+			if (khachsanService.findById(profile_id).isPresent()) {
+				List<KhachSan> hotellist =null;
+				hotellist = khachsanService.top6khachsan();
+				model.addAttribute("hotel", hotellist);
+				if(dientich != null && gia ==null) {
+					List<Phong> list = phongService.findByidAndDientichlAndTiennghi(profile_id, dientich, loaigiuong);
+					 model.addAttribute("item", khachsanService.findById(profile_id).get());
+						model.addAttribute("roomDto", new roomDto());
+						model.addAttribute("phong",list); 
+						
+					return "customer/packages-detail";
+				}else if(dientich == null && gia !=null) {
+					List<Phong> list = phongService.findByidAndTiennghiAndGiathue(profile_id,loaigiuong, gia);
+					 model.addAttribute("item", khachsanService.findById(profile_id).get());
+						model.addAttribute("roomDto", new roomDto());
+						model.addAttribute("phong",list); 
+						System.out.println("ASF"+list.toString());
+					return "customer/packages-detail";
+				}else if(dientich == null && gia ==null) {
+					List<Phong> list = phongService.findByidAndTiennghiEndingWith(profile_id,loaigiuong);
+					 model.addAttribute("item", khachsanService.findById(profile_id).get());
+						model.addAttribute("roomDto", new roomDto());
+						model.addAttribute("phong",list); 
+						
+					return "customer/packages-detail";
+				}else {
+					List<Phong> list = phongService.findByidAndDientichAndTiennghiAndGiathue(profile_id,dientich,loaigiuong, gia);
+					 model.addAttribute("item", khachsanService.findById(profile_id).get());
+						model.addAttribute("roomDto", new roomDto());
+						model.addAttribute("phong",list); 
+					return "customer/packages-detail";
+				}	
+			}
+			return "redirect:view/";
+		}
 
 	@PostMapping("filter")
 	public String filter(@RequestParam(defaultValue = "") String ten, @RequestParam("lks") int lks,
@@ -263,9 +304,6 @@ public class ListAllCustomer {
 	}
 
 	
-	
-	
-	
 
 	@ModelAttribute(name = "dichvu")
 	public List<DichVu> getDichvu() {
@@ -275,9 +313,6 @@ public class ListAllCustomer {
 	public List<Object[]> getdanhgia() {
 		return danhgiaService.listdanhgia(3);
 	}
-	
-
-	
 	
 	@ModelAttribute("attr_user")
 	public org.springframework.security.core.userdetails.User getUser() {

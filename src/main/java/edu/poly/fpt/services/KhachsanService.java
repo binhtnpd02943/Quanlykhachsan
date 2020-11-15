@@ -57,6 +57,8 @@ public interface KhachsanService {
 	Page<KhachSan> filterKhachSanbyAll(String tentp, int lks, int dg, int min, int max, Pageable pageable);
 
 	List<DichVu> findAllDichvu();
+
+	List<KhachSan> top6khachsan();
 	
 	
 	

@@ -4,307 +4,374 @@
 	layout:decorate="~{layouts/clone.html}">
 <!-- Nulled by http://www.baobinh.net by tieulonglanh -->
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Hotel HTML Template</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hotel HTML Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
 </head>
 <body itemscope>
-<div class="theme-layout">
-	<div class="header-container stick">
-		<div layout:fragment="header"></div>
-	</div><!-- Header Container -->
-
-
-<div layout:fragment="content">
-	<div class="pagetop">
-		<div class="container">
-			<h1>Package Detail</h1>
-			<ul>
-				<li><a title="" th:href="@{/}">Home</a></li>
-				<li><a title="" href="#">Packages</a></li>
-				<li><a th:href="@{/view/room-packages-grid}" title=""> Room Packages</a></li>
-			</ul>		
+	<div class="theme-layout">
+		<div class="header-container stick">
+			<div layout:fragment="header"></div>
 		</div>
-	</div><!-- Page Top -->
+		<!-- Header Container -->
+
+
+		<div layout:fragment="content">
+			<div class="pagetop">
+				<div class="container">
+					<h1>Package Detail</h1>
+					<ul>
+						<li><a title="" th:href="@{/}">Home</a></li>
+						<li><a title="" href="#">Packages</a></li>
+						<li><a th:href="@{/view/room-packages-grid}" title="">
+								Room Packages</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Page Top -->
 
 
 
-	<section>
-		<div class="block remove-gap gray">
-			<div class="room-gallery">
-				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane fade in active" id="room-image1">
-						<img th:src="@{'/getimage/' +${item.id}}" alt="" />
-					</div>
-					<div role="tabpanel" class="tab-pane fade" id="room-image2">
-						<iframe style="border:0;height:792px;width:100%"  src="https://www.paneek.net/#/tour/view/1146" frameborder="0" allowfullscreen></iframe>
+			<section>
+				<div class="block remove-gap gray">
+					<div class="room-gallery">
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active"
+								id="room-image1">
+								<img th:src="@{'/getimage/' +${item.id}}" alt="" />
 							</div>
-					<div role="tabpanel" class="tab-pane fade" id="room-image3">
-						<img th:src="@{/images/resource/room-big3.jpg}" alt="" />
+							<div role="tabpanel" class="tab-pane fade" id="room-image2">
+								<iframe style="border: 0; height: 792px; width: 100%"
+									src="https://www.paneek.net/#/tour/view/1146" frameborder="0"
+									allowfullscreen></iframe>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="room-image3">
+								<img th:src="@{/images/resource/room-big3.jpg}" alt="" />
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="room-image4">
+								<iframe style="border: 0; height: 792px; width: 100%"
+									src="https://www.paneek.net/#/tour/view/549" frameborder="0"
+									allowfullscreen></iframe>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="room-image5">
+								<img th:src="@{/images/resource/room-big5.jpg}" alt="" />
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="room-image6">
+								<img th:src="@{/images/resource/room-big6.jpg}" alt="" />
+							</div>
+						</div>
+						<div class="room-thumbs">
+							<div class="container">
+								<div class="room-specs">
+									<h4 th:text="${item.ten}"></h4>
+									<ul class="features-list">
+										<li><i class="fa fa-bank"></i> Hotel:
+											<td th:text="${item.danhgia} +' Star'"></td></li>
+										<li><strong>Thành phố:</strong>
+											<td th:text="${item.thanhpho.ten}"></td></li>
+										<li><strong>Loại Khách Sạn:</strong>
+											<td th:text="${item.loaikhachsan.ten}"></td></li>
+										<li><strong>Cách trung tâm:</strong>
+											<td th:text="${item.cachtrungtam}+ ' km'"></td></li>
+										<li><strong>Giáp Biển:</strong>
+											<td><span th:text="${item.cachbien} ? 'Có':'Không'"></span>
+										</td></li>
+										<li><strong>Dịch Vụ:</strong>
+											<td th:text="${item.buaan}"></td></li>
+										<li><strong>Phone:</strong>
+											<td th:text="${item.sodt}"></td></li>
+										<li><strong>Địa Chỉ:</strong>
+											<td th:text="${item.diachi}"></td></li>
+									</ul>
+
+								</div>
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#room-image1"
+										data-toggle="tab"> <img
+											th:src="@{/images/resource/room-thumb1.jpg}" alt="">
+									</a></li>
+									<li><a href="#room-image2" data-toggle="tab"> <img
+											th:src="@{/images/resource/room-thumb2.jpg}" alt="">
+									</a></li>
+									<li><a href="#room-image3" data-toggle="tab"> <img
+											th:src="@{/images/resource/room-thumb3.jpg}" alt="">
+									</a></li>
+									<li><a href="#room-image4" data-toggle="tab"> <img
+											th:src="@{/images/resource/room-thumb4.jpg}" alt="">
+									</a></li>
+									<li><a href="#room-image5" data-toggle="tab"> <img
+											th:src="@{/images/resource/room-thumb5.jpg}" alt="">
+									</a></li>
+									<li><a href="#room-image6" data-toggle="tab"> <img
+											th:src="@{/images/resource/room-thumb6.jpg}" alt="">
+									</a></li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div role="tabpanel" class="tab-pane fade" id="room-image4">
-						<iframe style="border:0;height:792px;width:100%"  src="https://www.paneek.net/#/tour/view/549" frameborder="0" allowfullscreen></iframe>
-					</div>
-					<div role="tabpanel" class="tab-pane fade" id="room-image5">
-						<img th:src="@{/images/resource/room-big5.jpg}" alt="" />
-					</div>
-					<div role="tabpanel" class="tab-pane fade" id="room-image6">
-						<img th:src="@{/images/resource/room-big6.jpg}" alt="" />
-					</div>
-				</div>	
-				<div class="room-thumbs">
+					<!-- Room Gallery -->
+				</div>
+			</section>
+
+			<section>
+				<div class="block remove-gap gray">
 					<div class="container">
-						<div class="room-specs">
-							<h4 th:text="${item.ten}"></h4>
-							<ul class="features-list">
-							<li><i class="fa fa-bank"></i> Hotel: <td th:text="${item.danhgia} +' Star'"></td></li>
-								<li><strong>Thành phố:</strong><td th:text="${item.thanhpho.ten}"></td></li>
-								<li><strong>Loại Khách Sạn:</strong><td th:text="${item.loaikhachsan.ten}"></td></li>
-								<li><strong>Cách trung tâm:</strong><td th:text="${item.cachtrungtam}+ ' km'"></td></li>
-								<li><strong>Giáp Biển:</strong><td><span th:text="${item.cachbien} ? 'Có':'Không'"></span></td></li>
-								<li><strong>Dịch Vụ:</strong><td th:text="${item.buaan}"></td></li>
-								<li><strong>Phone:</strong><td th:text="${item.sodt}"></td></li>
-								<li><strong>Địa Chỉ:</strong><td th:text="${item.diachi}"></td></li>
-							</ul>
-											
-						</div>						
-						<ul class="nav nav-tabs">
-							<li class="active">
-								<a href="#room-image1" data-toggle="tab"><img th:src="@{/images/resource/room-thumb1.jpg}" alt=""></a>
-							</li>
-							<li>
-								<a href="#room-image2" data-toggle="tab"><img th:src="@{/images/resource/room-thumb2.jpg}" alt=""></a>
-							</li>
-							<li>
-								<a href="#room-image3" data-toggle="tab"><img th:src="@{/images/resource/room-thumb3.jpg}" alt=""></a>
-							</li>
-							<li>
-								<a href="#room-image4" data-toggle="tab"><img th:src="@{/images/resource/room-thumb4.jpg}" alt=""></a>
-							</li>
-							<li>
-								<a href="#room-image5" data-toggle="tab"><img th:src="@{/images/resource/room-thumb5.jpg}" alt=""></a>
-							</li>
-							<li>
-								<a href="#room-image6" data-toggle="tab"><img th:src="@{/images/resource/room-thumb6.jpg}" alt=""></a>
-							</li>
-						</ul>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="package-single-detail">
+									<span> Cách trung Tâm:
+										<td th:text="${item.cachtrungtam}+ ' km'"></td>
+									</span>
+									<h3 class="package-name" th:text="${item.loaikhachsan.ten}"></h3>
+									<div class="package-price">
+										<strong th:text="${item.buaan}"></strong> <i
+											th:text="${item.cachtrungtam}+ 'm'"></i> <span
+											th:text="${item.cachbien} ? 'Có':'Không'"></span> <a
+											class="book-now" th:href="@{/view/booking-form}" title="">Book
+											Now</a>
+									</div>
+									<!-- Package price -->
+									<p th:text="${item.mota}"></p>
+
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div><!-- Room Gallery -->
-		</div>
-	</section>
+				<div class="tab-form search-filter"
+					style="width: 70%; margin-left: 15%;">
+					<div class="tab-from-title">
+						<h4>What kind of room you looking for ?</h4>
+					</div>
+					<form th:action="@{/view/profile/filter}" method="post">
+						<div class="row">
+							<div class="col-md-3">
+								<label>Điện tích</label>
+								<div class="field">
+									<input class="form-control" type="number"
+										placeholder="Điện tích" name="dientich" id="dientich" />
+								</div>
+							</div>
+							<div class="col-md-3">
+								<label>Giá từ</label>
+								<div class="field">
+									<input class="form-control" type="number" placeholder="gia"
+										name="gia" id="gia" />
+								</div>
+							</div>
+							<div class="col-md-2">
+								<label>Loại giường</label> <label class="radio-inline"
+									style="padding-top: 10px"> <input type="radio"
+									name="loaigiuong" id="Giường đôi" checked value="Giường đôi">
+									Giường đôi
+								</label>
+							</div>
+							<div class="col-md-2">
+								<label>&nbsp</label> <label class="radio-inline"
+									style="padding-top: 10px"> <input type="radio"
+									name="loaigiuong" id="Giường đơn" value="Giường đơn">
+									Giường đơn
+								</label>
+							</div>
+							<div class="col-md-2">
+								<label>&nbsp</label> <label class="radio-inline"
+									style="padding-top: 10px"> <input type="radio"
+									name="loaigiuong" id="Giường đôi lớn" value="Giường đôi lớn">
+									Giường đôi lớn
+								</label>
+							</div>
+							<div class="col-md-12 ">
+								<button class="book-now" type="submit">Search Now</button>
+							</div>
+						</div>
+					</form>
+					<!-- Tab Form -->
+				</div>
+			</section>
+			<div class="block gray">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 column">
+							<div class="rooms-list-view">
+								<div class="special-deal" th:each="item: ${phong}">
+									<div class="row">
+										<div class="col-md-6 column">
+											<div class="deal-details">
 
-	<section>
-		<div class="block remove-gap gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="package-single-detail">
-							<span>Cách trung Tâm: <td th:text="${item.cachtrungtam}+ ' km'"></td></span>
-							<h3 class="package-name" th:text="${item.loaikhachsan.ten}"></h3>
-							<div class="package-price">
-								<strong th:text="${item.buaan}"></strong>
-								<i th:text="${item.cachtrungtam}+ 'm'"></i>
-								<span  th:text="${item.cachbien} ? 'Có':'Không'"></span>
-								<a class="book-now" th:href="@{/view/booking-form}" title="">Book Now</a>
-							</div><!-- Package price -->
-							<p th:text="${item.mota}"></p>
-							
+												<h4>
+													<a title="" th:href="@{/view/packages-detail}"
+														th:text="${item.ten}"></a>
+												</h4>
+
+												<p th:text="${item.mota}"></p>
+												<div class="features-price">
+													<div class="row">
+														<div class="col-md-8 column">
+															<ul>
+																<li><i class="fa fa-bed" style="font-size: 20px;"
+																	aria-hidden="true"></i>
+																	<td th:text="${item.tiennghi}"></td></li>
+																<li><i class="fa fa-home" style="font-size: 20px;"
+																	aria-hidden="true"></i>
+																	<td th:text="${item.dientich}+'m'"></td></li>
+																<!--<li><i class="fa fa-cutlery"></i> <td th:text="${item.buaan}"></td></li>-->
+															</ul>
+														</div>
+														<div class="col-md-4 column">
+															<div class="start-from">
+																<span>Price:</span> <strong> <a
+																	th:text="${item.giathue}"></a>
+																</strong> <i>Per Person</i> 
+																<a class="book-now" th:href="@{'/view/bookroom/' + ${item.id}}" title="">Book</a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- Features & Price -->
+											</div>
+											<!-- Deal Details -->
+										</div>
+										<div class="col-md-6 column">
+											<div class="deal-gallery">
+
+												<div class="tab-content">
+													<div class="tab-pane fade in active" id="deal1">
+														<img th:src="@{'/getimage/' +${item.id}}" alt="" />
+													</div>
+												</div>
+											</div>
+											<!-- rooms-tabs -->
+										</div>
+									</div>
+								</div>
+								<!-- Special Deals -->
+
+							</div>
+							<!-- Rooms Packages -->
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
 
-	<section>
-		<div class="block">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 column">
-						<div class="special-offers">
-							<div class="row">
-								<div class="col-md-4">
-									<div class="sp-offer">
-										<div class="offer-img">
-											<img th:src="@{/images/resource/special-offer1.jpg}" alt="" />
-											<ul>
-												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
-												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
-												<li><i class="fa fa-male"></i> Person: 02</li>
-											</ul>
-										</div>
-										<div class="offer-detail">
-											<span>Italy Tours & Vacations</span>
-											<h3><a href="flight-packages-detail.html" title="">The Gold Standard Tour</a></h3>
-											<div class="cost">FROM <strong>$420.00</strong>/ Person</div>
-											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
-										</div>
-									</div><!-- Offer -->
-								</div>
-								<div class="col-md-4">
-									<div class="sp-offer">
-										<div class="offer-img">
-											<img th:src="@{/images/resource/special-offer2.jpg}" alt="" />
-											<ul>
-												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
-												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
-												<li><i class="fa fa-male"></i> Person: 02</li>
-											</ul>
-										</div>
-										<div class="offer-detail">
-											<span>Italy Tours & Vacations</span>
-											<h3><a href="flight-packages-detail.html" title="">Cinque Terre & Rome Tour</a></h3>
-											<div class="cost">FROM <strong>$159.00</strong>/ Person</div>
-											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
-										</div>
-									</div><!-- Offer -->
-								</div>
-								<div class="col-md-4">
-									<div class="sp-offer">
-										<div class="offer-img">
-											<img th:src="@{/images/resource/special-offer3.jpg}" alt="" />
-											<ul>
-												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
-												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
-												<li><i class="fa fa-male"></i> Person: 02</li>
-											</ul>
-										</div>
-										<div class="offer-detail">
-											<span>Italy Tours & Vacations</span>
-											<h3><a href="flight-packages-detail.html" title="">Art, Food, and Culture Tour</a></h3>
-											<div class="cost">FROM <strong>$212.00</strong>/ Person</div>
-											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
-										</div>
-									</div><!-- Offer -->
-								</div>
-								
-								<div class="col-md-4">
-									<div class="sp-offer">
-										<div class="offer-img">
-											<img th:src="@{/images/resource/special-offer7.jpg}" alt="" />
-											<ul>
-												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
-												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
-												<li><i class="fa fa-male"></i> Person: 02</li>
-											</ul>
-										</div>
-										<div class="offer-detail">
-											<span>Italy Tours & Vacations</span>
-											<h3><a href="flight-packages-detail.html" title="">The Gold Standard Tour</a></h3>
-											<div class="cost">FROM <strong>$420.00</strong>/ Person</div>
-											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
-										</div>
-									</div><!-- Offer -->
-								</div>
-								<div class="col-md-4">
-									<div class="sp-offer">
-										<div class="offer-img">
-											<img th:src="@{/images/resource/special-offer8.jpg}" alt="" />
-											<ul>
-												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
-												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
-												<li><i class="fa fa-male"></i> Person: 02</li>
-											</ul>
-										</div>
-										<div class="offer-detail">
-											<span>Italy Tours & Vacations</span>
-											<h3><a href="flight-packages-detail.html" title="">Cinque Terre & Rome Tour</a></h3>
-											<div class="cost">FROM <strong>$159.00</strong>/ Person</div>
-											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
-										</div>
-									</div><!-- Offer -->
-								</div>
-								<div class="col-md-4">
-									<div class="sp-offer">
-										<div class="offer-img">
-											<img th:src="@{/images/resource/special-offer9.jpg}" alt="" />
-											<ul>
-												<li><i class="fa fa-bank"></i> Hotel: 5 Star</li>
-												<li><i class="fa fa-clock-o"></i> Duration: 10 Days</li>
-												<li><i class="fa fa-male"></i> Person: 02</li>
-											</ul>
-										</div>
-										<div class="offer-detail">
-											<span>Italy Tours & Vacations</span>
-											<h3><a href="flight-packages-detail.html" title="">Art, Food, and Culture Tour</a></h3>
-											<div class="cost">FROM <strong>$212.00</strong>/ Person</div>
-											<a class="book-now" href="flight-packages-detail.html" title="">Book Now</a>
-										</div>
-									</div><!-- Offer -->
-								</div>
-							</div>
-						</div><!-- Special Offers -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section>
-		<div class="block remove-gap gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12" >
-						<h2 class="side-title">PEOPLE <span>REVIEWS</span></h2>
-						<div class="comments-thread">
-							<ul>
-								<li>
-									<div class="comment" th:each="dg : ${danhgia}">
-										<img src="http://placehold.it/107x107" alt="" />
-										<a class="reply" href="#" title="">Reply</a>
-										<div class="comment-detail">
-											<div class="comment-info">
-												<h6 th:text="${dg[4]}">MARGARETTE <i>Says:</i></h6>
-												<span th:text="${dg[5]}">November 17, 2014</span>
-												<span>at 9:55 am</span>
-											</div>
-											<div class="comment-rating">
-												<span>Quality</span>
-												<div class="stars">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
+			<section>
+				<div class="block">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 column">
+								<div class="special-offers">
+									<div class="row">
+										<div class="col-md-4" th:each="item: ${hotel}">
+											<div class="sp-offer">
+												<div class="offer-img">
+													<img th:src="@{'/getimage/' +${item.id}}" alt="" />
+													<ul>
+														<li><i class="fa fa-bank"></i> Hotel:
+															<td th:text="${item.danhgia} +' Star'"></td></li>
+														<li><i class="fa fa-map-marker"></i> Address:
+															<td th:text="${item.diachi}"></td></li>
+														<li><i class="fa fa-phone"></i> Phone:
+															<td th:text="${item.sodt}"></td></li>
+													</ul>
+												</div>
+												<div class="offer-detail">
+													<span
+														th:text=" 'Loại khách sạn: ' + ${item.loaikhachsan.ten}"></span>
+													<h3>
+														<a href="flight-packages-detail.html" title=""
+															th:text="${item.ten}"></a>
+													</h3>
+													<div class="cost">
+														Thành Phố: <strong th:text="${item.thanhpho.ten}"></strong>
+														/Vietnam
+													</div>
+													<a class="book-now"
+														th:href="@{'/view/profile/' + ${item.id}}" title="">View
+														Detail</a>
 												</div>
 											</div>
-											<p th:text="${dg[2]}">Curabitur blandit tempus porttitor. Maecenas sediam egetrius blandit sit accumsan urna molestie interdum.</p>
+											<!-- Offer -->
 										</div>
-									</div><!-- Comment -->
-								</li>								
-							</ul>
-						</div><!-- Comments Thread -->
+
+
+									</div>
+								</div>
+								<!-- Special Offers -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="block remove-gap gray">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<h2 class="side-title">
+									PEOPLE <span>REVIEWS</span>
+								</h2>
+								<div class="comments-thread">
+									<ul>
+										<li>
+											<div class="comment" th:each="dg : ${danhgia}">
+												<img src="http://placehold.it/107x107" alt="" /> <a
+													class="reply" href="#" title="">Reply</a>
+												<div class="comment-detail">
+													<div class="comment-info">
+														<h6 th:text="${dg[4]}">
+															MARGARETTE <i>Says:</i>
+														</h6>
+														<span th:text="${dg[5]}"></span> <span>at
+															9:55 am</span>
+													</div>
+													<div class="comment-rating">
+														<span>Quality</span>
+														<div class="stars">
+															<i class="fa fa-star"></i> 
+															<i class="fa fa-star"></i> 
+															<i class="fa fa-star"></i> 
+															<i class="fa fa-star"></i> 
+															<i class="fa fa-star-o"></i>
+														</div>
+													</div>
+													<p th:text="${dg[2]}"></p>
+												</div>
+											</div>
+											<!-- Comment -->
+										</li>
+									</ul>
+								</div>
+								<!-- Comments Thread -->
 								<div class="block-gap"></div>
 								<div class="comment-form">
 									<h2 class="side-title">
 										LEAVE <span>A REPLY</span>
 									</h2>
-									
+
 									<div class="input-fields">
-										<form th:action="@{/rating/newRating/__${item.id}__}" th:object="${ratingDto}" method="POST">
+										<form th:action="@{/rating/newRating/__${item.id}__}"
+											th:object="${ratingDto}" method="POST">
 											<div class="row">
-											
+
 												<div id="rating">
 													<input type="radio" id="star5" name="danhgia" th:value="5" />
 													<label class="full" for="star5" title="Awesome - 5 stars"></label>
 
 													<input type="radio" id="star4" name="danhgia" th:value="4" />
 													<label class="full" for="star4" title="Pretty good - 4 stars"></label> 
-													
 													<input type="radio" id="star3" name="danhgia" th:value="3" /> 
 													<label class="full" for="star3" title="Meh - 3 stars"></label> 
-													
 													<input type="radio" id="star2" name="danhgia" th:value="2" /> 
 													<label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-
 													<input type="radio" id="star1" name="danhgia" th:value="1" />
-													<label class="full" for="star1" title="Sucks big time - 1 star"></label>
+													<label class="full" for="star1"
+														title="Sucks big time - 1 star"></label>
 												</div>
 												<div class="col-md-12">
-													<textarea name="noidung" class="ratingcmt" placeholder="Enter Your Message"></textarea>
+													<textarea name="noidung" class="ratingcmt"
+														placeholder="Enter Your Message"></textarea>
 												</div>
 												<div class="col-md-12">
 													<button class="book-now" type="submit">Submit Now</button>
@@ -315,14 +382,14 @@
 								</div>
 
 							</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			</section>
 		</div>
-	</section>
-</div>	
-</div>
+	</div>
 
-	
+
 </body>
 
 <!-- Nulled by http://www.baobinh.net by tieulonglanh -->

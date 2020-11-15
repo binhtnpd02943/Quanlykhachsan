@@ -163,11 +163,12 @@ public class HomeController {
         return "active";
 	}
 	@ModelAttribute(name ="lichsu")
-	public List<Object[]> getlichsu( Principal principal){
-		// if(principal.getName().isEmpty()==false){
-			return datphongService.listDatphong("admin");
-		// }
-		// return null;
+	public List<Object[]> getlichsu( Principal principal,String tentaikhoan){
+//		 if(principal.getName().isEmpty() ){
+			 return datphongService.listDatphong(tentaikhoan);
+//		 }else {
+//			 
+//		}
 	}
 	@GetMapping("huyphong/{id}")
     public String huyphong(@PathVariable("id") Integer id, ModelMap model){

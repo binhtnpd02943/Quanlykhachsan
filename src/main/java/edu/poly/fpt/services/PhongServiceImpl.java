@@ -89,4 +89,35 @@ public class PhongServiceImpl implements PhongService {
 		return phongRepository.findByTenLikeOrderByTen("%" + ten + "%", pageable);
 	}
 
+	@Override
+	public List<Phong> findByidAndTiennghiEndingWith(Long id, String tiennghi) {
+		return phongRepository.findByidAndTiennghiEndingWith(id, tiennghi);
+	}
+
+	@Override
+	public List<Phong> findByidAndDientichlAndTiennghi(Long id, Float dientich,
+			String tiennghi) {
+		return phongRepository.findByidAndDientichGreaterThanEqualAndTiennghiEndingWith(id, dientich, tiennghi);
+	}
+
+	@Override
+	public List<Phong> findByidAndTiennghiAndGiathue(Long id, String tiennghi, Float gia) {
+		return phongRepository.findByidAndTiennghiEndingWithAndGiathueGreaterThanEqual(id, tiennghi, gia);
+	}
+
+	@Override
+	public List<Phong> findByidAndDientichAndTiennghiAndGiathue(Long id,
+			Float dientich, String tiennghi, Float gia) {
+		return phongRepository.findByidAndDientichGreaterThanEqualAndTiennghiEndingWithAndGiathueGreaterThanEqual(id,
+				dientich, tiennghi, gia);
+	}
+
+	@Override
+	public List<Phong> findAllphongbyksid(Long id) {
+		return phongRepository.findAllphongbyksid(id);
+	}
+
+	
+	
+	
 }

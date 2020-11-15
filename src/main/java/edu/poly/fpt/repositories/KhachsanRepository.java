@@ -33,5 +33,7 @@ public interface KhachsanRepository extends JpaRepository<KhachSan, Long>,Paging
 	 @Query(value="select * from tbkhachsan ks join tbphong p on ks.id=p.khachsan_id join tbloaikhachsan lks on lks.id = ks.loaikhachsan_id join tbthanhpho tp on tp.id= ks.thanhpho_id group by ks.id  having tp.ten=? && lks.id=? && ks.danhgia<=? &&  min(p.giathue)>=? && max(p.giathue)<=?",nativeQuery = true)
 	 Page<KhachSan> filterKhachSanbyAll(String tentp,int lks,int dg,int min,int max,Pageable pageable);
 	 
+	 @Query(value="select * from tbkhachsan ORDER BY RAND() limit 6", nativeQuery = true)
+	 List<KhachSan> top6khachsan();
 	 
 }

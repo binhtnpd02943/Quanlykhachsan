@@ -39,4 +39,14 @@ public interface PhongService {
 	
 	Page<Phong> findAll(Pageable pageable);
 
+	List<Phong> findByidAndDientichAndTiennghiAndGiathue(Long id, Float dientich, String tiennghi, Float gia);
+
+	List<Phong> findByidAndTiennghiAndGiathue(Long id, String tiennghi, Float gia);
+
+	List<Phong> findByidAndDientichlAndTiennghi(Long id, Float dientich, String tiennghi);
+
+	List<Phong> findByidAndTiennghiEndingWith(Long id, String tiennghi);
+
+	List<Phong> findAllphongbyksid(Long id);
+
 }

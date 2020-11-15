@@ -22,24 +22,6 @@ import edu.poly.fpt.repositories.ThanhphoRepositoty;
 @Service
 public class KhachsanServiceImpl implements KhachsanService{
 
-	@Override
-	public Page<KhachSan> filterKhachSanbyCity(String tentp, int dg, int min, int max, Pageable pageble) {
-		return khachsanRepository.filterKhachSanbyCity(tentp, dg, min, max, pageble);
-	}
-	@Override
-	public Page<KhachSan> filterKhachSanbyTypeofCity(int lks, int dg, int min, int max, Pageable pageble) {
-		return khachsanRepository.filterKhachSanbyTypeofCity(lks, dg, min, max, pageble);
-	}
-	@Override
-	public Page<KhachSan> filterKhachSanbyNone(int dg, int min, int max, Pageable pageable) {
-		return khachsanRepository.filterKhachSanbyNone(dg, min, max, pageable);
-	}
-	
-	@Override
-	public Page<KhachSan> filterKhachSanbyAll(String tentp, int lks, int dg, int min, int max, Pageable pageable) {
-		return khachsanRepository.filterKhachSanbyAll(tentp, lks, dg, min, max, pageable);
-	}
-
 	@Autowired
 	private KhachsanRepository khachsanRepository;
 	
@@ -125,4 +107,27 @@ public class KhachsanServiceImpl implements KhachsanService{
 		// TODO Auto-generated method stub
 		return khachsanRepository.findByTenLikeOrderByTen("%"+ten+"%", pageable);
 	}
+	@Override
+	public Page<KhachSan> filterKhachSanbyCity(String tentp, int dg, int min, int max, Pageable pageble) {
+		return khachsanRepository.filterKhachSanbyCity(tentp, dg, min, max, pageble);
+	}
+	@Override
+	public Page<KhachSan> filterKhachSanbyTypeofCity(int lks, int dg, int min, int max, Pageable pageble) {
+		return khachsanRepository.filterKhachSanbyTypeofCity(lks, dg, min, max, pageble);
+	}
+	@Override
+	public Page<KhachSan> filterKhachSanbyNone(int dg, int min, int max, Pageable pageable) {
+		return khachsanRepository.filterKhachSanbyNone(dg, min, max, pageable);
+	}
+	
+	@Override
+	public Page<KhachSan> filterKhachSanbyAll(String tentp, int lks, int dg, int min, int max, Pageable pageable) {
+		return khachsanRepository.filterKhachSanbyAll(tentp, lks, dg, min, max, pageable);
+	}
+
+	@Override
+	public List<KhachSan> top6khachsan() {
+		return khachsanRepository.top6khachsan();
+	}
+	
 }
