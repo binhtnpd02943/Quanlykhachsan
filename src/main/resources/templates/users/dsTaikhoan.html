@@ -9,81 +9,51 @@
 	<div layout:fragment="header"></div>
 
 	<div layout:fragment="content">
+	
 		<div class="row">
-			<aside class="col-sm-2">
-				<div class="card poly-cart">
-					<div class="card-body">
-						<div class="row">
-							<form th:action="@{/users/find}" method="post"
-								class="input-group input-group-sm mt-auto" style="width: 200px;">
-								<div class="input-group input-group-sm">
-									<input type="text" name="tentaikhoan"
-										class="form-control float-right" placeholder="Search">
-									<div class="input-group-append">
-										<button type="submit" class="btn btn-default">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
-								</div>
-							</form>
-
-
-						</div>
-					</div>
-				</div>
-				<div class="card poly-cart" data-toggle="collapse" href="#chungloai">
-					<div class="card-header" style="cursor: pointer;">
-						<i class="fas fa-list-ul"></i> Danh Mục
-					</div>
-				</div>
-				<ul class="list-group collapse show" style="cursor: pointer;"
-					id="chungloai">
-					<a th:href="@{/users/}" class="list-group-item">Tài Khoản</a>
-					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
-					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
-					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
-					<a th:href="@{/services/}" class="list-group-item ">Dịch Vụ</a>
-					<a th:href="@{/rooms/}" class="list-group-item ">Phòng</a>
-
-				</ul>
-				<div class="card poly-cart" data-toggle="collapse" href="#nguoidung">
-					<div class="card-header" style="cursor: pointer;">
-						<i class="fas fa-list-ul"></i> Người Dùng
-					</div>
-				</div>
-				<ul class="list-group collapse show" style="cursor: pointer;"
-					id="nguoidung">
-					<li class="list-group-item "><i class="fas fa-user"></i> Tài
-						Khoản</li>
-					<li class="list-group-item "><i class="fas fa-cogs"></i> Chưa
-						Nghĩ Ra</li>
-					<a class="list-group-item " th:href="@{/logout}"
-						th:if="${attr_user != null}"><i class="fas fa-sign-out-alt"></i>
-						Đăng Xuất</a>
-
-
-				</ul>
-			</aside>
-			<article class="col-sm-10">
+			
+			<article class="col-sm-12">
 				<div class="card">
 					<div class="card-header">
 						<div th:if="${success}"
 							class="row alert alert-success alert-dismissible">
 							<button type="button" class="close" data-dismiss="alert"
 								aria-label="Close">
-								<span aria-hidden="true">×</span>
+								<span aria-hidden="true">x</span>
 							</button>
 							<span th:text="${success}"></span>
 						</div>
-						<span type="button" class="float-right btn btn-primary btn-sm"
+						<!-- chu css  -->
+						<span class="float-left"
+							style="color: snow; display: table-cell; font-size: 26px; font-weight: 700; margin: 0; vertical-align: middle">
+							Quản Lý Tài Khoản </span>
+						<form th:action="@{/users/find}" method="post"
+							class="input-group float-left input-group-sm "
+							style="width: 500px; margin-left:200px; padding: 10px">
+								
+							<div class="input-group float-left input-group-sm">
+								<input  type="text" name="ten" class="form-control float-right"
+									placeholder="Search" >
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-default">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+						<span type="button" class="float-right btn btn-sm"
 							data-toggle="modal" data-target="#modelId"> <i
-							class="fas fa-plus"></i> Thêm Mới
+							></i> 
+							<input type="submit" value="Thêm Mới" class="btn btn-primary"
+							th:if="${edit<true}" /> 
+							<input type="submit" value="Chỉnh Sửa"
+							class="btn btn-primary" th:if="${edit >= true}" />
 						</span>
 						
 						<!-- Modal -->
 						<div class="modal fade" id="modelId" tabindex="-1" role="dialog"
 							aria-labelledby="modelTitleId" aria-hidden="true">
-							<div class="modal-dialog" style="max-width: 700px"
+							<div class="modal-dialog" style="max-width: 700px; margin-top: 200px"
 								role="document">
 
 								<div class="modal-content">
@@ -93,7 +63,7 @@
 										<h3 th:text="${message}"></h3>
 									</div>
 									-->
-										<h5 class="modal-title">Thêm tài Khoản</h5>
+										<h5 class="modal-title">Tài Khoản</h5>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -107,15 +77,14 @@
 
 
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label"> Tên Tài
-													Khoản</label>
+												<label class="col-sm-3 col-form-label"> Tên Tài Khoản</label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control"
 														th:field="*{tentaikhoan}" placeholder="Tên Tài Khoản...">
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label"> Họ và tên</label>
+												<label class="col-sm-3 col-form-label"> Họ Và Tên</label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control" th:field="*{hoten}"
 														placeholder="Họ Và Tên...">
@@ -125,26 +94,25 @@
 												<label class="col-sm-3 col-form-label">Mật Khẩu</label>
 												<div class="col-sm-9">
 													<input type="password" id="giathue" class="form-control"
-														th:field="*{matkhau}" placeholder="Mật khẩu...">
+														th:field="*{matkhau}" placeholder="Mật Khẩu...">
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Xác nhận mật
-													khẩu</label>
+												<label class="col-sm-3 col-form-label">Xác Nhận Mật Khẩu</label>
 												<div class="col-sm-9">
 													<input type="password" class="form-control"
-														th:field="*{reMatkhau}" placeholder="Xác nhận mật khẩu...">
+														th:field="*{reMatkhau}" placeholder="Xác Nhận Mật Khẩu...">
 												</div>
 											</div>
 											<div class="row" style="margin: 5px;">
 												<div class="form-group col-md-6">
 													<label>Số ĐT</label> 
-													<input type="tel" id="sodt" class="form-control" th:field="*{sodt}" placeholder="Số điện thoại...">
+													<input type="tel" id="sodt" class="form-control" th:field="*{sodt}" placeholder="Số Điện Thoại...">
 
 												</div>
 
 												<div class="form-group col-md-6">
-													<label>Gioi Tính</label> <select th:field="*{gioitinh}"
+													<label>Giới Tính</label> <select th:field="*{gioitinh}"
 														class="form-control">
 														<option value="" selected>Select All menu</option>
 														<option th:value="true">Nam</option>
@@ -165,7 +133,7 @@
 												<div class="form-group col-md-6">
 													<label>Quyền</label> <input type="text"
 														class="form-control" th:field="*{role}"
-														placeholder="Quyền người dùng...">
+														placeholder="Quyền Người Dùng...">
 
 												</div>
 
@@ -196,12 +164,12 @@
 							<tr>
 								<th>Tên Tài Khoản</th>
 								<th>Mật Khẩu</th>
-								<th>Họ và tên</th>
-								<th>Gioi Tính</th>
-								<th>SĐT</th>
+								<th>Họ Và Tên</th>
+								<th>Giới Tính</th>
+								<th>Số ĐT</th>
 								<th>Email</th>
-								<th>Quyền người dùng</th>
-								<th>Thao tác</th>
+								<th>Quyền Người Dùng</th>
+								<th>Thao Tác</th>
 							</tr>
 
 						</thead>
@@ -211,7 +179,7 @@
 								<td th:text="${item.tentaikhoan}"></td>
 								<td style="max-width: 250px;" th:text="${item.matkhau}"></td>
 								<td th:text="${item.hoten}"></td>
-								<td><span th:text="${item.gioitinh} ? 'Nam':'Nữ'"></span></td>
+								<td><span th:text="${item.gioitinh} ? 'Nam':'Ná»¯'"></span></td>
 								<td th:text="${item.sodt}"></td>
 								<td th:text="${item.email}"></td>
 								<td th:text="${item.role}"></td>
@@ -231,7 +199,7 @@
 						</tbody>
 					</table>
 
-					<div class="card-footer">
+					<div class="card-footer" style="text-align: center">
 						   <nav aria-label="Page navigation example" style="margin-top: 20px;">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">

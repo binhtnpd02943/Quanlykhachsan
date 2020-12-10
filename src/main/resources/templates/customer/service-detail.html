@@ -10,6 +10,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 </head>
+
 <body itemscope>
 <div class="theme-layout">
 	<div class="header-container stick">
@@ -48,12 +49,14 @@
 											<strong th:text="${item.ten}"></strong>
 											<p>Not valid for bookings less than 1 days </p>
 											<div class="cost">FROM <strong th:text="${item.giadv} + ' VND'"></strong> / PERSON</div>
-											<a class="book-now" th:href="@{/view/booking-form}" title="">Book Now</a>
+											<a class="book-now" th:href="@{/view/room-packages-grid}" title="">Hotel Reservation</a>
+											<p><span style="color: red">*</span> Please,Select service in the hotel book form</p>
 										</div>
 									</div>
+								
 								</div>
 								<ul class="nav nav-tabs">
-									<li class="active">
+									<li  class="active">
 										<a href="#service-image1" data-toggle="tab"><img th:src="@{/images/resource/service-thumb1.jpg}" alt="" /></a>
 									</li>
 									<li>
@@ -69,20 +72,16 @@
 										<a href="#service-image5" data-toggle="tab"><img th:src="@{/images/resource/service-thumb5.jpg}" alt="" /></a>
 									</li>
 								</ul>
+								
 							</div><!-- Service Image Tabs -->
-							<ul class="features-list">
-								<li><strong>200 Rooms</strong></li>
-								<li><strong>24h Parking & Security</strong></li>
-								<li><strong>4 Restuarants</strong></li>
-								<li><strong>Free airport pick up service</strong></li>
-								<li><strong>2 Revolving Cocktail bar</strong></li>
-								<li><strong>2 Revolving Cocktail bar</strong></li>
-								<li><strong>24 hour front desk staff </strong></li>
-								<li><strong>Swimming pool</strong></li>
-							</ul>
-						
 							<h2>Service Description</h2>
-							<h4 th:text="${item.ten}"></h4>
+							<ul class="features-list">
+								<li><strong>Name Service : <span th:text="${item.ten}"></span></strong></li>
+								<li><strong>Price Service : <span th:text="${item.giadv} + ' VNĐ'"></span></strong></li>
+								<li><strong>details :</strong></li>
+							</ul>
+							<br>
+						
 							<p th:text="${item.mota}"></p>
 						</div><!-- Service Details -->
 					</div>
@@ -163,7 +162,55 @@
 			</div>
 		</div>
 	</section>
-
+	
+	<section>
+				<div class="block less-spacing">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 column">
+								<div class="clients-carousel">
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client3.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client4.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client5.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+								</div>
+								<!-- Clients Carousel -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 </div>
 </div>
 	

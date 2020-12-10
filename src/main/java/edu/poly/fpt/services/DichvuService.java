@@ -39,5 +39,7 @@ public interface DichvuService {
 	Page<DichVu> findByTenLikeOrderByTen(String ten, Pageable pageable);
 
 	Page<DichVu> findAll(Pageable pageable);
+	
+
 
 }

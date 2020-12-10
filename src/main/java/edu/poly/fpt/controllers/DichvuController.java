@@ -133,7 +133,7 @@ public class DichvuController {
 		return "redirect:/services/";
 	}
 
-	@PostMapping("find")
+	@RequestMapping("find")
 	public String find(ModelMap model, @RequestParam(defaultValue = "") String ten,
 			@RequestParam("page") Optional<Integer> page) {
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;

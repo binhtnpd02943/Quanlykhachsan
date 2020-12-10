@@ -88,5 +88,8 @@ public class DichvuServiceImpl implements DichvuService {
 	public Page<DichVu> findByTenLikeOrderByTen(String ten, Pageable pageable) {
 		return dichvuRepository.findByTenLikeOrderByTen("%" + ten + "%", pageable);
 	}
+	
+	
+	
 
 }

@@ -9,74 +9,48 @@
 	<div layout:fragment="header"></div>
 
 <div layout:fragment="content">
+
 	<div class="row">
-		<aside class="col-sm-2">
-				<div class="card poly-cart">
-					<div class="card-body">
-						<div class="row">
-							<form th:action="@{/rooms/find}" method="post" class="input-group input-group-sm mt-auto" style="width: 200px;">
-                            <div class="input-group input-group-sm">
-                                <input type="text" name="ten" class="form-control float-right" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </form>
-
-						</div>
-					</div>
-				</div>
-				<div class="card poly-cart" data-toggle="collapse" href="#chungloai">
-					<div class="card-header" style="cursor: pointer;">
-						<i class="fas fa-list-ul"></i> Danh Mục
-					</div>
-				</div>
-				<ul class="list-group collapse show" style="cursor: pointer;"
-					id="chungloai">
-					<a th:href="@{/users/}" class="list-group-item">Tài Khoản</a>
-					<a th:href="@{/citys/}" class="list-group-item ">Thành Phố</a>
-					<a th:href="@{/types/}" class="list-group-item ">Loại Khách Sạn</a>
-					<a th:href="@{/hotels/}" class="list-group-item ">Khách Sạn</a>
-					<a th:href="@{/services/}" class="list-group-item ">Dịch Vụ</a>
-					<a th:href="@{/rooms/}" class="list-group-item ">Phòng</a>
-
-				</ul>
-				<div class="card poly-cart" data-toggle="collapse" href="#nguoidung">
-					<div class="card-header" style="cursor: pointer;">
-						<i class="fas fa-list-ul"></i> Người Dùng
-					</div>
-				</div>
-				<ul class="list-group collapse show" style="cursor: pointer;"
-					id="nguoidung">
-					<li class="list-group-item "><i class="fas fa-user"></i> Tài
-						Khoản</li>
-					<li class="list-group-item "><i class="fas fa-cogs"></i> Chưa
-						Nghĩ Ra</li>
-					<a class="list-group-item " th:href="@{/logout}" th:if="${attr_user != null}"><i class="fas fa-sign-out-alt"></i>
-						Đăng Xuất</a>
-
-
-				</ul>
-			</aside>
-		<article class="col-sm-10">
+		
+		<article class="col-sm-12">
 			<div class="card">
 				<div class="card-header">
 							<div th:if="${success}"
 							class="row alert alert-success alert-dismissible">
 							<button type="button" class="close" data-dismiss="alert"
 								aria-label="Close">
-								<span aria-hidden="true">×</span>
+								<span aria-hidden="true">x</span>
 							</button>
 							<span th:text="${success}"></span>
 						</div>
-					<span type="button" class="float-right btn btn-primary btn-sm"
-						data-toggle="modal" data-target="#modelId"> <i
-						class="fas fa-plus"></i> Them Moi
-					</span>
+						<span class="float-left"
+							style="color: snow; display: table-cell; font-size: 26px; font-weight: 700; margin: 0; vertical-align: middle">
+							Quản Lý Phòng </span>
+						<form th:action="@{/rooms/find}" method="post"
+							class="input-group float-left input-group-sm "
+							style="width: 500px; margin-left:200px; padding: 10px">
+								
+							<div class="input-group float-left input-group-sm">
+								<input  type="text" name="ten" class="form-control float-right"
+									placeholder="Search" >
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-default">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					<span type="button" class="float-right btn  btn-sm"
+							data-toggle="modal" data-target="#modelId">  
+							<input type="submit" value="Thêm Mới" class="btn btn-primary"
+												th:if="${id<=0}" /> 
+							<input type="submit" value="Chỉnh Sửa"
+												class="btn btn-primary" th:if="${id>0}" /> 
+						</span>
 					<!-- Modal -->
 					<div class="modal fade" id="modelId" tabindex="-1" role="dialog"
 						aria-labelledby="modelTitleId" aria-hidden="true">
-						<div class="modal-dialog" style="max-width: 700px" role="document">
+						<div class="modal-dialog" style="max-width: 700px;margin-top: 200px" role="document">
 
 							<div class="modal-content">
 								<div class="modal-header">
@@ -85,7 +59,7 @@
 										<h3 th:text="${message}"></h3>
 									</div>
 									-->
-									<h5 class="modal-title">Thêm Phòng</h5>
+									<h5 class="modal-title">Phòng</h5>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
@@ -101,7 +75,7 @@
 												<label class="col-sm-3 col-form-label"> Mã</label>
 												<div class="col-sm-9">
 													<input type="text" th:field="*{id}" class="form-control"
-														placeholder="Mã Thành Phố" readonly>
+														placeholder="Mã Thành Phố" readonly>
 												</div>
 											</div>
 										</div>
@@ -114,29 +88,29 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label"> Diện tích</label>
+											<label class="col-sm-3 col-form-label">Diện Tích</label>
 											<div class="col-sm-9">
 												<input type="number" class="form-control"
-													th:field="*{dientich}" placeholder="Diện tích...">
+													th:field="*{dientich}" placeholder="Diện Tích...">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">Giá Thuê</label>
 											<div class="col-sm-9">
 												<input type="number" id="giathue" class="form-control"
-													th:field="*{giathue}" placeholder="Giá thuê...">
+													th:field="*{giathue}" placeholder="Giá Thuê...">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label"> Tiện Nghi</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="tiennghi" th:field="*{tiennghi}"
-													placeholder="Tiện Nghi...">
+													placeholder=" Tiện Nghi...">
 											</div>
 										</div>
 										<div class="form-group row">
 												<label class="col-sm-3"> Hình Ảnh</label>
-												<div class="col-sm-9">
+												<div class="col-sm-8" style="margin-left: 15px">
 													<input type="file" class="custom-file-input" th:field="*{photo}" id="photo" th:required="*{id == 0}">
                                         <label class="custom-file-label" for="photo" th:if="*{imageName}" th:text="*{imageName}"></label>
                                         <label class="custom-file-label" for="photo" th:unless="*{imageName}">choose image</label>
@@ -144,7 +118,7 @@
 											</div>
 										<div class="row" style="margin: 5px;">
 											<div class="form-group col-md-6">
-												<label>Khách sạn</label> <select th:field="*{khachsanId}"
+												<label>Khách Sạn</label> <select th:field="*{khachsanId}"
 													class="form-control">
 
 													<option th:each="khachsan : ${hotels}"
@@ -156,7 +130,7 @@
 											<div class="form-group col-md-6">
 												<label>Loại Giường</label> <select th:field="*{loaigiuong}"
 													class="form-control">
-													<option value="" selected>Select All menu</option>
+													<option value="" selected>Chọn Loại Giường</option>
 													<option th:value="true">Giường Đơn</option>
 													<option th:value="false">Giường Đôi</option>
 												</select>
@@ -169,15 +143,15 @@
 											<div class="form-group col-sm-12">
 												<label for="validationTextarea">Mô Tả</label>
 												<textarea rows="4" class="form-control" th:field="*{mota}"
-													id="mota" placeholder="Mô tả...">
+													id="mota" placeholder="Mô Tả...">
                                                     </textarea>
 											</div>
 										</div>
 
-										<input type="submit" value="Add" class="btn btn-primary"
-											th:if="${id<=0}" /> <input type="submit" value="Update"
+										<input type="submit" value="Thêm" class="btn btn-primary"
+											th:if="${id<=0}" /> <input type="submit" value="Chỉnh Sửa"
 											class="btn btn-primary" th:if="${id>0}" /> <a
-											th:href="@{/rooms/}" class="btn btn-outline-secondary">Cancel</a>
+											th:href="@{/rooms/}" class="btn btn-outline-secondary">Thoát</a>
 
 									</form>
 								</div>
@@ -199,13 +173,13 @@
 						<tr>
 							<th>Tên</th>
 							<th>Diện Tích</th>
-							<th>Gía Thuê</th>
+							<th>Giá Thuê</th>
 							<th>Tiện Nghi</th>
-							<th>Hinh Anh</th>
 							<th>Loại Giường</th>
-							<th style="width:300px;">Mo Ta</th>
+							<th>Hình Ảnh</th>
+							<th style="width:300px;">Mô Tả</th>
 							<th>Khách Sạn</th>
-							<th>Thao tác</th>
+							<th>Thao Tác</th>
 						</tr>
 
 					</thead>
@@ -214,7 +188,7 @@
 
 							<td th:text="${item.ten}"></td>
 							<td th:text="${item.dientich}+ 'm'"></td>
-							<td th:text="${item.giathue} + ' VNĐ'"></td>
+							<td th:text="${item.giathue} + ' VNÄ'"></td>
 							<td th:text="${item.tiennghi}"></td>
 							<td><span
 								th:text="${item.loaigiuong} ? 'Giường Đơn':'Giường Đôi'"></span></td>

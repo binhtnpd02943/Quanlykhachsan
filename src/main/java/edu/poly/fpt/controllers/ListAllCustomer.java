@@ -155,6 +155,15 @@ public class ListAllCustomer {
 			}
 			return "redirect:view/";
 		}
+		@GetMapping("profiles/{id}")
+		public String profiles(@PathVariable("id") Integer id, ModelMap model) {
+			if (dichvuService.findById(id).isPresent()) {
+				model.addAttribute("item", dichvuService.findById(id).get());
+				return "customer/service-detail";
+			}
+			return "redirect:view/";
+			
+		}
 		
 		@PostMapping("profile/filter")
 		public String filterprofile(ModelMap model,@RequestParam("dientich") Float dientich,

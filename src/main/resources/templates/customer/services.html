@@ -34,12 +34,30 @@
 		<div class="block gray">
 			<div class="container">
 				<div class="row">
+							<div class="tab-from-title">		
+								<h4>Find Your Ideal Service</h4>
+							</div>
+							
 					<div class="col-md-12 column">
 						<div class="services-page">
 							<div class="row">
 								<div class="col-md-3"  th:each="item: ${services}">
 									<div class="service-box">
-										<img th:src="@{'/getanh/' +${item.id}}" width="100" height="350" alt="" />
+									<div class="offer-img">
+													
+													<ul>
+														<li><i class="fa fa-bank"></i> Hotel :
+															<td th:text="${item.khachsan.ten}"></td></li>
+														<li><i class="fa fa-map-marker"></i> Address :
+															<td th:text="${item.khachsan.diachi}"></td></li>
+														<li><i class="fa fa-dollar"></i> Price:
+															<td th:text="${item.giadv}"></td></li>
+														
+													</ul>
+												
+									
+										<img th:src="@{'/getanh/' +${item.id}}" style="height: 300px"  alt="" />
+										</div> 
 										<div class="service-name">
 											<span><img th:src="@{/images/service-icon2.png}" height="22px" width="30px" alt="" /></span>
 											<h5><a th:href="@{'/view/profiles/' + ${item.id}}" th:text="${item.ten}" title=""></a></h5>
@@ -53,6 +71,54 @@
 			</div>
 		</div>
 	</section>
+	<section>
+				<div class="block less-spacing">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 column">
+								<div class="clients-carousel">
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client3.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client4.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client5.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client1.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+									<div class="client">
+										<a title="" href="#"><img
+											th:src="@{/images/resource/client2.jpg}" alt="" /></a>
+									</div>
+									<!-- Client -->
+								</div>
+								<!-- Clients Carousel -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 </div>
 </div>
 	

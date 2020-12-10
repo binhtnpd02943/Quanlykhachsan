@@ -259,7 +259,7 @@
 			</div>
 			<!-- SAU KHI LOGIN -->
 			<div th:if="${attr_user != null}" class="display_user">
-				<a th:href="@{/hotels/}" sec:authorize="hasRole('Admin')"> <span>Manager</span>
+				<a th:href="@{/citys/}" sec:authorize="hasRole('Admin')"> <span>Manager</span>
 				</a> <a th:href="@{/logout}"> <span th:text="#{nav.logout}"></span>
 				</a>
 			</div>
@@ -278,6 +278,7 @@
 			<div class="logo-sec">
 				<a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="" /></a>
 			</div>
+			
 			<!-- logo -->
 			<nav>
 				<a class="responsive-menu-btn" href="#" title=""><i
@@ -441,7 +442,7 @@
 								<ul>
 									<li><i class="fa fa-umbrella"></i> Boutiques</li>
 									<li><i class="fa fa-laptop"></i> Complimentary wireless
-										internet</li>
+										internet</li>	
 									<li><i class="fa fa-clock-o"></i> Private beach with
 										service</li>
 									<li><i class="fa fa-wifi"></i> Pet-friendly resort</li>
