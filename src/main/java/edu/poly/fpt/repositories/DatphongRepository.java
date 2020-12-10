@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.util.Date;
 import edu.poly.fpt.dto.datphongDto;
 import edu.poly.fpt.entities.DatPhong;
 @Repository
@@ -21,4 +21,6 @@ public interface DatphongRepository extends JpaRepository<DatPhong, Integer>{
     @Modifying
     @Query(value = "update dbquanlykhachsan.tbdatphong b set b.dahuy = 1 where b.id = :id",nativeQuery = true)
     void cancerRoom(@Param("id") Integer id);
+    @Query(value =  "SELECT SUM(a.sophong) as 'so' FROM dbquanlykhachsan.tbdatphong a where a.ngayden = :date and a.phong_id = :id", nativeQuery = true)
+    Float soLuongPhong(@Param("id") Integer id, @Param("date") Date date );
 }

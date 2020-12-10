@@ -334,7 +334,8 @@
 					<li><a th:href="@{/contacts/}" title=""
 						th:text="#{header.contact}"></a></li>
 				</ul>
-				<a th:if="${attr_user != null}" class="book-now call-popup" href="#"
+				<a th:if="${attr_user != null}" class="book-now call-popup" 
+				href="#"
 					title="">History</a>
 			</nav>
 			<!-- nav -->
@@ -494,13 +495,14 @@
 				&copy; 2015 <a href="#">Resort</a> - All Rights Reserved - Made By <a
 					href="#">Webinane</a>
 			</p>
+			<button onclick="myFunction()">Click me</button>
 		</div>
 		<!-- container -->
 	</div>
 	<!-- after-footer -->
 
 
-	<div class="booking-popup">
+	<div th:if="${attr_user != null}" class="booking-popup">
 		<div class="popup-container">
 			<div class="popup-inner">
 				<span class="close-btn"><img th:src="@{/images/cross.png}"
@@ -540,11 +542,18 @@
 												<strong  >Start From </strong> <span th:text="'$'+ ${ls[6]}"></span> <strong>Per
 													Person</strong>
 											</div>
-											<div th:switch="${ls[1]}">
-												<a th:case="false" th:href="@{'/huyphong/' + ${ls[0]}}" class="book-now"  title="">CANCER ROOM</a>
-											
-												<a th:case="true" class="book-now" style="background-color: red;"  title="">ROOM HAS BEEN CANCER</a>
+											<div th:switch="${ls[3].after(#dates.createNow())}">
+												<div th:case="true"><a  class="book-now" style="background-color: red;"  title="">ROOM CAN'T BE CANCER</a></div>
+												<div th:case="false">
+													<div th:switch="${ls[1]}">
+														<a th:case="false" th:href="@{'/huyphong/' + ${ls[0]}}" class="book-now"  title="">CANCER ROOM</a>
+													
+														<a th:case="true" class="book-now" style="background-color: red;"  title="">ROOM HAS BEEN CANCER</a>
+													</div>
+												</div>
 											</div>
+											
+											
 											
 										</div>
 									</div>
@@ -557,6 +566,15 @@
 			</div>
 		</div>
 	</div>
+	<th:block th:if="${success != null}">
+	<h1>sadsadasdasd</h1>
+		<script type="text/javascript">
+			function myFunction() {
+				swal("Hello world!");
+				}
+				myFunction();
+			</script>
+		</th:block>
 
 	
 	<!-- Booking Popup -->
@@ -576,11 +594,14 @@
 
 
 	<th:block layout:fragment="js">
+		
 		<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/chosen.jquery.js}" type="text/javascript"></script>
 		<script th:src="@{/js/prism.js}" type="text/javascript"></script>
 		<script th:src="@{/js/init.js}" type="text/javascript"></script>
+		
+		<script th:src="@{/js/sweetalert.js}" type="text/javascript"></script>
 		<script th:src="@{/js/owl.carousel.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/jquery.poptrox.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/enscroll-0.5.2.min.js}" type="text/javascript"></script>
@@ -690,12 +711,33 @@
 
 		});
 	</script>
+	<script type="text/javascript">
+function myFunction() {
+			swal("Hello world!");
+			}
+
+		if('${flag}' == 'showAlert'){
+			myFunction();
+}
+		
+			
+		</script>
 
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$(".select").select2();
 
 		});
+	</script>
+	<script type="text/javascript">
+		 setInterval(function() {
+			var a = document.getElementById('sophong').value;
+			var b = document.getElementById('thanhtien').value;
+			var tong = parseInt(a)*parseInt(b);
+				document.getElementById('tong').innerHTML=tong;
+		},3000
+		 );
+
 	</script>
 	</th:block>
 </body>

@@ -128,8 +128,9 @@
 									<div class="package-price">
 										<strong th:text="${item.buaan}"></strong> <i
 											th:text="${item.cachtrungtam}+ 'm'"></i> <span
-											th:text="${item.cachbien} ? 'Có':'Không'"></span> <a
-											class="book-now" th:href="@{/view/booking-form}" title="">Book
+											th:text="${item.cachbien} ? 'Có':'Không'"></span> 
+											<a
+											class="book-now" th:href="@{'/view/bookroom/' + ${item.id}}" title="">Book
 											Now</a>
 									</div>
 									<!-- Package price -->

@@ -33,6 +33,8 @@ public class Phong implements Serializable{
 	
 	@Column
 	private Float dientich;
+	@Column
+	private Float soluong;
 	
 	@Column
 	private Float giathue;
@@ -60,12 +62,13 @@ public class Phong implements Serializable{
 		super();
 	}
 
-	public Phong(Integer id, String ten, Float dientich, Float giathue, String tiennghi, Boolean loaigiuong,
-			String urlhinhanh, String mota, KhachSan khachsan, Set<DatPhong> datphong) {
+	public Phong(Integer id, String ten, Float dientich,Float soluong, Float giathue, String tiennghi, Boolean loaigiuong,
+			String urlhinhanh, String mota, KhachSan khachsan,  Set<DatPhong> datphong) {
 		super();
 		this.id = id;
 		this.ten = ten;
 		this.dientich = dientich;
+		this.soluong = soluong;
 		this.giathue = giathue;
 		this.tiennghi = tiennghi;
 		this.loaigiuong = loaigiuong;
@@ -153,6 +156,14 @@ public class Phong implements Serializable{
 
 	public void setDatphong(Set<DatPhong> datphong) {
 		this.datphong = datphong;
+	}
+
+	public Float getSoluong() {
+		return soluong;
+	}
+
+	public void setSoluong(Float soluong) {
+		this.soluong = soluong;
 	}
 
 }

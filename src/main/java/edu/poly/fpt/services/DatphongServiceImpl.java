@@ -1,5 +1,6 @@
 package edu.poly.fpt.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,5 +102,11 @@ public List<Object[]> listDatphong(String tentaikhoan) {
 @Query(value = "update dbquanlykhachsan.tbdatphong b set b.dahuy = 1 where b.id = :id",nativeQuery = true)
 public void huyphong(Integer id){
 	 datphongRepository.cancerRoom(id);
+}
+@Override
+@Query(value =  "SELECT SUM(a.sophong) as 'so' FROM dbquanlykhachsan.tbdatphong a where a.ngayden = :date and a.phong_id = :id", nativeQuery = true)
+public Float soLuongPhong(Integer id , Date date) {
+	
+	return datphongRepository.soLuongPhong(id,date);
 }
 }

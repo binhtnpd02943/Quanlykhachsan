@@ -18,29 +18,38 @@ public class datphongDto implements Serializable {
     private Integer id;
 
 	
-	
+		
 	private Date ngaydat;
     
+	@NotNull(message = "Vui lòng chọn ngày đến")
 	private Date ngayden;
 
 	
+	@NotNull(message = "Vui lòng chọn ngày trả")
 	private Date ngaytra;
 
 	
+	@NotNull(message = "Vui lòng chọn dịch vụ")
 	private String dichvu;
-    
+
+	@NotNull(message = "Vui lòng nhập số phòng")
 	private int sophong;
 
 	
+	@NotNull(message = "Vui lòng nhập số người lớn")
 	private int nguoilon;
 	
+	@NotNull(message = "Vui lòng nhập số trẻ con")
     private int trecon;
     
-    
+    @NotNull
+	@NotEmpty(message = "Vui lòng nhập tên")
+	@Length(min = 5, max = 50, message = "Tên nằm ngoài phạm vi!")
 	private String ten;
 	
 	
 	
+	@NotNull(message = "Vui lòng nhập CMND")
 	private String cmt;
 
 	
@@ -61,11 +70,15 @@ public class datphongDto implements Serializable {
     public datphongDto() {
         super();
     }
-
-    public datphongDto(Integer id,  Date ngaydat,  Date ngayden,  Date ngaytra,
-             String dichvu,  int sophong,  int nguoilon,  int trecon,
-             String ten,  String cmt,  String ghichu,  Float thanhtien,
-             Boolean dahuy, String tentaikhoan, Integer id_phong) {
+    public datphongDto(Integer id, Date ngaydat, @NotNull(message = "Vui lòng chọn ngày đến") Date ngayden,
+            @NotNull(message = "Vui lòng chọn ngày trả") Date ngaytra,
+            @NotNull(message = "Vui lòng chọn dịch vụ") String dichvu,
+            @NotNull(message = "Vui lòng nhập số phòng") int sophong,
+            @NotNull(message = "Vui lòng nhập số người lớn") int nguoilon,
+            @NotNull(message = "Vui lòng nhập số trẻ con") int trecon,
+            @NotNull @NotEmpty(message = "Vui lòng nhập tên") @Length(min = 5, max = 50, message = "Tên nằm ngoài phạm vi!") String ten,
+            @NotNull(message = "Vui lòng nhập CMND") String cmt, String ghichu, Float thanhtien, Boolean dahuy,
+            String tentaikhoan, Integer id_phong) {
         this.id = id;
         this.ngaydat = ngaydat;
         this.ngayden = ngayden;
@@ -82,6 +95,7 @@ public class datphongDto implements Serializable {
         this.tentaikhoan = tentaikhoan;
         this.id_phong = id_phong;
     }
+    
 
     public Integer getId() {
         return id;
@@ -202,6 +216,8 @@ public class datphongDto implements Serializable {
     public void setId_phong(Integer id_phong) {
         this.id_phong = id_phong;
     }
+
+    
     
 
     
