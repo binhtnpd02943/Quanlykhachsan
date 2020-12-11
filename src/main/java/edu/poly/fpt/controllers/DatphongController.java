@@ -141,6 +141,10 @@ private PhongService phongService;
 	public String index() {
 		return "customer/index3";
 	}
+	@GetMapping("/404")
+	public String notfound() {
+		return "customer/404";
+	}
 	
 	@ModelAttribute("attr_user")
     public org.springframework.security.core.userdetails.User getUser() {
