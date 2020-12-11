@@ -132,7 +132,12 @@ public class ListAllCustomer {
 	@GetMapping("bookroom/{id}")
 	public String findiD(ModelMap model,@PathVariable("id") Integer id) {
 		if (phongService.findById(id).isPresent()) {
-			model.addAttribute("item", phongService.findById(id).get());
+			Phong phong = phongService.findById(id).get();
+			
+			Integer ad = Integer.parseInt(phong.getKhachsan().getId()+"") ;
+			
+			model.addAttribute("dichvu", dichvuService.listdichvuks(ad));
+			model.addAttribute("item", phong);
 			return "customer/booking-form";
 		}
 		return "redirect:view/";
@@ -143,8 +148,11 @@ public class ListAllCustomer {
 		public String profile(@PathVariable("id") Long id,ModelMap model) {
 			
 			if (khachsanService.findById(id).isPresent()) {
+				List<Object[]> reviewlist = null;
 				List<KhachSan> hotellist =null;
+				reviewlist = danhgiaService.listdanhgia(id);
 				hotellist = khachsanService.top6khachsan();
+				model.addAttribute("danhgia", reviewlist);
 				model.addAttribute("hotel", hotellist);
 				List<Phong> list = phongService.findAllphongbyksid(id);
 				profile_id = id;
@@ -172,29 +180,33 @@ public class ListAllCustomer {
 				List<KhachSan> hotellist =null;
 				hotellist = khachsanService.top6khachsan();
 				model.addAttribute("hotel", hotellist);
+				
 				if(dientich != null && gia ==null) {
-					List<Phong> list = phongService.findByidAndDientichlAndTiennghi(profile_id, dientich, loaigiuong);
+					List<Phong> list = phongService.findByKhachsanIdAndDientichAndTiennghi(profile_id, dientich, loaigiuong);
+					
 					 model.addAttribute("item", khachsanService.findById(profile_id).get());
 						model.addAttribute("roomDto", new roomDto());
 						model.addAttribute("phong",list); 
 						
 					return "customer/packages-detail";
-				}else if(dientich == null && gia !=null) {
-					List<Phong> list = phongService.findByidAndTiennghiAndGiathue(profile_id,loaigiuong, gia);
+				}
+					else if(dientich == null && gia !=null) {
+					List<Phong> list = phongService.findByKhachsanIdAndTiennghiAndGiathue(profile_id,loaigiuong, gia);
 					 model.addAttribute("item", khachsanService.findById(profile_id).get());
 						model.addAttribute("roomDto", new roomDto());
 						model.addAttribute("phong",list); 
 						System.out.println("ASF"+list.toString());
 					return "customer/packages-detail";
 				}else if(dientich == null && gia ==null) {
-					List<Phong> list = phongService.findByidAndTiennghiEndingWith(profile_id,loaigiuong);
+					List<Phong> list = phongService.findByKhachsanidAndTiennghiEndingWith(profile_id,loaigiuong);
 					 model.addAttribute("item", khachsanService.findById(profile_id).get());
 						model.addAttribute("roomDto", new roomDto());
 						model.addAttribute("phong",list); 
 						
 					return "customer/packages-detail";
-				}else {
-					List<Phong> list = phongService.findByidAndDientichAndTiennghiAndGiathue(profile_id,dientich,loaigiuong, gia);
+				}
+					else {
+					List<Phong> list = phongService.findByKhachsanIdAndDientichAndTiennghiAndGiathue(profile_id,dientich,loaigiuong,gia);
 					 model.addAttribute("item", khachsanService.findById(profile_id).get());
 						model.addAttribute("roomDto", new roomDto());
 						model.addAttribute("phong",list); 
@@ -318,10 +330,10 @@ public class ListAllCustomer {
 	public List<DichVu> getDichvu() {
 		return khachsanService.findAllDichvu();
 	}
-	@ModelAttribute(name = "danhgia")
-	public List<Object[]> getdanhgia() {
-		return danhgiaService.listdanhgia(3);
-	}
+	// @ModelAttribute(name = "danhgia")
+	// public List<Object[]> getdanhgia() {
+	// 	return danhgiaService.listdanhgia(3);
+	// }
 	
 	@ModelAttribute("attr_user")
 	public org.springframework.security.core.userdetails.User getUser() {

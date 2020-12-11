@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import edu.poly.fpt.entities.DichVu;
@@ -88,8 +89,11 @@ public class DichvuServiceImpl implements DichvuService {
 	public Page<DichVu> findByTenLikeOrderByTen(String ten, Pageable pageable) {
 		return dichvuRepository.findByTenLikeOrderByTen("%" + ten + "%", pageable);
 	}
-	
-	
-	
+	@Override
+	@Query(value =  "select * from dbquanlykhachsan.tbdichvu where khachsan_id = :id", nativeQuery = true)
+    public List<DichVu> listdichvuks(Integer id){
+		return dichvuRepository.listdichvuks(id);
+	}
+
 
 }

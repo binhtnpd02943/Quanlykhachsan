@@ -42,4 +42,6 @@ public interface DichvuService {
 	
 
 
+	List<DichVu> listdichvuks(Integer id);
+
 }

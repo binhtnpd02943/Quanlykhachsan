@@ -29,6 +29,8 @@ public class roomDto implements Serializable{
 	
 	@NotNull(message = "Vui lòng nhập diện tích")
 	private Float dientich;
+	@NotNull(message = "Vui lòng nhập diện tích")
+	private Float soluong;
 	
 	@NotNull(message = "Vui lòng nhập giá thuê!")
 	private Float giathue;
@@ -57,14 +59,15 @@ public class roomDto implements Serializable{
 	public roomDto(Integer id,
 			@NotNull @NotEmpty(message = "Vui lòng nhập tên!") @Length(min = 5, max = 50, message = "Tên nằm ngoài phạm vi!") String ten,
 			@NotNull(message = "Vui lòng nhập diện tích") Float dientich,
+			@NotNull(message = "Vui lòng nhập diện tích") Float soluong,
 			@NotNull(message = "Vui lòng nhập giá thuê!") Float giathue,
 			@NotNull @NotEmpty(message = "Vui lòng nhập tiện nghi!") String tiennghi, Boolean loaigiuong,
 			@NotNull(message = "vui lòng chọn ảnh!") MultipartFile photo, String imageName, String mota,
 			@NotNull(message = "Vui lòng nhập khách sạn!") Long khachsanId) {
-		super();
 		this.id = id;
 		this.ten = ten;
 		this.dientich = dientich;
+		this.soluong = soluong;
 		this.giathue = giathue;
 		this.tiennghi = tiennghi;
 		this.loaigiuong = loaigiuong;
@@ -96,6 +99,14 @@ public class roomDto implements Serializable{
 
 	public void setDientich(Float dientich) {
 		this.dientich = dientich;
+	}
+
+	public Float getSoluong() {
+		return soluong;
+	}
+
+	public void setSoluong(Float soluong) {
+		this.soluong = soluong;
 	}
 
 	public Float getGiathue() {
@@ -153,5 +164,6 @@ public class roomDto implements Serializable{
 	public void setKhachsanId(Long khachsanId) {
 		this.khachsanId = khachsanId;
 	}
+
 
 }

@@ -1,20 +1,33 @@
 package edu.poly.fpt.controllers;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.expression.Lists;
+
 
 import edu.poly.fpt.dto.cityDto;
 import edu.poly.fpt.dto.datphongDto;
@@ -45,14 +59,29 @@ import edu.poly.fpt.services.DichvuService;
 import edu.poly.fpt.services.KhachsanService;
 import edu.poly.fpt.services.LoaikhachsanService;
 import edu.poly.fpt.services.PhongService;
+import edu.poly.fpt.services.TaikhoanService;
 import edu.poly.fpt.services.ThanhphoService;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import io.micrometer.core.instrument.MeterRegistry.Config;
 
 @Controller
 @RequestMapping("/view/")
 public class DatphongController {
+	
+	
+	@Autowired
+	private Configuration config;
+	@Autowired
+    public JavaMailSender emailSender;
+	@Autowired
+	private Environment env;
 	@Autowired
 private PhongService phongService;
-	
+	@Autowired
+	private TaikhoanService taikhoanService;	
+
 	@Autowired 
 	private DatphongService datphongService;
 	@GetMapping("/booking-form")
@@ -64,13 +93,42 @@ private PhongService phongService;
 	
 	@PostMapping("saveOrUpdate/{id}")
 	public String saveOrUpdate(ModelMap model, @Validated datphongDto datphongDto, BindingResult result
-			,RedirectAttributes redire,Principal principal,@PathVariable("id") Integer id) {
+			,RedirectAttributes redire,Principal principal,@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 				// if (result.hasErrors()) {
 				// 	model.addAttribute("message", "vui long nhap tat ca cac du lieu!!");
 				// 	model.addAttribute("datphongDto", datphongDto);
-				// 	return "/customer/booking-form";
+				// 	return "redirect:/view/bookroom/" +id;
 				// }
 		
+				// try{
+		
+		// Float a =datphongService.soLuongPhong(id, datphongDto.getNgayden());
+		if (datphongDto.getNgaytra().before(datphongDto.getNgayden())){
+			return "redirect:/view/bookroom/" +id;
+		}
+		if (datphongDto.getNgayden().before(new Date())){
+			return "redirect:/view/bookroom/" +id;
+		}
+		LocalDate startDate = LocalDate.ofInstant(datphongDto.getNgayden().toInstant(), ZoneId.systemDefault()); 
+			
+		LocalDate endDate = LocalDate.ofInstant(datphongDto.getNgaytra().toInstant(), ZoneId.systemDefault());
+ 
+		List<LocalDate> listOfDates = startDate.datesUntil(endDate).collect(Collectors.toList());
+		Phong phong = phongService.findById(id).get();
+		for(int i = 0 ; i<listOfDates.size();i++){
+			Date date = java.sql.Date.valueOf(listOfDates.get(i));
+			Float a =datphongService.soLuongPhong(id, date );
+			if(a != null || principal.getName().isEmpty()){
+				if (phong.getSoluong() <= a || phong.getSoluong() < (a + datphongDto.getSophong() )) {
+					return "redirect:/view/bookroom/" +id;
+				}
+			}
+		}
+		
+		
+		
+		
+ 
 		DatPhong dp = new DatPhong();
 		
 		dp.setDahuy(false);
@@ -80,24 +138,41 @@ private PhongService phongService;
 		dp.setNguoilon(datphongDto.getNguoilon());
 		dp.setTrecon(datphongDto.getTrecon());
 		dp.setDichvu(datphongDto.getDichvu());
-		dp.setThanhtien(Float.parseFloat(datphongDto.getThanhtien()+"")) ;
+		dp.setThanhtien(Float.parseFloat(phong.getGiathue()*datphongDto.getSophong()+"")) ;
 		dp.setGhichu(datphongDto.getGhichu());
 		dp.setSophong(datphongDto.getSophong());
 		dp.setCmt(datphongDto.getCmt());
 		dp.setTen(datphongDto.getTen());
-		Phong phong = phongService.findById(id).get();
+		
 		dp.setPhong(phong);
-		TaiKhoan tk = new TaiKhoan();
-		tk.setTentaikhoan(principal.getName());
+		TaiKhoan tk = taikhoanService.findByTentaikhoan(principal.getName());
+		
 		dp.setTaikhoan(tk);
+		
+		// Template t = config.getTemplate("email.ftl");
+		// String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, data);
+		
+		SimpleMailMessage email = new SimpleMailMessage();
+		email.setTo(tk.getEmail());
+		email.setSubject("Hotel Booking Manager - Booking Success");
+		email.setText("adsad");
+		email.setFrom(env.getProperty("support.email"));
+		this.emailSender.send(email);
+		
 		datphongService.save(dp);		
+		
+		model.addAttribute("flag","showAlert");
 		model.addAttribute("datphongDto",new datphongDto());
 		model.addAttribute("success","dat thanh cong");
 		System.out.println("==================================" + datphongDto.getId());
 		
-		// return "redirect:/view/booking-form";
+		
+		
 		return "redirect:/";
+	
 	}
+
+	
 	
 
 	@GetMapping("/gallery")

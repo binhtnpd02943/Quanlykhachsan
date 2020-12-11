@@ -36,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -163,13 +164,27 @@ public class HomeController {
         return "active";
 	}
 	@ModelAttribute(name ="lichsu")
-	public List<Object[]> getlichsu( Principal principal,String tentaikhoan){
-//		 if(principal.getName().isEmpty() ){
-			 return datphongService.listDatphong(tentaikhoan);
-//		 }else {
-//			 
-//		}
+	public List<Object[]> getlichsu( Principal principal){
+		
+		
+		try {
+			if(principal.getName().isEmpty() ){
+				//  list= null;
+				//  return  list;
+				return datphongService.listDatphong("admin");
+			 }
+			 return datphongService.listDatphong(principal.getName());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		 return null;
+		 
 	}
+	// @RequestMapping("lichsu/{id}")
+    // public String lichsu(@PathVariable("id") String id, ModelMap model){
+	// 	model.addAttribute("lichsu",datphongService.listDatphong(id));
+	// 	return "redirect:/";
+    // }
 	@GetMapping("huyphong/{id}")
     public String huyphong(@PathVariable("id") Integer id, ModelMap model){
 		datphongService.huyphong(id);

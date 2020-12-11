@@ -38,15 +38,17 @@ public interface PhongService {
 	Page<Phong> findByTenLikeOrderByTen(String ten,Pageable pageable);
 	
 	Page<Phong> findAll(Pageable pageable);
+	List<Phong> findByKhachsanIdAndDientichAndTiennghiAndGiathue(
+			Long id, Float dientich, String tiennghi, Float gia);
 
-	List<Phong> findByidAndDientichAndTiennghiAndGiathue(Long id, Float dientich, String tiennghi, Float gia);
+	List<Phong> findByKhachsanIdAndTiennghiAndGiathue(
+			Long id, String tiennghi, Float gia);
 
-	List<Phong> findByidAndTiennghiAndGiathue(Long id, String tiennghi, Float gia);
+	List<Phong> findByKhachsanIdAndDientichAndTiennghi(
+			Long id, Float dientich, String tiennghi);
 
-	List<Phong> findByidAndDientichlAndTiennghi(Long id, Float dientich, String tiennghi);
-
-	List<Phong> findByidAndTiennghiEndingWith(Long id, String tiennghi);
-
+	List<Phong> findByKhachsanidAndTiennghiEndingWith(Long id, String tiennghi);
+	
 	List<Phong> findAllphongbyksid(Long id);
 
 }

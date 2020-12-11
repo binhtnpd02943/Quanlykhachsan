@@ -45,14 +45,15 @@ public class ContactController {
 		
 		
 		String mailSubject = fullname + "has send a message";
-		String mailContent = "<p><b>Sender Name: </b>" + fullname + "</p>"; 
+		
+		String mailContent = "<p><b style='background-color: red;color: aqua;'>Sender Name: </b>" + fullname + "</p>"; 
 	    mailContent += "<p><b>Sender E-mail: </b>" + email + "</p>"; 
 	    mailContent += "<p><b>Subject: </b>" + subject + "</p>"; 
 	    mailContent += "<p><b>Content: </b>" + content + "</p>";
 	    mailContent += "<hr><img src= 'cid:logoImage' />";
 	    
-	    helper.setFrom("binhblue@gmail.com","Hotel Contact");
-	    helper.setTo("tranbinh00k@gmail.com");
+	    helper.setFrom("nhokad983@gmail.com","Hotel Contact");
+	    helper.setTo("nhokad985@gmail.com");
 	    helper.setSubject(mailSubject);
 	    helper.setText(mailContent, true);
 	    

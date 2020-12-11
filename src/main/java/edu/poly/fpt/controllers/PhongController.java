@@ -114,6 +114,7 @@ public class PhongController {
 		roomDto.setId(room.getId());
 		roomDto.setTen(room.getTen());
 		roomDto.setDientich(room.getDientich());
+		roomDto.setSoluong(room.getSoluong());
 		roomDto.setGiathue(room.getGiathue());
 		roomDto.setTiennghi(roomDto.getTiennghi());
 		roomDto.setLoaigiuong(room.getLoaigiuong());
