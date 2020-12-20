@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -26,6 +27,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.validation.BindingResult;
@@ -84,29 +86,38 @@ private PhongService phongService;
 
 	@Autowired 
 	private DatphongService datphongService;
+	
+	
 	@GetMapping("/booking-form")
     public String add(ModelMap model) {
-    	model.addAttribute("datphongDto", new datphongDto());
 		return "customer/booking-form";
 		
     }
 	
 	@PostMapping("saveOrUpdate/{id}")
-	public String saveOrUpdate(ModelMap model, @Validated datphongDto datphongDto, BindingResult result
-			,RedirectAttributes redire,Principal principal,@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+	public String saveOrUpdate(ModelMap model, @Validated datphongDto datphongDto, BindingResult result,HttpSession session,Model ml
+			,RedirectAttributes redire,final Principal principal,@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+				if(null == principal){
+					System.out.println("chuwa dang nhap");
+					redirectAttributes.addFlashAttribute("message", "you need to login if you want to book room");
+					return "redirect:/view/bookroom/" +id;
+				}
 				// if (result.hasErrors()) {
-				// 	model.addAttribute("message", "vui long nhap tat ca cac du lieu!!");
-				// 	model.addAttribute("datphongDto", datphongDto);
-				// 	return "redirect:/view/bookroom/" +id;
+				// 	// ml.addAttribute("message", "vui long nhap tat ca cac du lieu!!");
+				// 	redirectAttributes.addFlashAttribute("datphongDto", datphongDto);
+				// 	redirectAttributes.addFlashAttribute("message", "please fill all the form!");
+				// 	// model.addAttribute("datphongDto", datphongDto);
+				// 	return "redirect:/view/bookroom/{id}";
 				// }
+	
 		
-				// try{
 		
-		// Float a =datphongService.soLuongPhong(id, datphongDto.getNgayden());
 		if (datphongDto.getNgaytra().before(datphongDto.getNgayden())){
+			redirectAttributes.addFlashAttribute("message", "date check in is greater date check out!");
 			return "redirect:/view/bookroom/" +id;
 		}
 		if (datphongDto.getNgayden().before(new Date())){
+			redirectAttributes.addFlashAttribute("message", "date check in is smaller todate !");
 			return "redirect:/view/bookroom/" +id;
 		}
 		LocalDate startDate = LocalDate.ofInstant(datphongDto.getNgayden().toInstant(), ZoneId.systemDefault()); 
@@ -118,16 +129,14 @@ private PhongService phongService;
 		for(int i = 0 ; i<listOfDates.size();i++){
 			Date date = java.sql.Date.valueOf(listOfDates.get(i));
 			Float a =datphongService.soLuongPhong(id, date );
-			if(a != null || principal.getName().isEmpty()){
+			if(a != null ){
 				if (phong.getSoluong() <= a || phong.getSoluong() < (a + datphongDto.getSophong() )) {
+					
+					redirectAttributes.addFlashAttribute("message", "the room you book is full !");
 					return "redirect:/view/bookroom/" +id;
 				}
 			}
-		}
-		
-		
-		
-		
+		}	
  
 		DatPhong dp = new DatPhong();
 		
@@ -165,6 +174,7 @@ private PhongService phongService;
 		model.addAttribute("datphongDto",new datphongDto());
 		model.addAttribute("success","dat thanh cong");
 		System.out.println("==================================" + datphongDto.getId());
+		redire.addFlashAttribute("success", "Saved Services successfully!");
 		
 		
 		

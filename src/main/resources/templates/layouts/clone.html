@@ -1,55 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <!-- Nulled by http://www.baobinh.net by tieulonglanh -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Hotel HTML Template</title>
-<link rel="icon" th:href="@{/images/favicon.ico}" sizes="16x16">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
-<meta name="keywords" content="" />
 
-<!-- Styles -->
-<th:block layout:fragment="css">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/font-awesome/css/font-awesome.min.css}" />
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/css/bootstrap.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css/color.css}" />
-</th:block>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Hotel HTML Template</title>
+	<link rel="icon" th:href="@{/images/favicon.ico}" sizes="16x16">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+	<!-- Styles -->
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" type="text/css" th:href="@{/font-awesome/css/font-awesome.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/color.css}" />
+	</th:block>
 </head>
+
 <body itemscope>
 	<div class="registration">
 		<div class="container">
-			<span class="close-btn"><img th:src="@{/images/cross.png}"
-				alt="" /></span>
+			<span class="close-btn"><img th:src="@{/images/cross.png}" alt="" /></span>
 			<div class="registration-form">
 				<h3>
 					Register For <span>Luxury Rooms</span>
 				</h3>
 				<p>Quis autem velum lure reprehe nderit. Lorem ipsum dolor
 					sitnulla or narjusto.</p>
-				<form th:action="@{/view/saveUser}" th:object="${UserDto}"
-					method="post">
+				<form th:action="@{/view/saveUser}" th:object="${UserDto}" method="post">
 					<div class="row">
 						<div class="col-md-8 column">
 							<th:block th:if="${err}">
 								<div class="alert alert-warning" role="alert">
-									 <span th:text="#{user.err}"></span>
+									<span th:text="#{user.err}"></span>
 								</div>
 							</th:block>
 							<div th:if="${message}" class="alert alert-warning" role="alert">
-								 <span th:text="#{user.err.field}"></span>
+								<span th:text="#{user.err.field}"></span>
 							</div>
-							<div th:if="${success}"
-								class="row alert alert-success alert-dismissible">
-								<button type="button" class="close" data-dismiss="alert"
-									aria-label="Close">
+							<div th:if="${success}" class="row alert alert-success alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">×</span>
 								</button>
 								<span th:text="${success}"></span>
@@ -62,10 +57,12 @@
 									</div>
 
 									<div class="col-md-6">
-										<input type="text" name="hoten" th:placeholder="#{register.input.placeFullname}" />
+										<input type="text" name="hoten"
+											th:placeholder="#{register.input.placeFullname}" />
 									</div>
 									<div class="col-md-6">
-										<input type="password" name="matkhau" th:placeholder="#{register.input.placePassword}" />
+										<input type="password" name="matkhau"
+											th:placeholder="#{register.input.placePassword}" />
 									</div>
 									<div class="col-md-6">
 										<input type="password" name="reMatkhau"
@@ -75,11 +72,11 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<input type="email" name="email"
-											placeholder="your@email.com *" />
+										<input type="email" name="email" placeholder="your@email.com *" />
 									</div>
 									<div class="col-md-6">
-										<input type="number" name="sodt" th:placeholder="#{register.input.placePhone }" />
+										<input type="number" name="sodt"
+											th:placeholder="#{register.input.placePhone }" />
 									</div>
 									<div class="col-md-6">
 										<select class="form-control">
@@ -89,7 +86,8 @@
 										</select>
 									</div>
 									<div class="col-md-6">
-										<input type="text" name="role" th:placeholder="#{register.input.role}" readonly />
+										<input type="text" name="role" th:placeholder="#{register.input.role}"
+											readonly />
 									</div>
 								</div>
 							</div>
@@ -122,7 +120,8 @@
 											placeholder="your@email.com *" />
 									</div>
 									<div class="col-md-6">
-										<input type="password" required="required" name="matkhau" th:placeholder="#{login.input.password}" />
+										<input type="password" required="required" name="matkhau"
+											th:placeholder="#{login.input.password}" />
 									</div>
 								</div>
 							</div>
@@ -136,8 +135,7 @@
 			</div>
 
 			<!-- FORM FORGOT PASSWORD -->
-			<div class="forgot-form"
-				th:classappend="${classActiveForgetPassword}? 'in active'">
+			<div class="forgot-form" th:classappend="${classActiveForgetPassword}? 'in active'">
 				<h3>
 					Forgot Password <span>Now</span>
 				</h3>
@@ -146,7 +144,8 @@
 
 				<div class="col-md-6">
 					<div th:if="${emailNotExist}" class="alert alert-danger" th:text="#{user.err.email}"></div>
-					<div th:if="${forgetPasswordEmailSent}" class="alert alert-success" th:text="#{user.success.email}"></div>
+					<div th:if="${forgetPasswordEmailSent}" class="alert alert-success" th:text="#{user.success.email}">
+					</div>
 				</div>
 				<form th:action="@{/forgetPassword}" method="post">
 					<div class="row">
@@ -155,8 +154,8 @@
 								<div class="row">
 									<div class="col-md-6">
 
-										<input type="text" id="recoverEmail" name="email"
-											required="required" placeholder="your@email.com *" />
+										<input type="text" id="recoverEmail" name="email" required="required"
+											placeholder="your@email.com *" />
 									</div>
 								</div>
 							</div>
@@ -168,9 +167,9 @@
 				</form>
 				<!-- form -->
 			</div>
-			
-			<!-- FORM PROFILE CUSTOMER 
-			
+
+			<!-- FORM PROFILE CUSTOMER  -->
+
 			<div class="profile-form" th:classappend="${classActiveEdit}? ' in active'">
 				<h3>
 					Profile <span>Customer</span>
@@ -210,15 +209,15 @@
 											th:value="${user} ? ${user.sodt} " />
 									</div>
 									<div class="col-md-6">
-										<select class="form-control"
-											th:value="${user} ? ${user.gioitinh}">
+										<select class="form-control" th:value="${user} ? ${user.gioitinh}">
 											<option value="" selected>Select All Gender</option>
 											<option th:value="true">Male</option>
 											<option th:value="false">Female</option>
 										</select>
 									</div>
 									<div class="col-md-6">
-										<input type="text" name="role" th:value="${user} ? ${user.role} " placeholder="Role *"readonly />
+										<input type="text" name="role" th:value="${user} ? ${user.role} "
+											placeholder="Role *" readonly />
 									</div>
 								</div>
 							</div>
@@ -233,7 +232,7 @@
 					</div>
 				</form>
 			</div>
-			-->
+
 
 		</div>
 	</div>
@@ -250,7 +249,8 @@
 				<th:block th:if="${attr_user == null}">
 					<a id="register-btn" href="#" title="" th:text="#{nav.register}"></a>
 					<a id="login-btn" href="#" title="" th:text="#{nav.login}"></a>
-					<a id="forgot-btn" th:classappend="${classActiveForgetPassword}? 'active'" href="#" title="" th:text="#{nav.forgot}"></a>
+					<a id="forgot-btn" th:classappend="${classActiveForgetPassword}? 'active'" href="#" title=""
+						th:text="#{nav.forgot}"></a>
 				</th:block>
 				<a th:if="${attr_user != null}" id="profile-btn" th:classappend="${classActiveEdit}? 'active'"
 					th:href="@{/myProfile}" title="">Hello -
@@ -265,8 +265,8 @@
 			</div>
 			<!-- language -->
 			<div class="display">
-				<a class="nav-link" th:href="@{/?language=en}">English</a> <a
-					class="nav-link" th:href="@{/?language=vi}">VietNamese</a>
+				<a class="nav-link" th:href="@{/?language=en}">English</a> <a class="nav-link"
+					th:href="@{/?language=vi}">VietNamese</a>
 			</div>
 		</div>
 	</div>
@@ -278,73 +278,121 @@
 			<div class="logo-sec">
 				<a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="" /></a>
 			</div>
-			
+
 			<!-- logo -->
 			<nav>
-				<a class="responsive-menu-btn" href="#" title=""><i
-					class="fa fa-align-justify"></i></a>
+				<a class="responsive-menu-btn" href="#" title=""><i class="fa fa-align-justify"></i></a>
 				<ul>
-					<li class="menu-item-has-children"><a th:href="@{/}" title=""
-						th:text="#{header.home}"></a>
+					<li class="menu-item-has-children"><a th:href="@{/}" title="" th:text="#{header.home}"></a>
 						<ul>
 							<li><a th:href="@{/}" title="" th:text="#{header.page6}"></a></li>
-							<li><a th:href="@{/view/index3}" title=""
-								th:text="#{header.page7}"></a></li>
-						</ul></li>
-					<li class="menu-item-has-children"><a
-						th:href="@{/view/gallery}" title="" th:text="#{header.gallery}"></a>
+							<li><a th:href="@{/view/index3}" title="" th:text="#{header.page7}"></a></li>
+						</ul>
+					</li>
+					<li class="menu-item-has-children"><a th:href="@{/view/gallery}" title=""
+							th:text="#{header.gallery}"></a>
 						<ul>
-							<li><a th:href="@{/view/gallery}" title=""
-								th:text="#{header.gallery1}"></a></li>
-						</ul></li>
-					<li class="menu-item-has-children"><a href="#" title=""
-						th:text="#{header.page}"></a>
+							<li><a th:href="@{/view/gallery}" title="" th:text="#{header.gallery1}"></a></li>
+						</ul>
+					</li>
+					<li class="menu-item-has-children"><a href="#" title="" th:text="#{header.page}"></a>
 						<ul>
-							<li class="menu-item-has-children"><a
-								th:href="@{/view/blog-grid}" title="" th:text="#{header.page1}"></a>
+							<li class="menu-item-has-children"><a th:href="@{/view/blog-grid}" title=""
+									th:text="#{header.page1}"></a>
 								<ul>
 									<li><a th:href="@{/contacts/blog-list}" title="" th:text="#{header.page8}"></a></li>
-									<li><a th:href="@{/contacts/blog-detail}" title="" th:text="#{header.page9}"></a></li>
-								</ul></li>
-							<li><a th:href="@{/view/services}" title=""
-								th:text="#{header.page2}"></a></li>
-							<li><a th:href="@{/view/service-detail}" title=""
-								th:text="#{header.page3}"></a></li>
-							<li><a th:href="@{/view/dinnings}" title=""
-								th:text="#{header.page4}"></a></li>
-							<li><a th:href="@{/view/luxury-tours}" title=""
-								th:text="#{header.page5}"></a></li>
-						</ul></li>
-					<li class="menu-item-has-children"><a href="#" title=""
-						th:text="#{header.package}"></a>
+									<li><a th:href="@{/contacts/blog-detail}" title="" th:text="#{header.page9}"></a>
+									</li>
+								</ul>
+							</li>
+							<li><a th:href="@{/view/services}" title="" th:text="#{header.page2}"></a></li>
+							<li><a th:href="@{/view/service-detail}" title="" th:text="#{header.page3}"></a></li>
+							<li><a th:href="@{/view/dinnings}" title="" th:text="#{header.page4}"></a></li>
+							<li><a th:href="@{/view/luxury-tours}" title="" th:text="#{header.page5}"></a></li>
+						</ul>
+					</li>
+					<li class="menu-item-has-children"><a href="#" title="" th:text="#{header.package}"></a>
 						<ul>
-							<li><a th:href="@{/view/room-packages-grid}" title=""
-								th:text="#{header.package1}"></a></li>
-							<li><a th:href="@{/view/rooms-packages}" title=""
-								th:text="#{header.package2}"></a></li>
-							<li><a th:href="@{/view/all-flights}" title=""
-								th:text="#{header.package3}"></a></li>
-							<li><a th:href="@{/view/flight-packages-detail}" title=""
-								th:text="#{header.package4}"></a></li>
+							<li><a th:href="@{/view/room-packages-grid}" title="" th:text="#{header.package1}"></a></li>
+							<li><a th:href="@{/view/rooms-packages}" title="" th:text="#{header.package2}"></a></li>
+							<li><a th:href="@{/view/all-flights}" title="" th:text="#{header.package3}"></a></li>
+							<li><a th:href="@{/view/flight-packages-detail}" title="" th:text="#{header.package4}"></a>
+							</li>
 							<li><a th:href="@{/view/booking-form}" title="">Booking
 									Form</a></li>
-						</ul></li>
-					<li><a th:href="@{/contacts/about}" title=""
-						th:text="#{header.about}"></a></li>
-					<li><a th:href="@{/contacts/}" title=""
-						th:text="#{header.contact}"></a></li>
+						</ul>
+					</li>
+					<li><a th:href="@{/contacts/about}" title="" th:text="#{header.about}"></a></li>
+					<li><a th:href="@{/contacts/}" title="" th:text="#{header.contact}"></a></li>
 				</ul>
-				<a th:if="${attr_user != null}" class="book-now call-popup" 
-				href="#"
-					title="">History</a>
+				<a th:if="${attr_user != null}" class="book-now call-popup" href="#" title="">History</a>
 			</nav>
+
+			<!--Chat box-->
+			<div id="chat-circle" class="btn btn-raised">
+				<div id="chat-overlay"></div>
+					<i class="material-icons">
+						<img src="/images/chat-bubble.png" alt="">
+
+					</i>
+			</div>
+		  
+		  <div class="chat-box">
+			<div class="chat-box-header">
+			  ChatBot
+			  <span class="chat-box-toggle"><i class="material-icons">close</i></span>
+			</div>
+			<div class="chat-box-body">
+			  <div class="chat-box-overlay">  
+
+			  </div>
+			  <div class="chat-logs">
+				<div id="username-page">
+					<div class="username-page-container">
+						<h3 class="title">Enter your username</h3>
+						<form id="usernameForm" name="usernameForm">
+							<div class="form-group">
+								<input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+							</div>
+							<div class="form-group">
+								<button type="submit" class="accent username-submit">Start Chatting</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			
+				<div id="chat-page" class="hidden">
+					<div class="chat-container">
+						<div class="chat-header text-center">
+							<h3>Start Chat Application</h2>
+						</div>
+						<div class="connecting">
+							Connecting...
+						</div>
+						<ul id="messageArea">
+			
+						</ul>
+						<form id="messageForm" name="messageForm">
+							<div class="form-group">
+								<div class="input-group clearfix">
+									<input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+									<button type="submit" class="primary">Send</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			  </div><!--chat-log -->
+			</div>
+			
+		  </div>
 			<!-- nav -->
 		</div>
 
 	</header>
 	<!-- Header -->
 	<div layout:fragment="header"></div>
-	
+
 	<!-- Header Container -->
 
 
@@ -361,9 +409,9 @@
 	<!-- /.content -->
 
 	<footer>
+		
 		<div class="block darkblue-layer">
-			<div data-velocity="-.1"
-				style="background: url(images/parallax3.jpg) repeat scroll 50% 0 transparent;"
+			<div data-velocity="-.1" style="background: url(images/parallax3.jpg) repeat scroll 50% 0 transparent;"
 				class="parallax"></div>
 			<div class="container">
 				<div class="footer-widgets">
@@ -403,35 +451,38 @@
 								<!-- News Widget -->
 							</div>
 						</div>
+						
 						<div class="col-md-3">
 							<div class="widget">
 								<div class="offers-widget">
 									<div class="offer">
 										<img th:src="@{/images/resource/footer-room1.jpg}" alt="" />
 										<div class="offer-overlay">
-											<span>Couple Room</span> <a href="packages-detail.html"
-												title="">Honymoon Suite</a>
+											<span>Couple Room</span> <a href="packages-detail.html" title="">Honymoon
+												Suite</a>
 										</div>
 									</div>
 									<!-- Offer -->
 									<div class="offer">
 										<img th:src="@{/images/resource/footer-room2.jpg}" alt="" />
 										<div class="offer-overlay">
-											<span>Couple Room</span> <a href="packages-detail.html"
-												title="">Honymoon Suite</a>
+											<span>Couple Room</span> <a href="packages-detail.html" title="">Honymoon
+												Suite</a>
 										</div>
 									</div>
 									<!-- Offer -->
 									<div class="offer">
 										<img th:src="@{/images/resource/footer-room3.jpg}" alt="" />
 										<div class="offer-overlay">
-											<span>Couple Room</span> <a href="packages-detail.html"
-												title="">Honymoon Suite</a>
+											<span>Couple Room</span> <a href="packages-detail.html" title="">Honymoon
+												Suite</a>
 										</div>
 									</div>
 									<!-- Offer -->
 								</div>
 								<!-- Offers Widget -->
+							</div>
+							
 							</div>
 						</div>
 						<div class="col-md-3">
@@ -443,7 +494,7 @@
 								<ul>
 									<li><i class="fa fa-umbrella"></i> Boutiques</li>
 									<li><i class="fa fa-laptop"></i> Complimentary wireless
-										internet</li>	
+										internet</li>
 									<li><i class="fa fa-clock-o"></i> Private beach with
 										service</li>
 									<li><i class="fa fa-wifi"></i> Pet-friendly resort</li>
@@ -451,6 +502,7 @@
 								</ul>
 								<!-- ul -->
 							</div>
+
 							<!-- Luxury Offers -->
 						</div>
 					</div>
@@ -492,10 +544,10 @@
 			</div>
 			<!-- contact-data -->
 			<p>
-				&copy; 2015 <a href="#">Resort</a> - All Rights Reserved - Made By <a
-					href="#">Webinane</a>
+				&copy; 2015 <a href="#">Resort</a> - All Rights Reserved - Made By <a href="#">Webinane</a>
 			</p>
 			<button onclick="myFunction()">Click me</button>
+
 		</div>
 		<!-- container -->
 	</div>
@@ -505,8 +557,7 @@
 	<div th:if="${attr_user != null}" class="booking-popup">
 		<div class="popup-container">
 			<div class="popup-inner">
-				<span class="close-btn"><img th:src="@{/images/cross.png}"
-					alt="" /></span>
+				<span class="close-btn"><img th:src="@{/images/cross.png}" alt="" /></span>
 				<div class="popup-title">
 					<span>Any Time Worldwide</span>
 					<h4>Book Your Room</h4>
@@ -514,17 +565,17 @@
 				</div>
 				<!-- Popup Title -->
 				<div class="popup-details" th:each=" ls : ${lichsu}">
-					
+
 					<!-- Popup Block -->
 					<div class="popup-block">
 						<div class="row">
 							<div class="col-md-5 column">
 								<div class="popup-block-title">
-									
-									<h4 th:text="${ls[9]}" ></h4></br>
-									<h6 th:text="'DAY BOOK '+${ls[3]}" ></h6></br>
-									<h6 th:text="'CHECK IN '+${ls[4]}" ></h6></br>
-									<h6 th:text="'CHECK OUT '+${ls[5]}" ></h6>
+
+									<h4 th:text="${ls[9]}"></h4></br>
+									<h6 th:text="'DAY BOOK '+${ls[3]}"></h6></br>
+									<h6 th:text="'CHECK IN '+${ls[4]}"></h6></br>
+									<h6 th:text="'CHECK OUT '+${ls[5]}"></h6>
 								</div>
 
 							</div>
@@ -533,28 +584,34 @@
 									<div class="popup-room">
 										<div class="popup-room-img">
 											<img th:src="@{'/getImg/' + ${ls[8]}}" alt="" />
-											
+
 										</div>
+
 										<div class="popup-room-detail">
 											<i>Awesome Features Room</i>
 											<h5 th:text="${ls[7]}"></h5>
 											<div class="room-price-from">
-												<strong  >Start From </strong> <span th:text="'$'+ ${ls[6]}"></span> <strong>Per
+												<strong>Start From </strong> <span th:text="'$'+ ${ls[6]}"></span>
+												<strong>Per
 													Person</strong>
 											</div>
 											<div th:switch="${ls[3].after(#dates.createNow())}">
-												<div th:case="true"><a  class="book-now" style="background-color: red;"  title="">ROOM CAN'T BE CANCER</a></div>
+												<div th:case="true"><a class="book-now" style="background-color: red;"
+														title="">ROOM CAN'T BE CANCER</a></div>
 												<div th:case="false">
 													<div th:switch="${ls[1]}">
-														<a th:case="false" th:href="@{'/huyphong/' + ${ls[0]}}" class="book-now"  title="">CANCER ROOM</a>
-													
-														<a th:case="true" class="book-now" style="background-color: red;"  title="">ROOM HAS BEEN CANCER</a>
+														<a th:case="false" th:href="@{'/huyphong/' + ${ls[0]}}"
+															class="book-now" title="">CANCER ROOM</a>
+
+														<a th:case="true" class="book-now"
+															style="background-color: red;" title="">ROOM HAS BEEN
+															CANCER</a>
 													</div>
 												</div>
 											</div>
-											
-											
-											
+
+
+
 										</div>
 									</div>
 								</div>
@@ -566,17 +623,9 @@
 			</div>
 		</div>
 	</div>
-	<th:block th:if="${success != null}">
-	<h1>sadsadasdasd</h1>
-		<script type="text/javascript">
-			function myFunction() {
-				swal("Hello world!");
-				}
-				myFunction();
-			</script>
-		</th:block>
 
-	
+
+
 	<!-- Booking Popup -->
 
 	<div class="popup">
@@ -594,13 +643,13 @@
 
 
 	<th:block layout:fragment="js">
-		
+
 		<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/chosen.jquery.js}" type="text/javascript"></script>
 		<script th:src="@{/js/prism.js}" type="text/javascript"></script>
 		<script th:src="@{/js/init.js}" type="text/javascript"></script>
-		
+
 		<script th:src="@{/js/sweetalert.js}" type="text/javascript"></script>
 		<script th:src="@{/js/owl.carousel.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/jquery.poptrox.min.js}" type="text/javascript"></script>
@@ -608,137 +657,148 @@
 		<script th:src="@{/js/jquery.scrolly.js}" type="text/javascript"></script>
 		<script th:src="@{/js/jquery.isotope.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/isotope-initialize.js}" type="text/javascript"></script>
-		<script th:src="@{/js/bootstrap-datepicker.min.js}"
-			type="text/javascript"></script>
+		<script th:src="@{/js/bootstrap-datepicker.min.js}" type="text/javascript"></script>
 		<script th:src="@{/js/userincr.js}" type="text/javascript"></script>
 		<script th:src="@{/js/jquery.simpleWeather.min.js}"></script>
 		<script th:src="@{/js/script.js}" type="text/javascript"></script>
+		<script th:src="@{/js/main.js}" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 		<script type="text/javascript">
-			$(window).load(function() {
+			$(window).load(function () {
 
 				/*================== SERVICES CAROUSEL ======================*/
 				$('.service-carousel').owlCarousel({
-					autoplay : true,
-					autoplayTimeout : 30000,
-					smartSpeed : 2000,
-					loop : true,
-					dots : false,
-					nav : true,
-					margin : 10,
-					items : 3,
-					autoHeight : true,
-					responsive : {
-						0 : {
-							items : 1
+					autoplay: true,
+					autoplayTimeout: 30000,
+					smartSpeed: 2000,
+					loop: true,
+					dots: false,
+					nav: true,
+					margin: 10,
+					items: 3,
+					autoHeight: true,
+					responsive: {
+						0: {
+							items: 1
 						},
-						480 : {
-							items : 2
+						480: {
+							items: 2
 						},
-						767 : {
-							items : 3
+						767: {
+							items: 3
 						},
-						980 : {
-							items : 3
+						980: {
+							items: 3
 						}
 					}
 				});
 
 				/*================== CLIENTS CAROUSEL ======================*/
 				$('.clients-carousel').owlCarousel({
-					autoplay : true,
-					autoplayTimeout : 30000,
-					smartSpeed : 2000,
-					loop : true,
-					dots : false,
-					nav : true,
-					margin : 10,
-					items : 5,
-					autoHeight : true,
-					responsive : {
-						0:{
-							items : 1
+					autoplay: true,
+					autoplayTimeout: 30000,
+					smartSpeed: 2000,
+					loop: true,
+					dots: false,
+					nav: true,
+					margin: 10,
+					items: 5,
+					autoHeight: true,
+					responsive: {
+						0: {
+							items: 1
 						},
-						480:{
-							items : 3
+						480: {
+							items: 3
 						},
-						767:{
-							items : 4
+						767: {
+							items: 4
 						},
-						980:{
-							items : 5
+						980: {
+							items: 5
 						}
 					}
 				});
 			});
 		</script>
 		<script type="text/javascript">
-		$(window).load(function(){
-			/*================== TESTIMONIAL CAROUSEL ======================*/
-			$('.testimonial-carousel').owlCarousel({
-				autoplay:true,
-				autoplayTimeout:3000,
-				smartSpeed:2000,
-				loop:true,
-				dots:false,
-				nav:false,
-				margin:10,
-				singleItem:true,
-				items:1,
-				animateIn:"fadeIn",
-				animateOut:"fadeOut"
+			$(window).load(function () {
+				/*================== TESTIMONIAL CAROUSEL ======================*/
+				$('.testimonial-carousel').owlCarousel({
+					autoplay: true,
+					autoplayTimeout: 3000,
+					smartSpeed: 2000,
+					loop: true,
+					dots: false,
+					nav: false,
+					margin: 10,
+					singleItem: true,
+					items: 1,
+					animateIn: "fadeIn",
+					animateOut: "fadeOut"
+				});
+
+
+
+				/*================== CLIENTS CAROUSEL ======================*/
+				$('.clients-carousel').owlCarousel({
+					autoplay: true,
+					autoplayTimeout: 30000,
+					smartSpeed: 2000,
+					loop: true,
+					dots: false,
+					nav: true,
+					margin: 10,
+					items: 5,
+					autoHeight: true,
+					responsive: {
+						0: {
+							items: 1
+						},
+						600: {
+							items: 2
+						},
+						1000: {
+							items: 3
+						},
+						1200: {
+							items: 5
+						}
+					}
+				});
+
 			});
-
-
-
-			/*================== CLIENTS CAROUSEL ======================*/
-			$('.clients-carousel').owlCarousel({
-				autoplay:true,
-				autoplayTimeout:30000,
-				smartSpeed:2000,
-				loop:true,
-				dots:false,
-				nav:true,
-				margin:10,
-				items:5,
-				autoHeight:true,
-				responsive:{
-					0:{items:1},
-					600:{items:2},
-					1000:{items:3},
-					1200:{items:5}
-				}
-			});				
-
-		});
-	</script>
-	<script type="text/javascript">
-function myFunction() {
-			swal("Hello world!");
+		</script>
+		<script type="text/javascript">
+			function myFunction() {
+				swal("lol");
 			}
 
-		if('${flag}' == 'showAlert'){
-			myFunction();
-}
-		
-			
+			if ("${message}" == "loi") {
+				myFunction();
+			}
+			if ("${message}" == "loi") {
+				setInterval(myFunction(), 1000);
+			}
 		</script>
 
+
 		<script type="text/javascript">
-		$(document).ready(function(){
-			$(".select").select2();
+			$(document).ready(function () {
+				$(".select").select2();
 
-		});
-	</script>
-	<script type="text/javascript">
-		 setInterval(function() {
-			var a = document.getElementById('sophong').value;
-			var b = document.getElementById('thanhtien').value;
-			var tong = parseInt(a)*parseInt(b);
-				document.getElementById('tong').innerHTML=tong;
-		},3000
-		 );
-
-	</script>
+			});
+		</script>
+		<script type="text/javascript">
+			setInterval(function () {
+				var a = document.getElementById('sophong').value;
+				var b = document.getElementById('thanhtien').textContent;
+				var tong = parseInt(a) * parseInt(b);
+				document.getElementById('tong').innerHTML = "$ " + tong + " USD";
+			}, 3000);
+		</script>
 	</th:block>
 </body>
+
 </html>

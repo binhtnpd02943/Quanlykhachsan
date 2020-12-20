@@ -1,5 +1,6 @@
 package edu.poly.fpt.dto;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -32,14 +33,17 @@ public class datphongDto implements Serializable {
 	@NotNull(message = "Vui lòng chọn dịch vụ")
 	private String dichvu;
 
-	@NotNull(message = "Vui lòng nhập số phòng")
+    @NotNull(message = "Vui lòng nhập số phòng")
+    @Min(1)
 	private int sophong;
 
 	
-	@NotNull(message = "Vui lòng nhập số người lớn")
+    @NotNull(message = "Vui lòng nhập số người lớn")
+    @Min(1)
 	private int nguoilon;
 	
-	@NotNull(message = "Vui lòng nhập số trẻ con")
+    @NotNull(message = "Vui lòng nhập số trẻ con")
+    @Min(0)
     private int trecon;
     
     @NotNull

@@ -126,7 +126,16 @@ public class PhongServiceImpl implements PhongService {
 				.findByKhachsan_idAndDientichGreaterThanEqualAndTiennghiEndingWithAndGiathueGreaterThanEqual(
 						id, dientich, tiennghi, gia);
 	}
-
+	// thong ke theo ngay
+	@Override
+	public List<Object> thongKeTheoNgay(String ngay) {
+		return phongRepository.thongKeTheoNgay(ngay);
+	}
+	// thong ke theo thang
+	@Override
+	public List<Object> thongKeTheoThang(int Thang, int Nam) {
+		return phongRepository.thongKeTheoThang(Thang, Nam);
+	}
 	
 	
 	

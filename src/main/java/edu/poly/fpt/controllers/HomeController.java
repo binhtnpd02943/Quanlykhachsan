@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.poly.fpt.config.MailConstructor;
 import edu.poly.fpt.config.SecurityUtility;
 import edu.poly.fpt.dto.roomDto;
+import edu.poly.fpt.entities.DatPhong;
 import edu.poly.fpt.entities.PagerModel;
 import edu.poly.fpt.entities.Phong;
 import edu.poly.fpt.entities.TaiKhoan;
@@ -37,6 +38,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -187,6 +189,14 @@ public class HomeController {
     // }
 	@GetMapping("huyphong/{id}")
     public String huyphong(@PathVariable("id") Integer id, ModelMap model){
+		DatPhong datPhong = datphongService.findById(id).get();
+		Date date = new Date();
+		long a =(date.getTime() - datPhong.getNgaydat().getTime() )/ (24 * 60 * 60 * 1000);
+		System.out.println(a);
+		if( a> 1){
+			System.out.println("ko huy dc");
+			return "redirect:/";
+		}
 		datphongService.huyphong(id);
 		return "redirect:/";
     }

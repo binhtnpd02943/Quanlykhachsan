@@ -43,6 +43,10 @@ public class DanhgiaController {
 		 	model.addAttribute("ratingDto", ratingDto);
 		 	return "redirect:/view/profile/{id}";
 		 }
+		 if(null == principal){
+			System.out.println("chuwa dang nhap");
+			return "redirect:/view/profile/" +id;
+		}
 
 		// add new
 		if (ratingDto.getId() != null && ratingDto.getId() > 0) {

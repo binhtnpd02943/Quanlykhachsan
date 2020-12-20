@@ -308,3 +308,18 @@ jQuery(window).load(function() {
 
 
 }); /*=== Window.Load Ends Here ===*/
+
+$(function() {
+    var INDEX = 0; 
+    $("#chat-circle").click(function() {    
+      $("#chat-circle").toggle('scale');
+      $(".chat-box").toggle('scale');
+    })
+    
+    $(".chat-box-toggle").click(function() {
+      $("#chat-circle").toggle('scale');
+      $(".chat-box").toggle('scale');
+    })
+    
+  })
+    

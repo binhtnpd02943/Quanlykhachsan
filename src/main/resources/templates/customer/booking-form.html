@@ -9,11 +9,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	
+
 	<link rel="stylesheet" type="text/css" th:href="@{/css/prism.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/chosen.css}" />
-	
+
 </head>
+
 <body itemscope>
 	<div class="theme-layout">
 		<div class="header-container stick">
@@ -39,19 +40,19 @@
 
 
 
-	<section>
-		<div class="block gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8">
-						<div class="booking-form">
-							<div class="booking-image">
-								<img th:src="@{'/getImg/' +${item.id}}" alt="" />
-							</div><!-- Booking Image -->
-							<!-- Booking Detail -->
-							
-							
-								
+			<section>
+				<div class="block gray">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="booking-form">
+									<div class="booking-image">
+										<img th:src="@{'/getImg/' +${item.id}}" alt="" />
+									</div><!-- Booking Image -->
+									<!-- Booking Detail -->
+
+
+
 									<!-- Booking Image -->
 									<div class="booking-detail">
 										<div class="booking-name">
@@ -64,62 +65,64 @@
 											<span>Per Person</span>
 										</div><!-- Package price -->
 										<div class="see-details">
-											<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="">SEE DETAILS</a>
+											<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="">SEE
+												DETAILS</a>
 										</div>
 									</div><!-- Booking Detail -->
 									<div class="center-heading">
 										<h3>Booking Form</h3>
 										<span>Book rooms for your stay. It's quick and easy.</span>
 									</div>
-									<div th:if="${message !=null}">
-										<h3 th:text="${message}"></h3>
+									<div th:if="${show != null}">
+										<h3 th:text="${show}"></h3>
 									</div>
 									<div th:if="${success !=null}">
 										<script>
 											swal("Good job!", "You clicked the button!", "success");
 										</script>
 									</div>
-									
-									<form name="myForm" id="myForm" th:action="@{/view/saveOrUpdate/__${item.id}__}" th:object="${datphongDto}"
-										method="post">
-										<div th:if="${message !=null}">
-											<h3 th:text="${message}"></h3>
-										</div>
+
+									<form  th:action="@{/view/saveOrUpdate/__${item.id}__}"
+										th:object="${datphongDto}" method="post">
+										
 										<div class="row">
+
 											<div class="col-md-12">
-												<div class="field"><input  name="ten" id="ten" type="text"
+												<div class="field"><input name="ten" id="ten" type="text" required="required"
 														placeholder="Your Name" /></div>
+
 											</div>
 											<div class="col-md-12">
-												<div class="field"><input  name="cmt" id="cmt" type="text"
-														placeholder="Your CMND" /></div>
+												<div class="field"><input name="cmt" id="cmt" type="text"
+														placeholder="Your Identity Card" /></div>
 											</div>
 											<div class="col-md-6">
-												<label >Date Check In</label>
+												<label>Date Check In</label>
 												<div class="field">
-													
-													<input class="popupDatepicker"  name="ngayden" id="ngayden"
+
+													<input class="popupDatepicker" name="ngayden" id="ngayden"
 														type="text" placeholder="CheckIn">
 													<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
 												</div>
 											</div>
 											<div class="col-md-6">
-												<label >Date Check Out</label>	
+												<label>Date Check Out</label>
 												<div class="field">
 
-													<input class="popupDatepicker"  name="ngaytra" id="ngaytra"
+													<input class="popupDatepicker" name="ngaytra" id="ngaytra"
 														type="text" placeholder="CheckOut">
 													<img class="field-icon" th:src="@{/images/calendar.png}" alt="" />
 												</div>
 											</div>
-											
+
 											<br />
 											<div class="col-md-4">
-										<label>No Of Rooms</label>
-										<div class="field">	
-											<input  name="sophong" id="sophong"  class="inc-dec" value="01" type="text" placeholder="">
-										</div>
-									</div>
+												<label>No Of Rooms</label>
+												<div class="field">
+													<input name="sophong" id="sophong" class="inc-dec" value="01"
+														type="text" placeholder="">
+												</div>
+											</div>
 											<div class="col-md-4">
 												<label>No Of Adults</label>
 												<div class="field">
@@ -130,24 +133,27 @@
 											<div class="col-md-4">
 												<label>No Of Children</label>
 												<div class="field">
-													<input  name="trecon" id="trecon" class="inc-dec" value="00"
+													<input name="trecon" id="trecon" class="inc-dec" value="00"
 														type="text" placeholder="">
 												</div>
 											</div>
-											
+
 											<div class="col-md-12">
-												<label>dich vu </label>
+												<label>Services </label>
 												<div>
-													<select data-placeholder="Select your service..."  id="dichvu" name="dichvu"   style="width: 100%;" class="chosen-select" multiple > 
-														<option th:each="lks : ${dichvu}"
-																	th:value="${lks.id}"
-																	th:text="${lks.ten} +' '+ ${lks.giadv}+'$'"></option>
-														
+													<select data-placeholder="Select your service..." id="dichvu"
+														name="dichvu" style="width: 100%;" class="chosen-select"
+														multiple>
+														<option th:each="lks : ${dichvu}" th:value="${lks.id}"
+															th:text="${lks.ten} +' '+ ${lks.giadv}+'$'"></option>
+
 													</select>
-													
+
 												</div>
 											</div>
-											<div class="col-md-12"><textarea style="width: 100%;height: 350px;" name="ghichu" id="ghichu" placeholder="Enter Your Note"></textarea></div>
+											<div class="col-md-12"><textarea style="width: 100%;height: 350px;"
+													name="ghichu" id="ghichu" placeholder="Enter Your Note"></textarea>
+											</div>
 										</div>
 										<div class="payment-method">
 											<h5>PAYMENT METHOD <span>Would you like to buy one of our items?</span></h5>
@@ -155,7 +161,9 @@
 												<li>
 													<div class="check-radio">
 														<span>Room
-															Price:</span> <input type="text"id="thanhtien" name="thanhtien" th:value="${item.giathue}" ><strong   ></strong>
+															Price:</span> <strong type="text" id="thanhtien"
+															name="thanhtien" th:value="${item.giathue}"
+															th:text="${item.giathue}"></strong>
 													</div>
 												</li>
 												<li>
@@ -168,6 +176,7 @@
 												</li>
 											</ul>
 										</div>
+
 										<div class="payment-method">
 											<h5>SELECT PAYMENT OPTION</h5>
 											<ul>
@@ -246,14 +255,19 @@
 												</div>
 												<div class="col-md-12">
 													<button class="book-now">Book Now</button>
-													
+
 												</div>
-											</div>
+												<h4>Error :</h4>
+												<div th:if="${message !=null}">
+													<h3 style="color: red;" th:text="${message}"></h3>
+												</div>
+												
+											</div>.
 										</div>
 									</form>
 								</div><!-- Booking Form -->
 							</div>
-
+							
 							<aside class="col-md-4 column">
 								<div class="sidebar">
 									<div class="widget">

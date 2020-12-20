@@ -61,10 +61,17 @@ public class KhachsanController {
 
 	@PostMapping("/saveOrUpdate")
 	public String saveOrUpdate(ModelMap model, @Validated hotelDto khachsanDto, BindingResult result,
-			RedirectAttributes redire) {
+			RedirectAttributes redire,@RequestParam("page") Optional<Integer> page){
 //		String filename =null;
 
 		if (result.hasErrors()) {
+			int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+			Page<KhachSan> roomList = khachsanService.findAll(PageRequest.of(evalPage, INITIAL_PAGE_SIZE, Sort.by("id")));
+			PagerModel pager = new PagerModel(roomList.getTotalPages(), roomList.getNumber(), BUTTONS_TO_SHOW);
+			
+			model.addAttribute("hotels", roomList);
+			model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);
+			model.addAttribute("pager", pager);
 			model.addAttribute("message", "vui long nhap tat ca cac du lieu!!");
 			model.addAttribute("hotelDto", khachsanDto);
 			return "Hotel/dsKhachsan";

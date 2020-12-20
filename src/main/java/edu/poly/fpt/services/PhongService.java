@@ -51,4 +51,7 @@ public interface PhongService {
 	
 	List<Phong> findAllphongbyksid(Long id);
 
+	List<Object> thongKeTheoThang(int Thang, int Nam);
+
+	List<Object> thongKeTheoNgay(String ngay);
 }

@@ -298,6 +298,40 @@ public class ListAllCustomer {
 		redire.addFlashAttribute("success", "Saved Users successfully!");
 		return "redirect:/";
 	}
+	// @RequestMapping(value = "/edit", method = RequestMethod.POST)
+	// public String edit(ModelMap model, @Validated userDto UserDto, BindingResult result, RedirectAttributes redire,
+	// 		@RequestParam("page") Optional<Integer> page){
+	// 			if (!UserDto.getMatkhau().equals(UserDto.getReMatkhau())) {
+	// 				model.addAttribute("userDto", UserDto);
+					
+	// 				int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+	// 				Page<Phong> roomList = phongService.findAll(PageRequest.of(evalPage, INITIAL_PAGE_SIZESS, Sort.by("id")));
+	// 				PagerModel pager = new PagerModel(roomList.getTotalPages(), roomList.getNumber(), BUTTONS_TO_SHOW);
+	// 				model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZESS);
+	// 				model.addAttribute("roomDto", new roomDto());
+	// 				model.addAttribute("phong", roomList);
+	// 				model.addAttribute("pager", pager);
+	// 				model.addAttribute("err", true);
+	// 				return "customer/index";
+	// 			}
+		
+	// 			TaiKhoan user = new TaiKhoan();
+	// 			user.setTentaikhoan(UserDto.getTentaikhoan());
+	// 			user.setMatkhau(passwordEncoder.encode(UserDto.getMatkhau()));
+	// 			user.setHoten(UserDto.getHoten());
+	// 			user.setGioitinh(UserDto.getGioitinh());
+		
+	// 			user.setSodt(UserDto.getSodt());
+	// 			user.setEmail(UserDto.getEmail());
+	// 			user.setRole("USER");
+	// 			taikhoanService.save(user);
+	// 			model.addAttribute("userDto", UserDto);
+	// 			System.out.println("==================================" + UserDto.getTentaikhoan());
+	// 			redire.addFlashAttribute("success", "Saved Users successfully!");
+	// 			return "redirect:/";
+	// 		}
+
+
 
 	@ModelAttribute(name = "loaikhachsan")
 	public List<LoaiKhachSan> getLoaikhachsan() {
