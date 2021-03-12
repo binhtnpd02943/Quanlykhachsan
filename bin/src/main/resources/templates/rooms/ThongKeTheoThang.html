@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<div layout:fragment="header"></div>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <article class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <div th:if="${success}"
+                         class="row alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                        <span th:text="${success}"></span>
+                    </div>
+                    <!-- chu css  -->
+                    <span class="float-left"
+                          style="color: snow; display: table-cell; font-size: 26px; font-weight: 700; margin-top: 40px; vertical-align: middle">
+							Thống Kê </span>
+
+                    <form th:action="@{/thongke/ThongKeTheoThang/filter}">
+                    <div class=" float-right">
+
+                        <div class="field">
+                            <label>Chọn Tháng:</label>
+                            <select class="custom-select" name="thang" id = "thang">
+                                <option th:value="1">Tháng 1</option>
+                                <option th:value="2">Tháng 2</option>
+                                <option th:value="3">Tháng 3</option>
+                                <option th:value="4">Tháng 4</option>
+                                <option th:value="5">Tháng 5</option>
+                                <option th:value="6">Tháng 6</option>
+                                <option th:value="7">Tháng 7</option>
+                                <option th:value="8">Tháng 8</option>
+                                <option th:value="9">Tháng 9</option>
+                                <option th:value="10">Tháng 10</option>
+                                <option th:value="11">Tháng 11</option>
+                                <option th:value="12">Tháng 12</option>
+                            </select>
+                        </div>
+                         <span type="button" class="float-right btn  btn-sm">
+                        <input type="submit" value="Tìm Kiếm" class="btn btn-primary" />
+               
+                         </span>
+                         
+                    </div>
+                    <div class=" float-right">
+                        <div class="field" style="margin-right: 15px" >
+                            <label>Chọn Năm:</label>
+                            <select class="custom-select" name="nam" id = "nam">
+                                <option th:value="2015">2015</option>
+                                <option th:value="2016">2016</option>
+                                <option th:value="2017">2017</option>
+                                <option th:value="2018">2018</option>
+                                <option th:value="2019">2019</option>
+                                <option th:value="2020">2020</option>
+                            </select>
+                        </div>
+                      
+                    </div>
+                     </form>
+
+                    <!-- Modal -->
+
+                </div>
+
+                <table  class="table table-bordered" style="margin-bottom: 0;">
+                    <thead class="text-center">
+                    <tr>
+                        <th>Tên Khách Sạn</th>
+                        <th>Hình Ảnh</th>
+                        <th>Loại Phòng </th>
+                        <th>Số Lần Đặt</th>
+                        <th>Tổng Doanh Thu Đạt Được</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                   <tr th:each="tk: ${thongke}">
+                        <td th:text="${tk[0]}"></td>
+                        <td><img alt="" th:src="@{'/getimage/' +${tk[1]}}"
+                                 width="100" height="90" class="avatar"
+                                 style="border-radius: 40px; vertical-align: middle;"></td>
+                        <td th:text="${tk[2]}"></td>
+                        <td th:text="${tk[3]}"></td>
+                        <td th:text="${tk[4]}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="card-footer" style="text-align: center; ">
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+</body>
+</html>

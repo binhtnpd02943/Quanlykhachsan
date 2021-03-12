@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/clone.html}">
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Hotel HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	
+</head>
+<body itemscope>
+<div class="theme-layout">
+	<div class="header-container stick">
+		<div layout:fragment="header"></div>
+	</div><!-- Header Container -->
+
+
+<div layout:fragment="content">
+	<div class="pagetop">
+		<div class="container">
+			<h1>Contact Us</h1>
+			<ul>
+				<li><a title="" href="#">Home</a></li>
+				<li>Contact Us</li>
+			</ul>		
+		</div>
+	</div><!-- Page Top -->
+
+
+	<section>
+		<div class="block gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 column">
+						<div class="map">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d617841.1234395928!2d19.098163777520817!3d-33.78760119441866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1437982891919"></iframe>
+						</div>
+						<div class="block-gap"></div>
+						<div class="contact-content">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="address-sec">
+										<span>Resort World Best Place</span>
+										<h4>Get In Touch</h4>
+										<p>Lorem ipsum dolor sit amddiet, consectetur adipisicing mod tempor incididutrgnt ut labore et dolore magna aliq minim veniam, quis dsfinostrud exercitation ullamco.</p>
+										<ul>
+											<li><span><i class="fa fa-home"></i></span> <strong>Address:</strong>123 Seward Street Oskla USA</li>
+											<li><span><i class="fa fa-phone"></i></span> <strong>Phone:</strong>82347 483 23</li>
+											<li><span><i class="fa fa-fax"></i></span> <strong>Fax:</strong>92374 2349 577</li>
+											<li><span><i class="fa fa-envelope"></i></span> <strong>Email:</strong>info@youremail.com</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="contact-img">
+										<img th:src="@{/images/resource/contact-img.jpg}" alt="" />
+									</div>
+								</div>
+							</div>
+						</div>			
+						<div class="block-gap"></div>
+
+						<div class="title">
+							<span>Resort World Best Places</span>
+							<h4>Send Us Message</h4>
+						</div>
+						<div class="comment-form center">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enm minim veniam, quis nostrud exercitation ullamco.</p>
+							<div id="message"></div>
+							<form  th:action="@{/contacts/sendMail}" class="input-fields" method="post">
+								<div class="row">
+									<div class="col-md-4"><input id="fullname" name="fullname" type="text" placeholder="Complete Name *" /></div>
+									<div class="col-md-4"><input id="email" name="email" type="email" placeholder="Email Address *" /></div>
+									<div class="col-md-4"><input type="text" name="subject" placeholder="Subject" /></div>
+									<div class="col-md-12"><textarea id="content" name="content" placeholder="Enter Your Content"></textarea></div>
+									<div class="col-md-12"><button id="submit" class="book-now submit" type="submit">Submit Now</button></div>
+								</div>												
+							</form>
+						</div>
+					</div>
+					<aside class="col-md-4 column">
+						<div class="sidebar">
+							<div class="widget">
+								<form class="searchform">
+									<input type="text" placeholder="Search">
+									<button><i class="fa fa-search"></i></button>
+								</form>
+							</div><!-- Widget -->
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Meta Links</h4>
+									<span>Local Guide</span>
+								</div>
+								<ul>
+									<li><a href="#" title="">Log in</a></li>
+									<li><a href="#" title="">Entries RSS</a></li>
+									<li><a href="#" title="">Comments RSS</a></li>
+									<li><a href="#" title="">Wordpress.org</a></li>
+								</ul><!-- ul -->
+							</div><!-- Widget -->							
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Gallery Widget</h4>
+									<span>Local Guide</span>
+								</div>
+								<div class="gallery-widget lightbox">
+									<div class="row">
+										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/resource/gallery-widget1.jpg" alt="" /></a></div>
+										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/resource/gallery-widget2.jpg" alt="" /></a></div>
+										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/resource/gallery-widget3.jpg" alt="" /></a></div>
+										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/resource/gallery-widget4.jpg" alt="" /></a></div>
+										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/resource/gallery-widget5.jpg" alt="" /></a></div>
+										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/resource/gallery-widget6.jpg" alt="" /></a></div>
+									</div>
+								</div>
+							</div><!-- Widget -->				
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Blog Archives</h4>
+									<span>Local Guide</span>
+								</div>
+								<ul>
+									<li><a href="#" title="">Boutiques</a><span>(20)</span></li>
+									<li><a href="#" title="">Complimentary wireless internet</a><span>(01)</span></li>
+									<li><a href="#" title="">Private beach with service</a><span>(08)</span></li>
+									<li><a href="#" title="">Pet-friendly resort</a><span>(10)</span></li>
+									<li><a href="#" title="">Tennis courts</a><span>(20)</span></li>
+								</ul>
+							</div><!-- Widget -->
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Tag Clouds</h4>
+									<span>Facilities</span>
+								</div>
+								<div class="tagcloud">
+									<a href="#" title="">Tennis Courts</a>
+									<a href="#" title="">Resort</a>
+									<a href="#" title="">Private</a>
+									<a href="#" title="">Hotel</a>
+									<a href="#" title="">Blog</a>
+								</div>
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+</div>	
+</div>
+	
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>

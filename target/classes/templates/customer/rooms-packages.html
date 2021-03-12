@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/clone.html}">
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Hotel HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+</head>
+<body itemscope>
+<div class="theme-layout">
+	<div class="header-container stick">
+		<div layout:fragment="header"></div>
+	</div><!-- Header Container -->
+
+
+<div layout:fragment="content">
+	<div class="pagetop">
+		<div class="container">
+			<h1>Luxury Tours</h1>
+			<ul>
+				<li><a title="" th:href="@{/}">Home</a></li>
+				<li><a title="" href="#">Packages</a></li>
+				<li><a th:href="@{/view/room-packages-grid}" title=""> Room Packages</a></li>
+			</ul>		
+		</div>
+	</div><!-- Page Top -->
+
+
+
+	<section>
+		<div class="block gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 column">
+						<div class="rooms-list-view">
+							<div class="special-deal" th:each="item: ${hotel}">
+								<div class="row">
+									<div class="col-md-6 column">
+										<div class="deal-details">
+											<span th:text="${item.thanhpho.ten}"></span>
+											<h4><a title="" th:href="@{/view/packages-detail}" th:text="${item.ten}"></a></h4>
+											<span><i class="fa fa-bank"></i> Hotel: <td th:text="${item.danhgia} +' Star'"></td></span>
+											<p th:text="${item.mota}"></p>
+											<div class="features-price">
+												<div class="row">
+													<div class="col-md-8 column">
+														<ul>
+															<li><i class="fa fa-map-marker"></i> <td th:text="${item.diachi}"></td></li>
+															<li><i class="fa fa-phone"></i> <td th:text="${item.sodt}"></td></li>
+															<li><i class="fa fa-cutlery"></i> <td th:text="${item.buaan}"></td></li>
+														</ul>
+													</div>
+													<div class="col-md-4 column">
+														<div class="start-from">
+															<span>Start Form</span>
+															<strong>$559</strong>
+															<i>Per Person</i>
+															<a class="book-now" th:href="@{'/view/profile/' + ${item.id}}" title="">View Detail</a>
+														</div>
+													</div>
+												</div>
+											</div><!-- Features & Price -->
+										</div><!-- Deal Details -->
+									</div>
+									<div class="col-md-6 column">
+										<div class="deal-gallery">
+											<ul class="nav nav-tabs">
+												<li class="active">
+													<a title="" href="#deal1" data-toggle="tab">
+														<img th:src="@{/images/resource/special-deal-thumb1.jpg}" alt="" />
+													</a>
+												</li>
+												<li>
+													<a title="" href="#deal2" data-toggle="tab">
+														<img th:src="@{/images/resource/special-deal-thumb2.jpg}" alt="" />
+													</a>
+												</li>
+												<li>
+													<a title="" href="#deal3" data-toggle="tab">
+														<img th:src="@{/images/resource/special-deal-thumb3.jpg}" alt="" />
+													</a>
+												</li>
+											</ul>
+											<div class="tab-content">
+												<div class="tab-pane fade in active" id="deal1">
+													<img th:src="@{'/getimage/' +${item.id}}" alt="" />
+												</div>
+												<div class="tab-pane fade" id="deal2">
+													<img th:src="@{/images/resource/special-deal2.jpg}" alt="" />
+												</div>
+												<div class="tab-pane fade" id="deal3">
+													<img th:src="@{/images/resource/special-deal3.jpg}" alt="" />
+												</div>
+											</div>
+										</div><!-- rooms-tabs -->
+									</div>
+								</div>
+							</div><!-- Special Deals -->
+						</div><!-- Rooms Packages -->
+					</div>
+				</div>
+						<div class="title">
+							<nav class="text-center margin-top-65 margin-bottom-75" aria-label="Contacts Page Navigation"
+								th:if="${hotel.totalPages}">
+								<ul class="pagination justify-content-center m-0">
+									<li
+										th:class="${hotel.number == 0}?'disabled page-item':'page-item'">
+										<a class="page-link"
+										th:href="@{/view/rooms-packages/(page=1)}">&laquo;</a>
+									</li>
+									<li
+										th:class="${hotel.number == 0} ?'disabled page-item':'page-item'"><a
+										class="page-link"
+										th:href="@{/view/rooms-packages/(page=${hotel.number})}">&larr;</a>
+									</li>
+									<li
+										th:class="${hotel.number == (page - 1)}?'active page-item':'page-item'"
+										th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+										<a class="page-link"
+										th:href="@{/view/rooms-packages/(page=${page})}"
+										th:text="${page}"></a>
+									</li>
+									<li
+										th:class="${hotel.number + 1 == hotel.totalPages} ?'disabled page-item':'page-item'">
+										<a class="page-link"
+										th:href="@{/view/rooms-packages/(page=${hotel.number + 2})}">&rarr;</a>
+									</li>
+									<li
+										th:class="${hotel.number+ 1 == hotel.totalPages}?'disabled page-item':'page-item'">
+										<a class="page-link"
+										th:href="@{/view/rooms-packages/(page=${hotel.totalPages})}">&raquo;</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+		</div>
+	</section>
+
+</div>
+</div>
+
+	
+		
+</body>
+
+<!-- Nulled by http://www.baobinh.net by tieulonglanh -->
+</html>
